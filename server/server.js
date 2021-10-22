@@ -2,15 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.use(express.static('dist'))
-
-//decode urlencoded
+/* Register middleware */
+app.use(express.static('client/dist'))
 app.use(express.urlencoded());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   
 })
 
-app.listen(port, () => {
-  console.log(`Server started and listening at http://localhost:${port}`);
-})
+app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
