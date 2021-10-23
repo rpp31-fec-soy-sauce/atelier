@@ -6,6 +6,7 @@ import Ratings from "./ratings/Ratings.jsx";
 import RelatedItems from "./related_items/RelatedItems.jsx";
 
 const App = () => {
+
   return (
     <div>
       <OverView />

@@ -3,7 +3,7 @@ import React from 'react';
 const RelatedItems = () => {
   return (
     <div>
-      <h1>RelatedItems</h1>
+      <h1>Related Items</h1>
     </div>
   );
 };
