@@ -19,6 +19,10 @@ const slice = createSlice({
       state.product = action.payload;
     },
 
+    relatedProductsLoaded(state, action) {
+      state.relatedProducts = action.payload;
+    },
+
     stylesLoaded(state, action) {
       state.styles = action.payload.results;
     },
