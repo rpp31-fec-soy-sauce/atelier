@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as apiActions from '../../../store/apiActions';
-import { selectReviews, selectReviewsMeta } from '../../../store/selectors';
+import { selectReviewsMeta, selectTotalReviewCount } from '../../../store/selectors';
 
 const ReviewListHeader = (props) => {
   
@@ -14,22 +14,9 @@ const ReviewListHeader = (props) => {
     loadReviewsMeta();
   }, []);
 
-  const reviewAggregates = useSelector(selectReviewsMeta);
+  const reviewCountTotals = useSelector(selectTotalReviewCount);
 
-  const reviewCount = (reviewRatingsObject = 0) => { 
-    let totalReviewCount = 0;
-    if (reviewRatingsObject !== 0) {
-      Object.values(reviewRatingsObject).forEach((value) => {
-        totalReviewCount += parseInt(value);
-      });
-    }
-
-    return totalReviewCount;
-  }
-
-  const reviewCountTotal = reviewCount(reviewAggregates.ratings);
-
-  return (<h2>{reviewCountTotal} reviews, sorted by relevance</h2>)
+  return (<h2>{reviewCountTotals} reviews, sorted by relevance</h2>)
 }
 
 export default ReviewListHeader;
