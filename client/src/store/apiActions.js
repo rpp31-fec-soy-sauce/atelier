@@ -21,7 +21,7 @@ export const loadStyles = () =>
 
 export const loadQuestions = () =>
   apiCallBegan({
-    url: `/qa/questions?product_id=${getProductId()}`,
+    url: `qa/questions?product_id=${getProductId()}`,
     method: 'GET',
     onSuccess: actions.questionsLoaded.type,
   });

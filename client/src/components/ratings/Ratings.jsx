@@ -1,23 +1,38 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { loadReviews, loadReviewsMeta } from '../../store/apiActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as apiActions from '../../store/apiActions';
 import { selectReviews, selectReviewsMeta } from '../../store/selectors';
+import ReviewListHeader from './components/ReviewListHeader.jsx';
 
 const Ratings = () => {
+
   const dispatch = useDispatch();
+  const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
+
+
   useEffect(() => {
-    dispatch(loadReviews());
-    dispatch(loadReviewsMeta());
+    loadReviews();
+    loadReviewsMeta();
   }, []);
 
   const reviews = useSelector(selectReviews);
-  const meta = useSelector(selectReviewsMeta);
+  const reviewAggregates = useSelector(selectReviewsMeta);
+
+  
 
   return (
     <div>
-      <h1>Ratings</h1>
-      <h3>Reviews Meta</h3>
-      <p>{JSON.stringify(meta)}</p>
+      <h1>Ratings & Reviews</h1>
+        <div>
+          <span>
+            <ReviewListHeader ratingsAgg={reviewAggregates}/>
+          </span>
+          <span></span>
+        </div>
+      
+      
+      <p>{JSON.stringify(reviewAggregates)}</p>
       <h3>Reviews</h3>
       <p>{JSON.stringify(reviews)}</p>
     </div>
