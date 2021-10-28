@@ -8,8 +8,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 
   makeApiCall(method, url, data)
     .then(response => {
-      console.log('api response:', response.data);
-      dispatch({ type: onSuccess, payload: response.data });
+      if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
     })
     .catch(err => console.log('api err:', err));
 };

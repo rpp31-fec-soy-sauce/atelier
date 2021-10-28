@@ -3,6 +3,12 @@ import makeApiCall from './api';
 import { actions } from './reducer';
 import store from './store';
 
+import {
+  getProductId,
+  aggregateRatings,
+  getDefaultStyle,
+} from '../utils/utils';
+
 export const apiCallBegan = createAction('api/callBegan');
 
 export const loadProduct = () =>
@@ -43,7 +49,6 @@ export const loadReviewsMeta = () =>
 export const loadRelatedProducts = () => {
   makeApiCall('GET', `products/${getProductId()}/related`)
     .then(response => {
-
       /* Get product info on each related product */
       const productPromises = response.data.map(id =>
         makeApiCall('GET', `products/${id}`)
@@ -68,7 +73,6 @@ export const loadRelatedProducts = () => {
       ]);
     })
     .then(responses => {
-
       const [products, reviews, styles] = responses;
 
       /* Declare an empty array that hold the array of modified product objects */
@@ -80,7 +84,7 @@ export const loadRelatedProducts = () => {
         result.push({
           ...products[i].data,
           rating: aggregateRatings(reviews[i].data.ratings),
-          url: getDefaultStyle(styles[i].data.results).photos[0].url
+          url: getDefaultStyle(styles[i].data.results).photos[0].url,
         });
       }
 
@@ -122,30 +126,4 @@ export const reportAnswer = id => {
     url: `qa/answers/${id}/report`,
     method: 'PUT',
   });
-};
-
-/* A helper function to get the product id from the current url */
-const getProductId = () => {
-  console.log('product id:', window.location.hash.split('#').join(''));
-  return window.location.hash.split('#').join('');
-};
-
-/* A helper function that takes a rating object and returns the average rating as a float */
-const aggregateRatings = ratings => {
-  let sum = 0;
-  let count = 0;
-  for (const rating in ratings) {
-    sum += rating * parseInt(ratings[rating]);
-    count += parseInt(ratings[rating]);
-  }
-  return count === 0 ? 0 : sum / count;
-};
-
-/* A helper function that takes an array of styles and return the default style object */
-const getDefaultStyle = styles => {
-  const defaultStyle = styles.find(style => style['default?']);
-  
-  /* If there is no default style, return the first style */
-  if (!defaultStyle) return styles[0];
-  return defaultStyle;
 };
