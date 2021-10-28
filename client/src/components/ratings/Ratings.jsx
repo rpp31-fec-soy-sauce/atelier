@@ -17,9 +17,9 @@ const Ratings = () => {
     <div>
       <h1>Ratings</h1>
       <h3>Reviews Meta</h3>
-      <p>{JSON.stringify(meta)}</p>
+      {/* <p>{JSON.stringify(meta)}</p> */}
       <h3>Reviews</h3>
-      <p>{JSON.stringify(reviews)}</p>
+      {/* <p>{JSON.stringify(reviews)}</p> */}
     </div>
   );
 };
