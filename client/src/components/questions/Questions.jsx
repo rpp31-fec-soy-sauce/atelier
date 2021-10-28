@@ -4,10 +4,6 @@ import { loadQuestions } from '../../store/apiActions';
 import { selectQuestions } from '../../store/selectors';
 
 
-// import QuestionsList from './QuestionsList.jsx';
-// import SearchQuestions from './SearchQuestions.jsx';
-
-
 import QuestionDetails from './QuestionDetails.jsx';
 import AddQuestion from './AddQuestion.jsx';
 
@@ -20,6 +16,7 @@ const Questions = () => {
   useEffect(() => dispatch(loadQuestions()), []);
 
   const questions = useSelector(selectQuestions);
+  // console.log('Questions', questions)
 
   const [questionsList, setQuestionsList] = useState([])
 
@@ -31,14 +28,17 @@ const Questions = () => {
 
 
   //refactor to controlled input!
-  const [text, setText] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
 
+  //this func needs to be refactored after selectQuestions is updated
+  const searchQuestion = (term) => {
 
-  const searchTerm = (term) => {
+    setSearchTerm(term);
 
     if (term.length > 2) {
 
+      //this filter function will be refactored to the selector
       const newList = questions.filter(question => question.question_body.toLowerCase().includes(term.toLowerCase()));
       setQuestionsList(newList);
 
@@ -48,29 +48,11 @@ const Questions = () => {
 
   }
 
-  //   return (
-  //     <div>
-
-  //       <h2>Questions and Answers</h2>
-  //       {/* <p>{JSON.stringify(questions)}</p> */}
-  //       <div>
-  //         {/* <SearchQuestions /> */}
-
-  //         <input type="text" placeholder='Have a question? Search for answers...' onChange={e => searchTerm(e.target.value)}></input>
-
-  //         <QuestionsList questions={questionsList} />
-
-  //       </div>
-
-  //     </div>
-  //   );
-  // };
-
 
   const [isQuestionListExpanded, setIsQuestionListExpanded] = useState(false);
 
 
-  const moreQuestions = e => {
+  const expandQuestions = e => {
     if (isQuestionListExpanded === true) {
       setIsQuestionListExpanded(false);
       // e.target.innerText = 'More Answered Questions';
@@ -81,7 +63,7 @@ const Questions = () => {
   }
 
   const renderContent = () => {
-    if (isQuestionListExpanded === false) {
+    if (!isQuestionListExpanded) {
       return (
         <div>
           {questionsList[0] ? <QuestionDetails question={questionsList[0]} /> : ''} <hr />
@@ -110,21 +92,24 @@ const Questions = () => {
       <h2>Questions and Answers</h2>
       {/* <p>{JSON.stringify(questions)}</p> */}
       <div>
-        {/* <SearchQuestions /> */}
-
-        <input type="text" placeholder='Have a question? Search for answers...' onChange={e => searchTerm(e.target.value)}></input>
+        <input
+          type="text"
+          value={searchTerm}
+          placeholder='Have a question? Search for answers...'
+          onChange={e => searchQuestion(e.target.value)}
+        >
+        </input>
       </div>
       <div>
         {renderContent()}
       </div>
       <div>
-        {/* <button onClick={() => setExpandQuestions(expandQuestions === true ? false : true)}>More Answered Questions</button> */}
         <button
-          onClick={e => moreQuestions(e)}>
+          onClick={e => expandQuestions(e)}>
           {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'}
         </button>
+      </div> <br/>
 
-      </div>
       <AddQuestion />
 
     </div>
