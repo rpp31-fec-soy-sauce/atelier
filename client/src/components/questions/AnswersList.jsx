@@ -48,7 +48,7 @@ const AnswersList = ({ answers }) => {
           {sortedList[1] ? <AnswerDetails answer={sortedList[1][1]} /> : ''}
         </div>
       )
-    } else if (expandAnswers === true) {
+    } else if (isAnswerListExpanded) {
       return (
         <div>
           {sortedList.map(answer => {
@@ -60,7 +60,6 @@ const AnswersList = ({ answers }) => {
           })}
         </div>
       )
-
     }
   }
 

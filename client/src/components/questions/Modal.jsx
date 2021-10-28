@@ -41,10 +41,16 @@ const StyledModal = styled.div`
       100% { width: 500px; height: 500px; opacity: .9; }
     }
 
-    h4 {
+    h3 {
       text-align: center;
       color: #444;
       font-size: 1.5rem;
+    }
+
+    h4 {
+      text-align: center;
+      color: #444;
+      font-size: 1rem;
     }
 
     .modal-btns {
@@ -66,7 +72,6 @@ const Modal = ({ closeModal }) => {
   const [questionBody, setQuestionBody] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
-
 
   //add new action to post the new question
 
@@ -108,7 +113,6 @@ const Modal = ({ closeModal }) => {
 
     //add newQuestion to the state.questions
 
-
   }
 
 
@@ -124,33 +128,41 @@ const Modal = ({ closeModal }) => {
         <div>
           {/* <form onSubmit={setState()}> */}
           <form onSubmit={submitQuestion}>
-            <label>Your Question</label> <br />
-            <input
+            <label>Your Question*</label> <br />
+            <textarea
+              maxLength="1000"
               type='text'
               value={questionBody}
               onChange={e => setQuestionBody(e.target.value)}
               placeholder='Add question'
               required
-            /><br />
+            />
+            <br />
+            <br />
 
-            <label> What is your nickname</label> <br />
+            <label> What is your nickname*</label> <br />
             <input
+              maxLength="60"
               type='text'
               value={nickname}
               onChange={e => setNickname(e.target.value)}
               placeholder='Example: jackson11!'
               required
-            /><br />
+            />
+            <p>For privacy reasons, do not use your full name or email address</p><br />
 
-            <p>For privacy reasons, do not use your full name or email address</p>
-            <label>Your email </label> <br />
+            <label>Your email*</label> <br />
             <input
+              maxLength="60"
               type='email'
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Why did you like the product or not?'
               required
-            /> <br />
+            />
+            <br />
+            <br />
+
             <button>Submit</button>
           </form>
 
