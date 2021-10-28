@@ -1,20 +1,23 @@
 import React from 'react';
 /* Components */
-import OverView from "./overview/OverView.jsx";
-import Questions from "./questions/Questions.jsx";
-import Ratings from "./ratings/Ratings.jsx";
-import RelatedItems from "./related_items/RelatedItems.jsx";
+import OverView from './overview/OverView.jsx';
+import Questions from './questions/Questions.jsx';
+import Ratings from './ratings/Ratings.jsx';
+import RelatedItems from './related_items/RelatedItems.jsx';
 import Container from './styles/Container.styled.js';
+import GlobalStyles from './styles/Global.js';
 
 const App = () => {
-
   return (
-    <Container>
-      <OverView />
-      <Questions />
-      <Ratings />
-      <RelatedItems />
-    </Container>
+    <>
+      <GlobalStyles />
+      <Container>
+        <OverView />
+        <Questions />
+        <Ratings />
+        <RelatedItems />
+      </Container>
+    </>
   );
 };
 
