@@ -14,7 +14,7 @@ const RelatedItems = () => {
   return (
     <div>
       <h1>Related Items</h1>
-      <p>{JSON.stringify(relatedProducts)}</p>
+      {/* <p>{JSON.stringify(relatedProducts)}</p> */}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import * as apiActions from '../../../store/apiActions';
 import { selectReviewsMeta, selectTotalReviewCount } from '../../../store/selectors';
 
 const ReviewListHeader = (props) => {
-  
+
   const dispatch = useDispatch();
   const { loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
 

@@ -19,26 +19,21 @@ const Ratings = () => {
   const reviews = useSelector(selectReviews);
   const reviewAggregates = useSelector(selectReviewsMeta);
 
-  
+
 
   return (
     <div>
-<<<<<<< HEAD
-      <h1>Ratings</h1>
-      <h3>Reviews Meta</h3>
-      {/* <p>{JSON.stringify(meta)}</p> */}
-=======
-      <h1>Ratings & Reviews</h1>
+
+      <h1>Ratings Reviews</h1>
         <div>
           <span>
             <ReviewListHeader ratingsAgg={reviewAggregates}/>
           </span>
           <span></span>
         </div>
-      
-      
-      <p>{JSON.stringify(reviewAggregates)}</p>
->>>>>>> 25a9a73b37bdaad2274807e79f54b70d4f5ef403
+
+
+      {/* <p>{JSON.stringify(reviewAggregates)}</p> */}
       <h3>Reviews</h3>
       {/* <p>{JSON.stringify(reviews)}</p> */}
     </div>
