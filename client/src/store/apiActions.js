@@ -3,6 +3,12 @@ import makeApiCall from './api';
 import { actions } from './reducer';
 import store from './store';
 
+import {
+  getProductId,
+  aggregateRatings,
+  getDefaultStyle,
+} from '../utils/utils';
+
 export const apiCallBegan = createAction('api/callBegan');
 
 
@@ -44,7 +50,6 @@ export const loadReviewsMeta = () =>
 export const loadRelatedProducts = () => {
   makeApiCall('GET', `products/${getProductId()}/related`)
     .then(response => {
-
       /* Get product info on each related product */
       const productPromises = response.data.map(id =>
         makeApiCall('GET', `products/${id}`)
@@ -69,7 +74,6 @@ export const loadRelatedProducts = () => {
       ]);
     })
     .then(responses => {
-
       const [products, reviews, styles] = responses;
 
       /* Declare an empty array that hold the array of modified product objects */
@@ -81,7 +85,7 @@ export const loadRelatedProducts = () => {
         result.push({
           ...products[i].data,
           rating: aggregateRatings(reviews[i].data.ratings),
-          url: getDefaultStyle(styles[i].data.results).photos[0].url
+          url: getDefaultStyle(styles[i].data.results).photos[0].url,
         });
       }
 
@@ -124,6 +128,7 @@ export const reportAnswer = id => {
     method: 'PUT',
   });
 };
+<<<<<<< HEAD
 
 /* A helper function to get the product id from the current url */
 const getProductId = () => {
@@ -150,3 +155,5 @@ const getDefaultStyle = styles => {
   if (!defaultStyle) return styles[0];
   return defaultStyle;
 };
+=======
+>>>>>>> 740db7b40fed0210b170412caa25ad4eee4210b1
