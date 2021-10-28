@@ -18,9 +18,9 @@ const OverView = () => {
     <div>
       <h1>Over View</h1>
       <h3>Product</h3>
-      <p>{JSON.stringify(product)}</p>
+      {/* <p>{JSON.stringify(product)}</p> */}
       <h3>Style</h3>
-      <p>{JSON.stringify(styles)}</p>
+      {/* <p>{JSON.stringify(styles)}</p> */}
     </div>
   );
 };
