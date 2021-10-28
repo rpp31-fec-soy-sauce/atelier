@@ -9,3 +9,16 @@ export const selectQuestions = searchText => ({ questions }) => {
   if (searchText.length < 3) return questions;
   questions.filter(q => q.question_body.toLowerCase.includes(searchText.toLowerCase()));
 };
+
+export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
+
+const totalReviewCount = (reviewRatingsObject = 0) => { 
+    let totalReviewCount = 0;
+    if (reviewRatingsObject !== 0) {
+      Object.values(reviewRatingsObject).forEach((value) => {
+        totalReviewCount += parseInt(value);
+      });
+    }
+
+    return totalReviewCount;
+};
