@@ -31,12 +31,6 @@ const OverView = () => {
   return (
     <div>
       <h1>Over View</h1>
-<<<<<<< HEAD
-      <h3>Product</h3>
-      {/* <p>{JSON.stringify(product)}</p> */}
-      <h3>Style</h3>
-      {/* <p>{JSON.stringify(styles)}</p> */}
-=======
       <div style={{ display: 'flex' }}>
         <div style={{ flex: 3 }}>
           {!styles[0] ? null : <div style={{ backgroundImage: `url(${styles[0].photos[0].url})`, width: '100px', height: '100px', backgroundSize: 'cover'}}></div>}
@@ -60,7 +54,6 @@ const OverView = () => {
       </div>
       <h3>{product.slogan}</h3>
       <h3>{product.description}</h3>
->>>>>>> 740db7b40fed0210b170412caa25ad4eee4210b1
     </div>
   );
 };
