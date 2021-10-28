@@ -7,7 +7,7 @@ import AddAnswer from './AddAnswer.jsx';
 
 const AnswersList = ({ answers }) => {
 
-  const [expandAnswers, setExpandAnswers] = useState(false);
+  const [isAnswerListExpanded, setIsAnswerListExpanded] = useState(false);
 
   // const answerId = Object.keys(answers)
 
@@ -27,14 +27,13 @@ const AnswersList = ({ answers }) => {
 
   // console.log('Sort: ', sortedList)
 
-  const moreAnswers = e => {
-    console.log(e)
-    if (expandAnswers === true) {
-      setExpandAnswers(false);
-      e.target.innerText = 'See more answers';
+  const displayMoreAnswers = e => {
+    if (isAnswerListExpanded === true) {
+      setIsAnswerListExpanded(false);
+      // e.target.innerText = 'See more answers';
     } else {
-      setExpandAnswers(true);
-      e.target.innerText = 'Collapse answers';
+      setIsAnswerListExpanded(true);
+      // e.target.innerText = 'Collapse answers';
     }
 
   }
@@ -42,7 +41,7 @@ const AnswersList = ({ answers }) => {
   const renderContent = () => {
     if (sortedList.length === 0) {
       return <div>This question is not answered</div>
-    } else if (expandAnswers === false) {
+    } else if (isAnswerListExpanded === false) {
       return (
         <div>
           {sortedList[0] ? <AnswerDetails answer={sortedList[0][1]} /> : ''}
@@ -71,7 +70,7 @@ const AnswersList = ({ answers }) => {
       <div>
         {renderContent()} <br />
       </div>
-      <button onClick={e => moreAnswers(e)}>More Answers</button> <br />
+      <button onClick={e => displayMoreAnswers(e)}>{isAnswerListExpanded ? 'Collapse Answers' : 'More Answers'}</button> <br />
       <AddAnswer />
     </div>
   )

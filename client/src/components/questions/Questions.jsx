@@ -29,6 +29,12 @@ const Questions = () => {
   }, [questions])
 
 
+
+  //refactor to controlled input!
+  const [text, setText] = useState('');
+
+
+
   const searchTerm = (term) => {
 
     if (term.length > 2) {
@@ -61,21 +67,21 @@ const Questions = () => {
   // };
 
 
-  const [expandQuestions, setExpandQuestions] = useState(false);
+  const [isQuestionListExpanded, setIsQuestionListExpanded] = useState(false);
 
 
   const moreQuestions = e => {
-    if (expandQuestions === true) {
-      setExpandQuestions(false);
-      e.target.innerText = 'More Answered Questions';
+    if (isQuestionListExpanded === true) {
+      setIsQuestionListExpanded(false);
+      // e.target.innerText = 'More Answered Questions';
     } else {
-      setExpandQuestions(true);
-      e.target.innerText = 'Collapse questions';
+      setIsQuestionListExpanded(true);
+      // e.target.innerText = 'Collapse questions';
     }
   }
 
   const renderContent = () => {
-    if (expandQuestions === false) {
+    if (isQuestionListExpanded === false) {
       return (
         <div>
           {questionsList[0] ? <QuestionDetails question={questionsList[0]} /> : ''} <hr />
@@ -113,7 +119,10 @@ const Questions = () => {
       </div>
       <div>
         {/* <button onClick={() => setExpandQuestions(expandQuestions === true ? false : true)}>More Answered Questions</button> */}
-        <button onClick={e => moreQuestions(e)}>More Answered Questions</button>
+        <button
+          onClick={e => moreQuestions(e)}>
+          {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'}
+        </button>
 
       </div>
       <AddQuestion />
