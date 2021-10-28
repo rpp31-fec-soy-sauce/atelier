@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   product: {},
   styles: [],
   relatedProducts: [],
   reviews: [],
-  reviewsMeta:{},
+  reviewsMeta: {},
   questions: []
 };
 
@@ -28,7 +28,9 @@ const slice = createSlice({
     },
 
     questionsLoaded(state, action) {
-      state.questions = action.payload.results;
+      state.questions = action.payload.results.sort(
+        (q1, q2) => q2.question_helpfulness - q1.question_helpfulness
+      );
     },
 
     reviewsLoaded(state, action) {
