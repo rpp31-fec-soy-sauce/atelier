@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import Button from '../styles/Button.styled.js';
 
 
 
@@ -53,7 +54,6 @@ const StyledModal = styled.div`
       font-size: 1rem;
     }
 
-
     .modal-btns {
       display: flex;
       justify-content: center;
@@ -65,21 +65,36 @@ const StyledModal = styled.div`
       padding: 0;
       border-radius: 3px;
     }
+
     .form-row {
       display: flex;
       justify-content: flex-end;
       padding: .5em;
     }
+
     .form-row > label {
       padding: .5em 1em .5em 0;
       flex: 1;
     }
+
     .form-row > input {
       flex: 2;
     }
 
+    .form-row > textarea {
+      flex: 2;
+    }
 
+    .form-row > input,
+    .form-row > button {
+      padding: .5em;
+    }
 
+    .form-row > button {
+     background: gray;
+     color: white;
+     border: 0;
+    }
 
   }
 `;
@@ -118,7 +133,7 @@ const Modal = ({ closeModal }) => {
   const submitQuestion = e => {
 
     e.preventDefault()
-    console.log('Question body', questionBody)
+    // console.log('Question body', questionBody)
 
     //how to get the question_id???
 
@@ -146,7 +161,8 @@ const Modal = ({ closeModal }) => {
         <h3>Ask Your Question</h3>
         <h4>About the {product.name}</h4>
         <div className="modal-btns">
-          <button onClick={closeModal}>Close</button>
+          {/* <button onClick={closeModal}>Close</button> */}
+          <Button onClick={closeModal}>Close</Button>
         </div>
 
         {/* <form onSubmit={setState()}> */}
@@ -193,7 +209,8 @@ const Modal = ({ closeModal }) => {
           </ul>
 
           <div className="modal-btns">
-            <button onClick={closeModal}>Submit</button>
+            {/* <button onClick={closeModal}>Submit</button> */}
+            <Button onClick={closeModal}>Submit</Button>
           </div>
         </form>
 
