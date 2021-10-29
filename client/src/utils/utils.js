@@ -20,3 +20,16 @@ export const getDefaultStyle = styles => {
 
 /* A helper function to get the product id from the current url */
 export const getProductId = () => window.location.hash.split('#').join('');
+
+
+/* A helper function to get the total number of reviews for a given product */
+export const totalReviewCount = (reviewRatingsObject = 0) => { 
+  let totalReviewCount = 0;
+  if (reviewRatingsObject !== 0) {
+    Object.values(reviewRatingsObject).forEach((value) => {
+      totalReviewCount += parseInt(value);
+    });
+  }
+
+  return totalReviewCount;
+};

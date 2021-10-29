@@ -1,4 +1,4 @@
-import { getDefaultStyle, aggregateRatings } from "../utils/utils";
+import { getDefaultStyle, aggregateRatings, totalReviewCount } from "../utils/utils";
 
 export const selectProduct = state => state.product;
 export const selectRelatedProducts = state => state.relatedProducts;
@@ -23,14 +23,3 @@ export const selectCurrentStyle = styleId => state => {
 };
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
-
-const totalReviewCount = (reviewRatingsObject = 0) => { 
-    let totalReviewCount = 0;
-    if (reviewRatingsObject !== 0) {
-      Object.values(reviewRatingsObject).forEach((value) => {
-        totalReviewCount += parseInt(value);
-      });
-    }
-
-    return totalReviewCount;
-};
