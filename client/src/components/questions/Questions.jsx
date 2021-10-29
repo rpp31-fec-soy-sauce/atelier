@@ -67,6 +67,7 @@ const Questions = () => {
       <div>
         <input
           type="text"
+          style={{ display: 'flex', padding: '0.5rem'}}
           value={searchTerm}
           placeholder='Have a question? Search for answers...'
           onChange={e => setSearchTerm(e.target.value)}
