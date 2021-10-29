@@ -53,10 +53,34 @@ const StyledModal = styled.div`
       font-size: 1rem;
     }
 
+
     .modal-btns {
       display: flex;
       justify-content: center;
     }
+
+    .wrapper {
+      background-color: whitesmoke;
+      list-style-type: none;
+      padding: 0;
+      border-radius: 3px;
+    }
+    .form-row {
+      display: flex;
+      justify-content: flex-end;
+      padding: .5em;
+    }
+    .form-row > label {
+      padding: .5em 1em .5em 0;
+      flex: 1;
+    }
+    .form-row > input {
+      flex: 2;
+    }
+
+
+
+
   }
 `;
 
@@ -125,50 +149,56 @@ const Modal = ({ closeModal }) => {
           <button onClick={closeModal}>Close</button>
         </div>
 
-        <div>
-          {/* <form onSubmit={setState()}> */}
-          <form onSubmit={submitQuestion}>
-            <label>Your Question*</label> <br />
-            <textarea
-              maxLength="1000"
-              type='text'
-              value={questionBody}
-              onChange={e => setQuestionBody(e.target.value)}
-              placeholder='Add question'
-              required
-            />
-            <br />
-            <br />
+        {/* <form onSubmit={setState()}> */}
+        <form onSubmit={submitQuestion}>
+          <ul className="wrapper">
+            <li className="form-row">
+              <label>Your Question*</label> <br />
+              <textarea
+                maxLength="1000"
+                type='text'
+                value={questionBody}
+                onChange={e => setQuestionBody(e.target.value)}
+                placeholder='Add question'
+                required
+              />
+            </li>
+            <li className="form-row">
+              <label> What is your nickname*</label> <br />
+              <input
+                maxLength="60"
+                type='text'
+                value={nickname}
+                onChange={e => setNickname(e.target.value)}
+                placeholder='Example: jackson11!'
+                required
+              />
+            </li>
+            <li className="form-row">
+              <p>For privacy reasons, do not use your full name or email address</p><br />
 
-            <label> What is your nickname*</label> <br />
-            <input
-              maxLength="60"
-              type='text'
-              value={nickname}
-              onChange={e => setNickname(e.target.value)}
-              placeholder='Example: jackson11!'
-              required
-            />
-            <p>For privacy reasons, do not use your full name or email address</p><br />
+            </li>
+            <li className="form-row">
+              <label>Your email*</label> <br />
+              <input
+                maxLength="60"
+                type='email'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder='Why did you like the product or not?'
+                required
+              />
+            </li>
 
-            <label>Your email*</label> <br />
-            <input
-              maxLength="60"
-              type='email'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder='Why did you like the product or not?'
-              required
-            />
-            <br />
-            <br />
+          </ul>
 
-            <button>Submit</button>
-          </form>
+          <div className="modal-btns">
+            <button onClick={closeModal}>Submit</button>
+          </div>
+        </form>
 
-        </div>
       </div>
-    </StyledModal>
+    </StyledModal >
   )
 }
 

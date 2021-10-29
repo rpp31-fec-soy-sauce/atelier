@@ -78,14 +78,16 @@ const Questions = () => {
       </div>
       <div>
         <button
-          onClick={expandQuestions}>
+          style={{ display: 'flex',  border: '1px solid black', borderRadius: '5px', padding: '0.5rem'}}
+          onClick={expandQuestions}
+          >
           {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'}
         </button>
-      </div> <br/>
+      </div> <br />
 
       <AddQuestion />
 
-    </div>
+    </div >
 
   );
 };

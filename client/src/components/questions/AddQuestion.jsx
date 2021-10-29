@@ -36,12 +36,14 @@ const AddQuestion = () => {
 
   }
 
-
-
-
   return (
     <div>
-      <button onClick={openModal}>Add A Question</button>
+      <button
+        style={{ display: 'flex',  border: '1px solid black', borderRadius: '5px', padding: '0.5rem'}}
+        onClick={openModal}
+      >
+        Add A Question
+      </button>
       {showModal && <Modal closeModal={closeModal} />}
       {/* <div>
         <label>Add A Question</label> <br />

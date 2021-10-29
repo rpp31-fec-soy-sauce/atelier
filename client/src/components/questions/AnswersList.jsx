@@ -69,7 +69,12 @@ const AnswersList = ({ answers }) => {
       <div>
         {renderContent()} <br />
       </div>
-      <button onClick={e => displayMoreAnswers(e)}>{isAnswerListExpanded ? 'Collapse Answers' : 'More Answers'}</button> <br />
+      <button
+        style={{ display: 'flex',  border: '1px solid black', borderRadius: '5px', padding: '0.5rem'}}
+        onClick={e => displayMoreAnswers(e)}
+      >
+        {isAnswerListExpanded ? 'Collapse Answers' : 'More Answers'}
+      </button> <br />
       <AddAnswer />
     </div>
   )

@@ -21,9 +21,13 @@ const AnswerDetails = ({ answer }) => {
   return (
     <div>
       <p> <b>A:</b> {answer.body}</p>
-      <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
-      <p>Helpful?  Yes {answer.helpfulness}</p>
-      <p>Report</p>
+      <div style={{ display: 'flex', gap: '3rem' }}>
+        <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
+        <p>|</p>
+        <p>Helpful?  Yes {answer.helpfulness}</p>
+        <p>Report</p>
+
+      </div>
 
       {/* {answer.photos.map(pic => <div key={pic} ></div>)} */}
     </div>
