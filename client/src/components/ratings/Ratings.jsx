@@ -24,21 +24,6 @@ const Ratings = () => {
 
   return (
     <div>
-<<<<<<< HEAD
-
-      <h1>Ratings Reviews</h1>
-        <div>
-          <span>
-            <ReviewListHeader ratingsAgg={reviewAggregates}/>
-          </span>
-          <span></span>
-        </div>
-
-
-      {/* <p>{JSON.stringify(reviewAggregates)}</p> */}
-      <h3>Reviews</h3>
-      {/* <p>{JSON.stringify(reviews)}</p> */}
-=======
       <h3>RATINGS & REVIEWS</h3>
       <RatingsContainer>
           <RatingsBreakdown>
@@ -54,7 +39,6 @@ const Ratings = () => {
             <ReviewList />
           </ReviewListContainer>
       </RatingsContainer>
->>>>>>> 045a5c6e869935c65d41880badf13cffcc8162ee
     </div>
   );
 };

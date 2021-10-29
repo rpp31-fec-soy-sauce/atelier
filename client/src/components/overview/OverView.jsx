@@ -21,12 +21,7 @@ const OverView = () => {
   const currentStyle = useSelector(selectCurrentStyle(selectedStyle));
 
   return (
-<<<<<<< HEAD
-    <div>
-      <h1>Over View</h1>
-=======
     <div style={{ marginTop: '2rem' }}>
->>>>>>> main
       <div style={{ display: 'flex' }}>
         <div style={{ width: '70%' }}>
           <Gallery url={currentStyle?.photos[0].url} />
