@@ -16,10 +16,6 @@ const RelatedItems = () => {
 
   return (
     <div>
-<<<<<<< HEAD
-      <h1>Related Items</h1>
-      {/* <p>{JSON.stringify(relatedProducts)}</p> */}
-=======
       <h3>Related Products</h3>
       <Container>
       {relatedProducts.map(product => {
@@ -32,9 +28,8 @@ const RelatedItems = () => {
                   <div>{product.rating}</div>
                 </div>
               </div>
-      })}
+      })}Í
       </Container>
->>>>>>> 045a5c6e869935c65d41880badf13cffcc8162ee
     </div>
   );
 };
