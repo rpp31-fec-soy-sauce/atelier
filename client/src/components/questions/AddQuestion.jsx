@@ -31,6 +31,14 @@ const AddQuestion = () => {
     setShowModal(false);
   }
 
+
+  const renderContent = () => {
+
+  }
+
+
+
+
   return (
     <div>
       <button onClick={openModal}>Add A Question</button>

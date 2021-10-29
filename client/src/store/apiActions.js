@@ -11,7 +11,6 @@ import {
 
 export const apiCallBegan = createAction('api/callBegan');
 
-
 export const loadProduct = () =>
   apiCallBegan({
     url: `products/${getProductId()}`,

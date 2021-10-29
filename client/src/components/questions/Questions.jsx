@@ -15,65 +15,38 @@ const Questions = () => {
 
   useEffect(() => dispatch(loadQuestions()), []);
 
-  const questions = useSelector(selectQuestions);
-  // console.log('Questions', questions)
-
-  const [questionsList, setQuestionsList] = useState([])
-
-  //re-render once the questions are updated
-  useEffect(() => {
-    setQuestionsList(questions)
-  }, [questions])
-
-
-
-  //refactor to controlled input!
   const [searchTerm, setSearchTerm] = useState('');
-
-
-  //this func needs to be refactored after selectQuestions is updated
-  const searchQuestion = (term) => {
-
-    setSearchTerm(term);
-
-    if (term.length > 2) {
-
-      //this filter function will be refactored to the selector
-      const newList = questions.filter(question => question.question_body.toLowerCase().includes(term.toLowerCase()));
-      setQuestionsList(newList);
-
-    } else {
-      setQuestionsList(questions)
-    }
-
-  }
-
-
   const [isQuestionListExpanded, setIsQuestionListExpanded] = useState(false);
 
 
-  const expandQuestions = e => {
+  const questions = useSelector(selectQuestions(searchTerm));
+
+  // console.log('Search term', searchTerm)
+  // console.log('Questions', questions)
+
+
+
+  const expandQuestions = () => {
     if (isQuestionListExpanded === true) {
       setIsQuestionListExpanded(false);
-      // e.target.innerText = 'More Answered Questions';
     } else {
       setIsQuestionListExpanded(true);
-      // e.target.innerText = 'Collapse questions';
     }
   }
 
   const renderContent = () => {
+
     if (!isQuestionListExpanded) {
       return (
         <div>
-          {questionsList[0] ? <QuestionDetails question={questionsList[0]} /> : ''} <hr />
-          {questionsList[1] ? <QuestionDetails question={questionsList[1]} /> : ''}  <hr />
+          {questions[0] ? <QuestionDetails question={questions[0]} /> : ''} <hr />
+          {questions[1] ? <QuestionDetails question={questions[1]} /> : ''}  <hr />
         </div>
       )
     } else {
       return (
         <div>
-          {questionsList.map(question => {
+          {questions.map(question => {
             return (
               <div key={question.question_id}>
                 <QuestionDetails question={question} /> <hr />
@@ -96,7 +69,7 @@ const Questions = () => {
           type="text"
           value={searchTerm}
           placeholder='Have a question? Search for answers...'
-          onChange={e => searchQuestion(e.target.value)}
+          onChange={e => setSearchTerm(e.target.value)}
         >
         </input>
       </div>
@@ -105,7 +78,7 @@ const Questions = () => {
       </div>
       <div>
         <button
-          onClick={e => expandQuestions(e)}>
+          onClick={expandQuestions}>
           {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'}
         </button>
       </div> <br/>

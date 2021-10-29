@@ -8,7 +8,7 @@ export const selectReviewsMeta = state => state.reviewsMeta;
 
 export const selectQuestions = searchText => ({ questions }) => {
   if (searchText.length < 3) return questions;
-  return questions.filter(q => q.question_body.toLowerCase.includes(searchText.toLowerCase()));
+  return questions.filter(q => q.question_body.toLowerCase().includes(searchText.toLowerCase()));
 };
 
 export const selectAverageRating = state => {
@@ -24,7 +24,7 @@ export const selectCurrentStyle = styleId => state => {
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
 
-const totalReviewCount = (reviewRatingsObject = 0) => { 
+const totalReviewCount = (reviewRatingsObject = 0) => {
     let totalReviewCount = 0;
     if (reviewRatingsObject !== 0) {
       Object.values(reviewRatingsObject).forEach((value) => {
