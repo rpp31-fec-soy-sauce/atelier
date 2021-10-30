@@ -56,7 +56,7 @@ const RelatedItems = () => {
         </Add>
       </Container2>
       <Container1>
-
+      { outfit ? <fdfd> : null }
       </Container1>
 
     </div>
