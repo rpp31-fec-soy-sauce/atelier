@@ -16,7 +16,7 @@ const ReviewList = () => {
   return (
   <>
       <ReviewListHeader>
-        <h2>{reviewCountTotals} reviews, sorted by  
+        <h2>{reviewCountTotals} reviews, sorted by &nbsp;  
           <select value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="helpful">helpful</option>
             <option value="newest">newest</option>
