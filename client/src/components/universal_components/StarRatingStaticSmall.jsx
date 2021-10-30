@@ -44,9 +44,9 @@ const StarRatingsStatic = (props) => {
   
   const starsForRendering = stars.map((item, i) => {
     return (
-      <div className="single-star-container" key={i}>
-        <div className="single-star-fill" style={{"width" : `${parseInt(item*11)}px`}}>
-          <img className="single-star-outline" src={starPNG} alt="stars alt"></img>
+      <div className="single-star-container-small" key={i}>
+        <div className="single-star-fill-small" style={{"width" : `${parseInt(item*11)}px`}}>
+          <img className="single-star-outline-small" src={starPNG} alt="stars alt"></img>
         </div>
       </div>
     );
