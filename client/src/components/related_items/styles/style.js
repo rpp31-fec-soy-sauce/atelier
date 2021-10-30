@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container1 = styled.div`
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   width: 100%;
 `
+
+export const Container2 = styled.div`
+  display: flex;
+  // justify-content: center;
+  width: 100%;
+`
+
 export const Image = styled.img`
   height: 170px;
   width: 163px;
@@ -28,4 +35,13 @@ export const Anchor = styled.a`
 export const Card = styled.div`
   border: 1px solid black;
   margin: 0 10px;
+`
+
+export const Add = styled.div`
+  padding-top: 50px;
+  border: 1px solid black;
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
