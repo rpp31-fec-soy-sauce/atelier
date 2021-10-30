@@ -22,19 +22,4 @@ export const selectCurrentStyle = styleId => state => {
   return styles.find(style => style.style_id === styleId);
 };
 
-<<<<<<< HEAD
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
-
-const totalReviewCount = (reviewRatingsObject = 0) => {
-    let totalReviewCount = 0;
-    if (reviewRatingsObject !== 0) {
-      Object.values(reviewRatingsObject).forEach((value) => {
-        totalReviewCount += parseInt(value);
-      });
-    }
-
-    return totalReviewCount;
-};
-=======
-export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
->>>>>>> bcdbf011428b4568ec60483c2478f6e04ccc6a4c
