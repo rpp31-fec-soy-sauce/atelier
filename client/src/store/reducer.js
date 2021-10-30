@@ -6,7 +6,8 @@ const initialState = {
   relatedProducts: [],
   reviews: [],
   reviewsMeta: {},
-  questions: []
+  questions: [],
+  userOutfits: []
 };
 
 const slice = createSlice({
@@ -43,6 +44,10 @@ const slice = createSlice({
 
     relatedProductsLoaded(state, action) {
       state.relatedProducts = action.payload;
+    },
+
+    userOutfitsUpdated(state, action) {
+      state.userOutfits = action.payload;
     }
   }
 });
