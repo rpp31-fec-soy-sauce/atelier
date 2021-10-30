@@ -33,6 +33,24 @@ const GlobalStyles = createGlobalStyle`
     width: 21px;
     display: inline-block;
   }
+
+  .single-star-outline-small {
+    height: 16px; 
+    width: 11px;
+  }
+
+  .single-star-fill-small {
+    position: relative;
+    display: inline-block;
+    height: 16px; 
+    background-color: #333333;
+  }
+
+  .single-star-container-small {
+    height: 16px; 
+    width: 11px;
+    display: inline-block;
+  }
 `
 
 export default GlobalStyles;
