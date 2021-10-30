@@ -24,7 +24,7 @@ const ButtonPanel = ({ currentStyle }) => {
   return (
     <>
       <div style={{ display: 'flex', gap: '1rem' }}>
-        <Select style={{ flex: 1 }} onChange={e => setSkus(e.target.value)}>
+        {/* <Select style={{ flex: 1 }} onChange={e => setSkus(e.target.value)}>
           {skus === undefined ? <option selected>Select Size</option> : null}
           {!currentStyle
             ? null
@@ -43,7 +43,7 @@ const ButtonPanel = ({ currentStyle }) => {
           {[...Array(getMaxQuantity(currentStyle, skus)).keys()].map(num => (
             <option key={num + 1}>{num + 1}</option>
           ))}
-        </Select>
+        </Select> */}
       </div>
       <div style={{ display: 'flex', gap: '1rem' }}>
         <Button style={{ fontSize: '1.5rem', flex: 1 }}>ADD TO BAG</Button>
