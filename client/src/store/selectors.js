@@ -8,7 +8,7 @@ export const selectReviewsMeta = state => state.reviewsMeta;
 
 export const selectQuestions = searchText => ({ questions }) => {
   if (searchText.length < 3) return questions;
-  return questions.filter(q => q.question_body.toLowerCase.includes(searchText.toLowerCase()));
+  return questions.filter(q => q.question_body.toLowerCase().includes(searchText.toLowerCase()));
 };
 
 export const selectAverageRating = state => {
@@ -21,6 +21,7 @@ export const selectCurrentStyle = styleId => state => {
   if (!styleId) return getDefaultStyle(styles);
   return styles.find(style => style.style_id === styleId);
 };
+
 
 export const selectPercentRecommendedProduct = state => {
   const reviewsAggregate = selectReviewsMeta(state);

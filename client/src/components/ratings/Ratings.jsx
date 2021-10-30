@@ -22,7 +22,7 @@ const Ratings = () => {
   const reviews = useSelector(selectReviews);
   const reviewAggregates = useSelector(selectReviewsMeta);
 
-  
+
 
   return (
     <div>
