@@ -6,6 +6,7 @@ import { selectQuestions } from '../../store/selectors';
 
 import QuestionDetails from './QuestionDetails.jsx';
 import AddQuestion from './AddQuestion.jsx';
+import Button from '../styles/Button.styled.js';
 
 
 
@@ -58,35 +59,48 @@ const Questions = () => {
     }
   }
 
-  //rendering first two questions
+//rendering first two questions
+
+//need to refactor again, clicking More Questions only load additional two questions
+
   return (
 
     <div>
-      <h2>Questions and Answers</h2>
+      <h3>QUESTIONS & ANSWERS</h3>
       {/* <p>{JSON.stringify(questions)}</p> */}
-      <div>
-        <input
-          type="text"
-          style={{ display: 'flex', padding: '0.5rem'}}
-          value={searchTerm}
-          placeholder='Have a question? Search for answers...'
-          onChange={e => setSearchTerm(e.target.value)}
-        >
-        </input>
-      </div>
+      <input
+        style={{
+          width: '90%',
+          height: '50px',
+          marginLeft: '1rem',
+          display: 'flex',
+          flexWrap: 'wrap',
+          fontSize: '1rem'
+        }}
+        type="text"
+        value={searchTerm}
+        placeholder='Have a question? Search for answers...'
+        onChange={e => setSearchTerm(e.target.value)}
+      >
+      </input>
+      <br />
       <div>
         {renderContent()}
       </div>
-      <div>
-        <button
-          style={{ display: 'flex',  border: '1px solid black', borderRadius: '5px', padding: '0.5rem'}}
-          onClick={expandQuestions}
-          >
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: '4rem',
+        }}
+      >
+        <Button onClick={expandQuestions}>
           {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'}
-        </button>
-      </div> <br />
+        </Button>
 
-      <AddQuestion />
+        <AddQuestion />
+      </div>
 
     </div >
 

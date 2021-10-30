@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import AddAnswer from './AddAnswer.jsx';
 
 const AnswerDetails = ({ answer }) => {
 
@@ -21,12 +21,21 @@ const AnswerDetails = ({ answer }) => {
   return (
     <div>
       <p> <b>A:</b> {answer.body}</p>
-      <div style={{ display: 'flex', gap: '3rem' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'start',
+          gap: '1rem',
+        }}
+      >
         <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
         <p>|</p>
-        <p>Helpful?  Yes {answer.helpfulness}</p>
+        <p>Helpful?</p>
+        <p>Yes ({answer.helpfulness | 0 })</p>
+        <p>|</p>
         <p>Report</p>
-
+        <AddAnswer />
       </div>
 
       {/* {answer.photos.map(pic => <div key={pic} ></div>)} */}

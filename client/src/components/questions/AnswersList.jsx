@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AnswerDetails from './AnswerDetails.jsx';
-import AddAnswer from './AddAnswer.jsx';
+import Button from '../styles/Button.styled.js';
 
 
 
@@ -30,22 +30,31 @@ const AnswersList = ({ answers }) => {
   const displayMoreAnswers = e => {
     if (isAnswerListExpanded === true) {
       setIsAnswerListExpanded(false);
-      // e.target.innerText = 'See more answers';
     } else {
       setIsAnswerListExpanded(true);
-      // e.target.innerText = 'Collapse answers';
     }
 
   }
 
   const renderContent = () => {
-    if (sortedList.length === 0) {
-      return <div>This question is not answered</div>
-    } else if (isAnswerListExpanded === false) {
+    // if (sortedList.length === 0) {
+    //   console.log('Length:', sortedList.length)
+    //   return (
+    //     <div>
+    //       <AddAnswer />
+    //     </div>
+    //   )
+    // }
+
+    if (isAnswerListExpanded === false) {
       return (
         <div>
           {sortedList[0] ? <AnswerDetails answer={sortedList[0][1]} /> : ''}
           {sortedList[1] ? <AnswerDetails answer={sortedList[1][1]} /> : ''}
+          <Button onClick={e => displayMoreAnswers(e)}>
+            {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'}
+          </Button>
+
         </div>
       )
     } else if (isAnswerListExpanded) {
@@ -58,6 +67,10 @@ const AnswersList = ({ answers }) => {
               </div>
             )
           })}
+          <Button onClick={e => displayMoreAnswers(e)}>
+            {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'}
+          </Button>
+
         </div>
       )
     }
@@ -66,16 +79,8 @@ const AnswersList = ({ answers }) => {
 
   return (
     <div>
-      <div>
-        {renderContent()} <br />
-      </div>
-      <button
-        style={{ display: 'flex',  border: '1px solid black', borderRadius: '5px', padding: '0.5rem'}}
-        onClick={e => displayMoreAnswers(e)}
-      >
-        {isAnswerListExpanded ? 'Collapse Answers' : 'More Answers'}
-      </button> <br />
-      <AddAnswer />
+      {renderContent()} <br />
+
     </div>
   )
 
