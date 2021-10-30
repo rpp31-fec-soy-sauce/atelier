@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as apiActions from '../../store/apiActions';
@@ -11,10 +11,18 @@ const ReviewList = () => {
 
   const reviewCountTotals = useSelector(selectTotalReviewCount);
 
+  const [filter, setFilter] = useState('helpful');
+
   return (
   <>
       <ReviewListHeader>
-        <h2>{reviewCountTotals} reviews, sorted by relevance (make drop down)</h2>
+        <h2>{reviewCountTotals} reviews, sorted by &nbsp;  
+          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+            <option value="helpful">helpful</option>
+            <option value="newest">newest</option>
+            <option value="relevant">relevant</option>
+          </select>
+        </h2>
       </ReviewListHeader> 
       <ReviewTiles />
       <ReviewListFooter>

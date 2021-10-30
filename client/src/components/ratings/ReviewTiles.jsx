@@ -5,6 +5,7 @@ import * as apiActions from '../../store/apiActions';
 import { selectReviews } from '../../store/selectors';
 import { ReviewTile, ReviewTileHeader, ReviewTilesListContainer, ReviewTileBody, ReviewTileFooter, ReviewTileBodyResponse } from './styles/Container.style'
 import { ReviewTileItem, ReviewTileBodyItem } from './styles/Item.style'
+import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
 
 const ReviewTiles = () => {
 
@@ -18,7 +19,7 @@ const ReviewTiles = () => {
       <ReviewTile key={review.review_id}>
         <ReviewTileHeader>
           <ReviewTileItem>
-            Stars Component: {review.rating}
+            <StarRatingStatic averageRating={review.rating}/>
           </ReviewTileItem>
           <ReviewTileItem>
             {review.reviewer_name}, {convertedDate}
