@@ -34,7 +34,7 @@ const QuestionsDetails = ({ question }) => {
           <p>Helpful?</p>
           <p>Yes ({question.helpfulness | 0})</p>
           <p>|</p>
-          <AddAnswer />
+          <AddAnswer question={question.question_body}/>
         </div>
       </div>
       {Object.keys(question.answers).length === 0? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
