@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Stars from '../universal_components/StarRatingStaticSmall.jsx'
 
@@ -19,11 +19,15 @@ const RelatedItems = () => {
   const currentStyle = useSelector(selectCurrentStyle(undefined));
   const averageRating = useSelector(selectAverageRating);
 
-  // console.log('currentProduct', currentProduct);
+  const [outfit, SetOutfit] = useState(false);
 
-  // console.log('relatedProducts', relatedProducts)
-  // console.log('currentStyle', currentStyle)
-  // console.log(averageRating)
+  const localStorage = () => {
+    console.log('saved')
+  };
+
+  console.log('currentProduct', currentProduct);
+  console.log('currentStyle', currentStyle)
+  console.log(averageRating)
 
 
   return (
@@ -46,11 +50,14 @@ const RelatedItems = () => {
       </Container1>
       <h3>Your Outfit</h3>
       <Container2>
-        <Add>
+        <Add onClick={() => localStorage()}>
             <Image src={plusSign}></Image>
-            <div style={{marginTop: "30px"}}>Add to Outfit</div>
+            <div style={{marginTop: "30px", fontWeight: 'Bold'}}>Add to Outfit</div>
         </Add>
       </Container2>
+      <Container1>
+
+      </Container1>
 
     </div>
   );

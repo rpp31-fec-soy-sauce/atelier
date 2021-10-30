@@ -35,6 +35,7 @@ export const Anchor = styled.a`
 export const Card = styled.div`
   border: 1px solid black;
   margin: 0 10px;
+  cursor: pointer;
 `
 
 export const Add = styled.div`
@@ -44,4 +45,5 @@ export const Add = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 `
