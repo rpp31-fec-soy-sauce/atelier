@@ -8,14 +8,6 @@ import { ReviewTileItem, ReviewTileBodyItem } from './styles/Item.style'
 
 const ReviewTiles = () => {
 
-  const dispatch = useDispatch();
-  const { loadReviews } = bindActionCreators(apiActions, dispatch);
-
-
-  useEffect(() => {
-    loadReviews();
-  }, []);
-
   const reviews = useSelector(selectReviews);
 
   const reviewTileConstructor = reviews.map(review => {

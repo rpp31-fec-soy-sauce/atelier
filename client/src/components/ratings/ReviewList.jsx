@@ -8,14 +8,6 @@ import { ReviewListHeader, ReviewListFooter} from './styles/Container.style'
 import Button from '../styles/Button.styled.js'
 
 const ReviewList = () => {
-  
-  const dispatch = useDispatch();
-  const { loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
-
-
-  useEffect(() => {
-    loadReviewsMeta();
-  }, []);
 
   const reviewCountTotals = useSelector(selectTotalReviewCount);
 

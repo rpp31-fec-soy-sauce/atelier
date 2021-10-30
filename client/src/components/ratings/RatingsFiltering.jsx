@@ -7,14 +7,6 @@ import { RatingsFilteringItem } from './styles/Item.style'
 
 const RatingsFiltering = () => {
 
-  const dispatch = useDispatch();
-  const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
-
-  useEffect(() => {
-    loadReviews();
-    loadReviewsMeta();
-  }, []);
-
   const reviews = useSelector(selectReviews);
   const reviewAggregates = useSelector(selectReviewsMeta);
 
