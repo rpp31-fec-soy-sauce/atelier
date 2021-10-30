@@ -1,0 +1,124 @@
+import React, { useState, useEffect } from 'react'
+import Button from '../styles/Button.styled.js';
+import Modal from '../styles/Modal';
+
+
+import { useSelector, useDispatch } from 'react-redux';
+import { loadProduct } from '../../store/apiActions';
+import { selectProduct } from '../../store/selectors';
+
+
+
+const AddQuestion = () => {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => dispatch(loadProduct()), []);
+
+  const product = useSelector(selectProduct);
+
+  const [questionBody, setQuestionBody] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
+
+
+  const [showModal, setShowModal] = useState(false);
+
+
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
+
+  const submitQuestion = e => {
+
+    e.preventDefault()
+    // console.log('Question body', questionBody)
+
+    //how to get the question_id???
+
+    const newQuestion = {
+      answers: {},
+      asker_name: nickname,
+      question_body: questionBody,
+      question_date: new Date().toISOString(),
+      question_helpfulness: '0',
+      question_id: '00000',
+      reported: false
+    }
+
+    console.log('Submitting new question!', newQuestion)
+
+    //add newQuestion to the state.questions
+
+  }
+
+
+
+  const renderContent = (
+    <div>
+      <h3>Ask Your Question</h3>
+      <h4>About the {product.name}</h4>
+      <div className="modal-btns">
+        <Button onClick={closeModal}>Close</Button>
+      </div>
+
+      <form onSubmit={submitQuestion} >
+        <ul className="wrapper">
+          <li className="form-row">
+            <label>Your Question*</label> <br />
+            <textarea
+              maxLength="1000"
+              type='text'
+              value={questionBody}
+              onChange={e => setQuestionBody(e.target.value)}
+              placeholder='Add question'
+              required
+            />
+          </li>
+          <li className="form-row">
+            <label> What is your nickname*</label> <br />
+            <input
+              maxLength="60"
+              type='text'
+              value={nickname}
+              onChange={e => setNickname(e.target.value)}
+              placeholder='Example: jackson11!'
+              required
+            />
+          </li>
+          <li className="form-row"  style={{ paddingTop: '10px'}}>
+            <p>For privacy reasons, do not use your full name or email address</p><br />
+          </li>
+          <li className="form-row">
+            <label>Your email*</label> <br />
+            <input
+              maxLength="60"
+              type='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder='Why did you like the product or not?'
+              required
+            />
+          </li>
+          <li className="form-row">
+            <p>For authentication reasons, you will not be emailed</p><br />
+          </li>
+        </ul>
+        <div className="modal-btns">
+          <Button onClick={closeModal}>Submit</Button>
+        </div>
+      </form>
+    </div>
+  )
+
+  //Need to passdown closeModal and renderContent to the Modal style
+  return (
+    <div>
+      <Button onClick={() => setShowModal(true)}>Add A Question</Button>
+      {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
+    </div>
+  )
+}
+
+export default AddQuestion;
