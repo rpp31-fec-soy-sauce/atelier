@@ -15,13 +15,13 @@ const RelatedItems = () => {
 
   const relatedProducts = useSelector(selectRelatedProducts);
   const currentProduct = useSelector(selectProduct);
-  const currentStyle = useSelector(selectCurrentStyle(selectedStyle));
+  const currentStyle = useSelector(selectCurrentStyle(undefined));
   const averageRating = useSelector(selectAverageRating);
 
-  console.log(currentProduct);
+  console.log('currentProduct', currentProduct);
 
-  console.log(relatedProducts)
-  console.log(currentStyle)
+  console.log('relatedProducts', relatedProducts)
+  console.log('currentStyle', currentStyle)
   console.log(averageRating)
 
   return (
