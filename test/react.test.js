@@ -22,3 +22,8 @@ test('Link changes the class when hovered', () => {
   tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+// think it's helpful to think of your test-writing as iterative as well.
+// Write tests for your components that show that "it renders". 
+// Expand your unit test to show that it renders given such and such props
+// Expand your component testing to handle user interactions and verify that it behaves as expected
