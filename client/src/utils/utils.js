@@ -33,3 +33,17 @@ export const totalReviewCount = (reviewRatingsObject = 0) => {
 
   return totalReviewCount;
 };
+
+/* A helper function to calculate how many recommended out of total reviews */
+export const calculatePercentRecommended = (recommendedObject) => {
+  let total = 0;
+  let recommendedSum = Object.keys(recommendedObject).length !== 0 ? parseInt(recommendedObject.recommended.true) : 0;
+
+  if (Object.keys(recommendedObject).indexOf('recommended') !== -1) {
+    Object.values(recommendedObject.recommended).forEach((value) => {
+      total += parseInt(value);
+    })
+  }
+
+  return total > 0 ? (recommendedSum/total)*100 : 0;    
+}
