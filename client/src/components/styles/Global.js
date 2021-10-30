@@ -15,6 +15,24 @@ const GlobalStyles = createGlobalStyle`
   p {
     opacity: 0.8;
   }
+
+  .single-star-outline {
+    height: 26px; 
+    width: 21px;
+  }
+
+  .single-star-fill {
+    position: relative;
+    display: inline-block;
+    height: 26px; 
+    background-color: #333333;
+  }
+
+  .single-star-container {
+    height: 26px; 
+    width: 21px;
+    display: inline-block;
+  }
 `
 
 export default GlobalStyles;
