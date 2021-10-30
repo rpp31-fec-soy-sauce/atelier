@@ -4,7 +4,7 @@ import { selectReviews, selectReviewsMeta, selectAverageRating } from '../../sto
 import { AverageRatingContainer, RatingsFilterBreakdownContainer } from './styles/Container.style';
 import { AverageRatingNumber, AverageRatingStars } from './styles/Item.style';
 import RatingsFiltering from './RatingsFiltering.jsx';
-import StarRatingsStatic from '../universal_components/StarRatingsStatic.jsx'
+import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
 
 const RatingsBreakdown = () => {
 
@@ -17,7 +17,7 @@ const RatingsBreakdown = () => {
       <AverageRatingContainer>
         <AverageRatingNumber>{averageRating}</AverageRatingNumber>
         <AverageRatingStars>
-            <StarRatingsStatic averageRating={averageRating}/>
+            <StarRatingStatic averageRating={averageRating}/>
         </AverageRatingStars>
       </AverageRatingContainer>
       <div>100% recommended this product</div>

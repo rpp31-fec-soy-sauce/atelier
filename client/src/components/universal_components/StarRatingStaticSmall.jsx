@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import starPNG from '../../../assets/star.png';
 
-const StarRatingsStatic = (props) => {
+const StarRatingStaticSmall = (props) => {
   let rating = props.averageRating ? props.averageRating : 0
   let stars = [];
-  
+
   while (stars.length < 5) {
     if (rating > 1) {
       stars.push(1);
@@ -41,7 +41,7 @@ const StarRatingsStatic = (props) => {
     }
     rating = rating - 1;
   }
-  
+
   const starsForRendering = stars.map((item, i) => {
     return (
       <div className="single-star-container-small" key={i}>
@@ -57,4 +57,4 @@ const StarRatingsStatic = (props) => {
   );
 };
 
-export default StarRatingsStatic;
+export default StarRatingStaticSmall;
