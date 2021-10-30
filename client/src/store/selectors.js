@@ -22,10 +22,11 @@ export const selectCurrentStyle = styleId => state => {
   return styles.find(style => style.style_id === styleId);
 };
 
-
 export const selectPercentRecommendedProduct = state => {
   const reviewsAggregate = selectReviewsMeta(state);
   return calculatePercentRecommended(reviewsAggregate);
-}
+};
+
+export const selectUserOutfits = state => state.userOutfits;
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
