@@ -2,6 +2,7 @@ import store, { actions } from "./store";
 
 export const getOutfits = () => {
   const outfits = localStorage.getItem('outfits');
+  if (!outfits) return;
   store.dispatch(actions.userOutfitsUpdated(JSON.parse(outfits)));
 };
 
