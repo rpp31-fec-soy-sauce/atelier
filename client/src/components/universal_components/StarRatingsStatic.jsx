@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import starPNG from '../../../assets/star.png';
 
 const StarRatingsStatic = (props) => {
   let rating = props.averageRating ? props.averageRating : 0
@@ -45,7 +46,7 @@ const StarRatingsStatic = (props) => {
     return (
       <div className="single-star-container" key={i}>
         <div className="single-star-fill" style={{"width" : `${parseInt(item*21)}px`}}>
-          <img className="single-star-outline" src="star.png" alt="stars alt"></img>
+          <img className="single-star-outline" src={starPNG} alt="stars alt"></img>
         </div>
       </div>
     );
