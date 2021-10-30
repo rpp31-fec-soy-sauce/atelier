@@ -7,7 +7,7 @@ export const Container = styled.div`
 `
 export const Image = styled.img`
   height: 170px;
-  width: 150px;
+  width: 163px;
 `
 
 export const Category = styled.div`

@@ -21,7 +21,7 @@ const RelatedItems = () => {
       <h3>Related Products</h3>
       <Container>
       {relatedProducts.map(product => {
-        return <Anchor key={product.id} href={`/#${product.id}`} target='_blank'>
+        return <Anchor key={product.id} href={`/#${product.id}`}>
                 <Card>
                   {!product.url ? <Image src={noImage}></Image> : <Image src={product.url}></Image>}
                   <div>
