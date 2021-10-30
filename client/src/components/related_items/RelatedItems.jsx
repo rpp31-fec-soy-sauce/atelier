@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Stars from '../universal_components/StarRatingStaticSmall.jsx'
 
 import { loadRelatedProducts } from '../../store/apiActions';
 import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating } from '../../store/selectors';
-import Stars from '../../../assets/star.png';
+
 import noImage from '../../../assets/no-preview.jpg';
 import plusSign from '../../../assets/plussign.jpg';
 import { Container1, Container2, Image, Category, Price, Anchor, Card, Add } from './styles/style'
@@ -24,8 +25,6 @@ const RelatedItems = () => {
   // console.log('currentStyle', currentStyle)
   // console.log(averageRating)
 
-  console.log(Stars)
-
 
   return (
     <div>
@@ -39,7 +38,7 @@ const RelatedItems = () => {
                     <Category>{product.category}</Category>
                     <h5><b>{product.name}</b></h5>
                     <Price>${product.default_price}</Price>
-                    <div>{product.rating}</div>
+                    <Stars averageRating={product.rating}/>
                   </div>
                 </Card>
                </Anchor>
