@@ -9,8 +9,7 @@ export const RatingsContainer = styled.div`
     height: 100vw;
 
 `
-
-export const RatingsBreakdown = styled.div`
+export const RatingsAndProductBreakdownContainer = styled.div`
     order: 1;
     gap: 10px;
     display: flex;
@@ -23,13 +22,25 @@ export const RatingsBreakdown = styled.div`
 export const AverageRatingContainer = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    align-items: center;
     width: 33vw;
-    height: 7vw;
+`
+
+export const RatingsFilterBreakdownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 33vw;
+`
+
+export const ProductBreakDownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 33vw;
 `
 
 export const ReviewListContainer = styled.div`
     order: 2;
+    gap: 20px;
     display: flex;
     flex-direction: column;
     width: 67vw;
@@ -40,7 +51,7 @@ export const ReviewListHeader = styled.div`
     display: flex;
     flex-direction: row;
     width: 67vw;
-    height: 7vw;
+    align-items: center;
 `
 
 export const ReviewTilesListContainer = styled.div`
@@ -48,12 +59,13 @@ export const ReviewTilesListContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     width: 67vw;
-    height: 55vw;
+    height: 30vw;
 
 `
 
 export const ReviewListFooter = styled.div`
     display: flex;
+    gap:10px;
     flex-direction: row;
     width: 67vw;
     height: 15vw;
@@ -63,7 +75,7 @@ export const ReviewTile = styled.div`
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 25vw;
+    height: 15vw;
     border-bottom: solid 1px black;
 
 `
@@ -79,10 +91,11 @@ export const ReviewTileHeader = styled.div`
 
 export const ReviewTileBody = styled.div`
     order: 2;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 15vw;
+    height: 10vw;
 `
 
 export const ReviewTileBodyResponse = styled.div`
@@ -96,6 +109,8 @@ export const ReviewTileBodyResponse = styled.div`
 export const ReviewTileFooter = styled.div`
     order: 3;
     display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
     flex-direction: row;
     width: 50vw;
     height: 5vw;

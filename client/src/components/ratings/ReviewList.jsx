@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as apiActions from '../../../store/apiActions';
-import { selectTotalReviewCount } from '../../../store/selectors';
+import * as apiActions from '../../store/apiActions';
+import { selectTotalReviewCount } from '../../store/selectors';
 import ReviewTiles from './ReviewTiles.jsx'
-import { ReviewListHeader, ReviewListFooter} from './Container.style'
-import { Button } from './Item.style'
+import { ReviewListHeader, ReviewListFooter} from './styles/Container.style'
+import Button from '../styles/Button.styled.js'
 
 const ReviewList = () => {
-  
-  const dispatch = useDispatch();
-  const { loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
-
-
-  useEffect(() => {
-    loadReviewsMeta();
-  }, []);
 
   const reviewCountTotals = useSelector(selectTotalReviewCount);
 
@@ -26,8 +18,8 @@ const ReviewList = () => {
       </ReviewListHeader> 
       <ReviewTiles />
       <ReviewListFooter>
-        <Button>More Reviews</Button>
-        <Button>Add Review</Button>
+        <div><Button>More Reviews</Button></div>
+        <div><Button>Add Review</Button></div>
       </ReviewListFooter>  
   </>
   )
