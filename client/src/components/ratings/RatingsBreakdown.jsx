@@ -12,8 +12,6 @@ const RatingsBreakdown = () => {
   const averageRating = useSelector(selectAverageRating);
   const percentRecommend = useSelector(selectPercentRecommendedProduct);
 
-  console.log('reviewAggregates', reviewAggregates )
-
   return (
     <>
       <AverageRatingContainer>
