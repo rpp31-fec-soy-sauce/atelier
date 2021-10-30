@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { loadRelatedProducts } from '../../store/apiActions';
 import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating } from '../../store/selectors';
-
-import noImage from './no-preview.jpg';
-import plusSign from './plussign.jpg';
+import Stars from '../../../assets/star.png';
+import noImage from '../../../assets/no-preview.jpg';
+import plusSign from '../../../assets/plussign.jpg';
 import { Container1, Container2, Image, Category, Price, Anchor, Card, Add } from './styles/style'
 
 const RelatedItems = () => {
@@ -18,11 +18,14 @@ const RelatedItems = () => {
   const currentStyle = useSelector(selectCurrentStyle(undefined));
   const averageRating = useSelector(selectAverageRating);
 
-  console.log('currentProduct', currentProduct);
+  // console.log('currentProduct', currentProduct);
 
-  console.log('relatedProducts', relatedProducts)
-  console.log('currentStyle', currentStyle)
-  console.log(averageRating)
+  // console.log('relatedProducts', relatedProducts)
+  // console.log('currentStyle', currentStyle)
+  // console.log(averageRating)
+
+  console.log(Stars)
+
 
   return (
     <div>
