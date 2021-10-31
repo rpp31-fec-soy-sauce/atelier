@@ -20,7 +20,7 @@ const ProductBreakdown = () => {
       case 'Length':
         return ['Short', '', 'Long']
       case 'Comfort':
-        return ['Loose', '', 'Snug']
+        return ['Loose', 'Perfect', 'Snug']
       case 'Quality':
         return ['Poor', 'Mediocre', 'High']
     }
