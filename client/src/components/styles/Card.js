@@ -3,13 +3,11 @@ import styled from 'styled-components';
 export const Container1 = styled.div`
   display: flex;
   // justify-content: center;
-  width: 100%;
+  width: auto;
 `
 
 export const Container2 = styled.div`
   display: flex;
-  // justify-content: center;
-  width: 100%;
 `
 
 export const Image = styled.img`
@@ -46,4 +44,18 @@ export const Add = styled.div`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+`
+
+export const AllOutfits = styled.div`
+  display: flex;
+  justify-content: flex-start;
+`
+
+export const RelatedSection = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+export const InnerBox = styled.div`
+
 `

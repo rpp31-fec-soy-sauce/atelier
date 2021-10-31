@@ -4,35 +4,52 @@ import Stars from '../universal_components/StarRatingStaticSmall.jsx';
 import { getOutfits, addOutfit, deleteOutfit } from '../../store/funcActions.js';
 
 import { loadRelatedProducts } from '../../store/apiActions';
-import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating } from '../../store/selectors';
+import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectUserOutfits } from '../../store/selectors';
 
 import noImage from '../../../assets/no-preview.jpg';
 import plusSign from '../../../assets/plussign.jpg';
-import { Container1, Container2, Image, Category, Price, Anchor, Card, Add } from '../styles/Card.js'
+import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox } from '../styles/Card.js'
 
 const RelatedItems = () => {
 
   const dispatch = useDispatch();
   useEffect(() => dispatch(loadRelatedProducts), []);
+  useEffect(() => dispatch(getOutfits), []);
 
   const relatedProducts = useSelector(selectRelatedProducts);
   const currentProduct = useSelector(selectProduct);
   const currentStyle = useSelector(selectCurrentStyle(undefined));
   const averageRating = useSelector(selectAverageRating);
 
+  const userOutfit = useSelector(selectUserOutfits);
 
+  console.log('userOutfit', userOutfit)
 
-  const localStorage = () => {
-    console.log('saved')
+  const localStorageAdd = () => {
+    const product = {
+      _id: currentProduct.id,
+      category: currentProduct.category,
+      name: currentProduct.name,
+      price: currentProduct.default_price,
+      photo: currentStyle.photos[0].thumbnail_url,
+      rating: averageRating
+    }
+
+    addOutfit(product);
+    console.log('added to localstorage')
+  };
+
+  const localStorageDelete = () => {
+    console.log('deleted')
   };
 
   console.log('currentProduct', currentProduct);
   console.log('currentStyle', currentStyle)
-  console.log(averageRating)
 
 
   return (
-    <div>
+    <RelatedSection>
+      <InnerBox>
       <h3>Related Products</h3>
       <Container1>
       {relatedProducts.map(product => {
@@ -50,17 +67,32 @@ const RelatedItems = () => {
       })}
       </Container1>
       <h3>Your Outfit</h3>
-      <Container2>
-        <Add onClick={() => localStorage()}>
-            <Image src={plusSign}></Image>
-            <div style={{marginTop: "30px", fontWeight: 'Bold'}}>Add to Outfit</div>
-        </Add>
-      </Container2>
-      <Container1>
+      <AllOutfits>
+        <Container2>
+          <Add onClick={() => localStorageAdd()}>
+              <Image src={plusSign}></Image>
+              <div style={{marginTop: "30px", fontWeight: 'Bold'}}>Add to Outfit</div>
+          </Add>
+        </Container2>
+        <Container1>
+          { userOutfit.length > 0 ?
+            userOutfit.map(element => {
+              return <Card key={element._id}>
+                      {!element.photo ? <Image src={noImage}></Image> : <Image src={element.photo}></Image>}
+                      <div>
+                        <Category>{element.category}</Category>
+                        <h5><b>{element.name}</b></h5>
+                        <Price>${element.price}</Price>
+                        <Stars averageRating={element.rating}/>
+                      </div>
+                    </Card>
+            })
+          : null}
+        </Container1>
+      </AllOutfits>
+      </InnerBox>
 
-      </Container1>
-
-    </div>
+    </RelatedSection>
   );
 };
 

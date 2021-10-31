@@ -1,4 +1,5 @@
-import store, { actions } from "./store";
+import store from "./store";
+import { actions } from './reducer';
 
 export const getOutfits = () => {
   const outfits = localStorage.getItem('outfits');
@@ -8,9 +9,10 @@ export const getOutfits = () => {
 
 export const addOutfit = outfit => {
   const outfits = store.getState().userOutfits;
-  outfits.push(outfit);
-  localStorage.setItem('outfits', JSON.stringify(outfits));
-  store.dispatch(actions.userOutfitsUpdated(outfits))
+  const clone = Object.assign([], outfits)
+  clone.push(outfit);
+  localStorage.setItem('outfits', JSON.stringify(clone));
+  store.dispatch(actions.userOutfitsUpdated(clone))
 };
 
 export const deleteOutfit = id => {
