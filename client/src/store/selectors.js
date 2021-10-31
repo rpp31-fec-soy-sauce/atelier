@@ -1,4 +1,4 @@
-import { getDefaultStyle, aggregateRatings, totalReviewCount, calculatePercentRecommended } from "../utils/utils";
+import { getDefaultStyle, aggregateRatings, totalReviewCount, calculatePercentRecommended , calculatePercentByRating} from "../utils/utils";
 
 export const selectProduct = state => state.product;
 export const selectRelatedProducts = state => state.relatedProducts;
@@ -26,6 +26,11 @@ export const selectCurrentStyle = styleId => state => {
 export const selectPercentRecommendedProduct = state => {
   const reviewsAggregate = selectReviewsMeta(state);
   return calculatePercentRecommended(reviewsAggregate);
+}
+
+export const selectPercentByRating = state => {
+  const reviewsAggregate = selectReviewsMeta(state);
+  return calculatePercentByRating(reviewsAggregate);
 }
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);

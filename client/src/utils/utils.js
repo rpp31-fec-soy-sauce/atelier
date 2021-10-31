@@ -35,15 +35,41 @@ export const totalReviewCount = (reviewRatingsObject = 0) => {
 };
 
 /* A helper function to calculate how many recommended out of total reviews */
-export const calculatePercentRecommended = (recommendedObject) => {
+export const calculatePercentRecommended = (reviewsAggregate) => {
   let total = 0;
-  let recommendedSum = Object.keys(recommendedObject).length !== 0 ? parseInt(recommendedObject.recommended.true) : 0;
+  let recommendedSum = Object.keys(reviewsAggregate).length !== 0 ? parseInt(reviewsAggregate.recommended.true) : 0;
 
-  if (Object.keys(recommendedObject).indexOf('recommended') !== -1) {
-    Object.values(recommendedObject.recommended).forEach((value) => {
+  if (Object.keys(reviewsAggregate).indexOf('recommended') !== -1) {
+    Object.values(reviewsAggregate.recommended).forEach((value) => {
       total += parseInt(value);
     })
   }
 
   return total > 0 ? (recommendedSum/total)*100 : 0;    
+}
+
+/* A helper function to calculate the star rating percentage out of all ratings */
+export const calculatePercentByRating = (reviewsAggregate) => {
+  let total = 0;
+
+  if (Object.keys(reviewsAggregate).indexOf('ratings') !== -1) {
+    Object.values(reviewsAggregate.ratings).forEach((value) => {
+      total += parseInt(value);
+    })
+
+    let ratingsPercent = {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0, 
+      5: 0
+    };
+
+    Object.keys(reviewsAggregate.ratings).forEach( key => {
+      ratingsPercent[key] = (reviewsAggregate.ratings[key]/total)*100;
+    })
+
+
+    return ratingsPercent;
+  }
 }

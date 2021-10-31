@@ -18,7 +18,3 @@ export const AverageRatingStars = styled.div`
     width: 10vw;
     font-style: bold;
 `
-
-export const RatingsFilteringItem = styled.div`
-    width: 33vw;
-`
