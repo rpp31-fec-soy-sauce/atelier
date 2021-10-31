@@ -43,8 +43,8 @@ const RelatedItems = () => {
     console.log('deleted')
   };
 
-  console.log('currentProduct', currentProduct);
-  console.log('currentStyle', currentStyle)
+  // console.log('currentProduct', currentProduct);
+  // console.log('currentStyle', currentStyle)
 
 
   return (
