@@ -10,7 +10,7 @@ const RatingsFiltering = () => {
 
   let starRendering = starPercentage ? Object.keys(starPercentage).map( key => {
       return (
-        <RatingsFilterBreakdownRow>
+        <RatingsFilterBreakdownRow key={key}>
             {key} Stars
             <ProgressBar starPercentage={starPercentage[key]}/>
         </RatingsFilterBreakdownRow>
