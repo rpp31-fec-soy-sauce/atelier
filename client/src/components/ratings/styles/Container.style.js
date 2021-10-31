@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import starValue from '../RatingsFiltering.jsx'
 
 export const RatingsContainer = styled.div`
     display: flex;
-    gap: 20px;
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100vw;
@@ -29,6 +29,13 @@ export const AverageRatingContainer = styled.div`
 export const RatingsFilterBreakdownContainer = styled.div`
     display: flex;
     flex-direction: column;
+    width: 33vw;
+`
+
+export const RatingsFilterBreakdownRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     width: 33vw;
 `
 
@@ -115,4 +122,20 @@ export const ReviewTileFooter = styled.div`
     width: 50vw;
     height: 5vw;
 
+`
+
+export const ratingFilterContainer = styled.div`
+    height: 20;
+    width: '100%';
+    background-color: "#e0e0de";
+    border-radius: 50;
+    margin: 50
+`
+
+export const ratingFilterFiller = styled.div`
+    height: 100%;
+    width: 43%;
+    background-color: darkgray;
+    border-radius: 'inherit';
+    text-align: 'right';
 `

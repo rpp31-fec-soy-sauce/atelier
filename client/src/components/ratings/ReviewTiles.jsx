@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as apiActions from '../../store/apiActions';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { selectReviews } from '../../store/selectors';
 import { ReviewTile, ReviewTileHeader, ReviewTilesListContainer, ReviewTileBody, ReviewTileFooter, ReviewTileBodyResponse } from './styles/Container.style'
 import { ReviewTileItem, ReviewTileBodyItem } from './styles/Item.style'
