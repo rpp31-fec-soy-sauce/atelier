@@ -33,7 +33,6 @@ export const Anchor = styled.a`
 export const Card = styled.div`
   border: 1px solid black;
   margin: 0 10px;
-  cursor: pointer;
 `
 
 export const Add = styled.div`
@@ -43,7 +42,6 @@ export const Add = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
 `
 
 export const AllOutfits = styled.div`
@@ -58,4 +56,18 @@ export const RelatedSection = styled.div`
 
 export const InnerBox = styled.div`
 
+`
+
+export const Icon = styled.img`
+  height: 17px;
+  width: 17px;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  position: absolute;
+  cursor: pointer;
+`
+
+export const Overlay = styled.div`
+  position: relative;
 `

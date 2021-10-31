@@ -9,8 +9,6 @@ export const getOutfits = () => {
 
 export const addOutfit = outfit => {
   const outfits = store.getState().userOutfits;
-  console.log('outfits', outfits)
-  console.log('outfit: ', outfit)
   let duplicate = false;
   outfits.forEach(obj => {
     if (obj['_id'] === outfit['_id']) {

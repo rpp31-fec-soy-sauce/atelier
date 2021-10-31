@@ -6,9 +6,10 @@ import { getOutfits, addOutfit, deleteOutfit } from '../../store/funcActions.js'
 import { loadRelatedProducts } from '../../store/apiActions';
 import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectUserOutfits } from '../../store/selectors';
 
+import xIcon from '../../../assets/xIcon.png';
 import noImage from '../../../assets/no-preview.jpg';
 import plusSign from '../../../assets/plussign.jpg';
-import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox } from '../styles/Card.js'
+import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox, Icon, Overlay } from '../styles/Card.js'
 
 const RelatedItems = () => {
 
@@ -36,16 +37,11 @@ const RelatedItems = () => {
     }
 
     addOutfit(product);
-    console.log('added to localstorage')
   };
 
-  const localStorageDelete = () => {
-    console.log('deleted')
+  const localStorageDelete = (id) => {
+    deleteOutfit(id);
   };
-
-  // console.log('currentProduct', currentProduct);
-  // console.log('currentStyle', currentStyle)
-
 
   return (
     <RelatedSection>
@@ -78,7 +74,9 @@ const RelatedItems = () => {
           { userOutfit.length > 0 ?
             userOutfit.map(element => {
               return <Card key={element._id}>
-                      {!element.photo ? <Image src={noImage}></Image> : <Image src={element.photo}></Image>}
+                      {!element.photo ?
+                        <Overlay><Image src={noImage}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Overlay>
+                       : <Overlay><Image src={element.photo}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Overlay>}
                       <div>
                         <Category>{element.category}</Category>
                         <h5><b>{element.name}</b></h5>
