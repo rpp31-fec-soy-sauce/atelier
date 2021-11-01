@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AnswersList from './AnswersList.jsx';
 import AddAnswer from './AddAnswer.jsx';
@@ -7,6 +7,20 @@ import AddAnswer from './AddAnswer.jsx';
 
 
 const QuestionsDetails = ({ question }) => {
+
+  const [isHelpful, setIsHelpful] = useState(false);
+
+  const submitQuestionHelpfulness = (id) => {
+
+    isHelpful? setIsHelpful(false) : setIsHelpful(true);
+    localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
+
+
+    //add put request & send to api
+
+  }
+
+
 
 
   return (
@@ -31,12 +45,12 @@ const QuestionsDetails = ({ question }) => {
           }}
         >
           <p>Helpful?</p>
-          <p>Yes ({question.helpfulness | 0})</p>
+          <p onClick={() => submitQuestionHelpfulness(question.question_id)}>Yes ({question.helpfulness | 0})</p>
           <p>|</p>
-          <AddAnswer question={question.question_body}/>
+          <AddAnswer question={question.question_body} />
         </div>
       </div>
-      {Object.keys(question.answers).length === 0? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
+      {Object.keys(question.answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
 
     </div>
   );

@@ -8,6 +8,23 @@ const AnswerDetails = ({ answer }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [zoomedPic, setZoomedPic] = useState(null);
+  const [isHelpful, setIsHelpful] = useState(false);
+  const [report, setReport] = useState(false);
+
+  const submitAnswerHelpfulness = (id) => {
+    isHelpful? setIsHelpful(false) : setIsHelpful(true);
+    localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
+    //add put request & send to api
+
+  }
+
+  const reportAnswer = (id) => {
+    report? setReport(false) : setReport(true);
+    localStorage.setItem(`${id}IsReported`, JSON.stringify(report))
+    //add put request & send to api
+
+  }
+
 
   const closeModal = () => {
     setShowModal(false);
@@ -66,9 +83,9 @@ const AnswerDetails = ({ answer }) => {
         <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
         <p>|</p>
         <p>Helpful?</p>
-        <p>Yes ({answer.helpfulness | 0})</p>
+        <p onClick={() => submitAnswerHelpfulness(answer.id)}>Yes ({answer.helpfulness | 0})</p>
         <p>|</p>
-        <p>Report</p>
+        <p onClick={() => reportAnswer(answer.id)}>Report</p>
       </div>
 
     </div>
