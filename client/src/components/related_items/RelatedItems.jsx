@@ -24,8 +24,6 @@ const RelatedItems = () => {
 
   const userOutfit = useSelector(selectUserOutfits);
 
-  console.log('userOutfit', userOutfit)
-
   const localStorageAdd = () => {
     const product = {
       _id: currentProduct.id,
