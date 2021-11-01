@@ -26,8 +26,6 @@ const ProductBreakdown = () => {
     }
   } 
 
-  console.log('reviewAggregates', reviewAggregates)
-
   const productBreakdownRendering = characteristics ? Object.keys(characteristics).map( key => {
       let characteristicsBreakdown = productCharacteristicBreakdown(key)
       return (

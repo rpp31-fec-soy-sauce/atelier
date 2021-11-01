@@ -4,13 +4,14 @@
 
  import React from 'react';
  import ReactDOM from 'react-dom';
- import { render } from '@testing-library/react';
+ import { render , cleanup} from '@testing-library/react';
  import { Provider } from 'react-redux'
  import configureStore from 'redux-mock-store'
 
  import ProductBreakdown from '../../../../client/src/components/ratings/ProductBreakdown';
  import { reviewAggregates } from './TestStates/InitialReduxStates'
 
+ afterEach(cleanup);
 
  describe('With React Testing Library', () => {
     const initialState = {reviewAggregates: [reviewAggregates]}
