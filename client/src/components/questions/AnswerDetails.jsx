@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
-import { Container1, Container2, Image, Card, ZoomedImage } from '../related_items/styles/style'
-
+import { Container1, Container2, Image, Card } from '../styles/Card'
 
 const AnswerDetails = ({ answer }) => {
 
@@ -22,7 +21,7 @@ const AnswerDetails = ({ answer }) => {
           <Button onClick={closeModal}>Close</Button>
         </div><br />
         <div className='wrapper'>
-          <ZoomedImage src={url} />
+          <Image src={url} />
         </div>
       </div>
     )
