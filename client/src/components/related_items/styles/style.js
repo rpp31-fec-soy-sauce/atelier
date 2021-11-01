@@ -17,6 +17,7 @@ export const Image = styled.img`
   width: 163px;
 `
 
+
 export const Category = styled.div`
   font-size: 12px;
   color: #696969;
@@ -44,4 +45,10 @@ export const Add = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+
+export const ZoomedImage = styled.img`
+  height: 500px;
+  width: 500px;
 `

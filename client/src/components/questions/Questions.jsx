@@ -25,10 +25,17 @@ const Questions = () => {
   // console.log('Search term', searchTerm)
   // console.log('Questions', questions)
 
+  const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
-
+  // const expandQuestions = () => {
+  //   if (isQuestionListExpanded) {
+  //     setIsQuestionListExpanded(false);
+  //   } else {
+  //     setIsQuestionListExpanded(true);
+  //   }
+  // }
   const expandQuestions = () => {
-    if (isQuestionListExpanded === true) {
+    if (isQuestionListExpanded) {
       setIsQuestionListExpanded(false);
     } else {
       setIsQuestionListExpanded(true);

@@ -9,7 +9,6 @@ import AddAnswer from './AddAnswer.jsx';
 const QuestionsDetails = ({ question }) => {
 
 
-
   return (
     <div key={question.question_id}>
       <div
