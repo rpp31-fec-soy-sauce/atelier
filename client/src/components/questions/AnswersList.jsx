@@ -7,12 +7,16 @@ import Button from '../styles/Button.styled.js';
 
 const AnswersList = ({ answers }) => {
 
-  const [isAnswerListExpanded, setIsAnswerListExpanded] = useState(false);
+  // const [isAnswerListExpanded, setIsAnswerListExpanded] = useState(false);
 
   // const answerId = Object.keys(answers)
 
   //Answers should appear in the order of ‘helpfulness’
   //any answers from the seller should appear at the top of the list
+
+  const [numberOfAnswers, setNumberOfAnsers] = useState(2);
+
+
   const sortedList = [];
 
   Object.entries(answers)
@@ -25,55 +29,77 @@ const AnswersList = ({ answers }) => {
       }
     })
 
-  // console.log('Sort: ', sortedList)
 
-  const displayMoreAnswers = e => {
-    if (isAnswerListExpanded === true) {
-      setIsAnswerListExpanded(false);
+
+  const displayMoreAnswers = () => {
+    if (numberOfAnswers < sortedList.length) {
+      sortedList.length - numberOfAnswers === 1 ? setNumberOfAnsers(numberOfAnswers + 1) : setNumberOfAnsers(numberOfAnswers + 2)
     } else {
-      setIsAnswerListExpanded(true);
+      setNumberOfAnsers(2)
     }
-
   }
 
+  // console.log('Sort: ', sortedList)
+
+  // const displayMoreAnswers = e => {
+  //   if (isAnswerListExpanded === true) {
+  //     setIsAnswerListExpanded(false);
+  //   } else {
+  //     setIsAnswerListExpanded(true);
+  //   }
+
+  // }
+
+  // const renderContent = () => {
+
+  //   if (isAnswerListExpanded === false) {
+  //     return (
+  //       <div>
+  //         {sortedList[0] ? <AnswerDetails answer={sortedList[0][1]} /> : ''}
+  //         {sortedList[1] ? <AnswerDetails answer={sortedList[1][1]} /> : ''}
+  //         <Button onClick={e => displayMoreAnswers(e)}>
+  //           {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'}
+
+  //         </Button>
+
+  //       </div>
+  //     )
+  //   } else if (isAnswerListExpanded) {
+  //     return (
+  //       <div>
+  //         {sortedList.map(answer => {
+  //           return (
+  //             <div key={answer[1].id}>
+  //               <AnswerDetails answer={answer[1]} />
+  //             </div>
+  //           )
+  //         })}
+  //         <Button onClick={e => displayMoreAnswers(e)}>
+  //           {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'}
+  //         </Button>
+
+  //       </div>
+  //     )
+  //   }
+  // }
+
   const renderContent = () => {
-    // if (sortedList.length === 0) {
-    //   console.log('Length:', sortedList.length)
-    //   return (
-    //     <div>
-    //       <AddAnswer />
-    //     </div>
-    //   )
-    // }
-
-    if (isAnswerListExpanded === false) {
-      return (
-        <div>
-          {sortedList[0] ? <AnswerDetails answer={sortedList[0][1]} /> : ''}
-          {sortedList[1] ? <AnswerDetails answer={sortedList[1][1]} /> : ''}
-          <Button onClick={e => displayMoreAnswers(e)}>
-            {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'}
-          </Button>
-
-        </div>
-      )
-    } else if (isAnswerListExpanded) {
-      return (
-        <div>
-          {sortedList.map(answer => {
-            return (
-              <div key={answer[1].id}>
-                <AnswerDetails answer={answer[1]} />
-              </div>
-            )
-          })}
-          <Button onClick={e => displayMoreAnswers(e)}>
-            {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'}
-          </Button>
-
-        </div>
-      )
-    }
+    const answerList = sortedList.slice(0, numberOfAnswers)
+    return (
+      <div>
+        {answerList.map(answer => {
+          return (
+            <div key={answer[1].id}>
+              <AnswerDetails answer={answer[1]} />
+            </div>
+          )
+        })}
+        <Button onClick={e => displayMoreAnswers(e)}>
+          {/* {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'} */}
+          {numberOfAnswers < sortedList.length ? 'MORE ANSWERS' : 'COLLAPPSE ANSWERS'}
+        </Button>
+      </div>
+    )
   }
 
 
