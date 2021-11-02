@@ -10,38 +10,60 @@ const AnswerDetails = ({ answer }) => {
   const [zoomedPic, setZoomedPic] = useState(null);
   const [isHelpful, setIsHelpful] = useState(false);
   const [report, setReport] = useState(false);
+  const [photoUrl, setPhotoUrl] = useState(null)
 
   const submitAnswerHelpfulness = (id) => {
-    isHelpful? setIsHelpful(false) : setIsHelpful(true);
+    isHelpful ? setIsHelpful(false) : setIsHelpful(true);
     localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
     //add put request & send to api
 
   }
 
   const reportAnswer = (id) => {
-    report? setReport(false) : setReport(true);
+    report ? setReport(false) : setReport(true);
     localStorage.setItem(`${id}IsReported`, JSON.stringify(report))
     //add put request & send to api
 
   }
 
 
-  const closeModal = () => {
+  const closeModal = e => {
+    //stopPropgation prevents further propagation of the current event in the capturing and bubbling phases
+    e.stopPropagation();
+
     setShowModal(false);
   }
 
 
-  const renderPhoto = (url) => {
-    return (
+  // const renderPhoto = (url) => {
+  //   return (
+  //     <div>
+  //       <div className="modal-btns">
+  //         <Button onClick={closeModal}>Close</Button>
+  //       </div><br />
+  //       <div className='wrapper'>
+  //         <Image style={{width: '500px', height: '500px'}} src={url} />
+  //       </div>
+  //     </div>
+  //   )
+  // }
+
+  const zoomedPhoto = (
+    <div>
+      <div className="modal-btns">
+      <Button onClick={closeModal}>Close</Button>
+      </div><br />
       <div>
-        <div className="modal-btns">
-          <Button onClick={closeModal}>Close</Button>
-        </div><br />
-        <div className='wrapper'>
-          <Image src={url} />
-        </div>
+        <Image style={{ width: '500px', height: '500px' }} src={photoUrl} />
       </div>
-    )
+    </div>
+  )
+
+  const renderZoomedPhoto = (url) => {
+    setShowModal(true);
+    // console.log('Render Zoomed Photo')
+    setPhotoUrl(url);
+
   }
 
 
@@ -52,9 +74,13 @@ const AnswerDetails = ({ answer }) => {
           {photos.map(pic => {
             return (
               <div key={pic}>
-                <Card onClick={() => setShowModal(true)}>
+                {/* <Card onClick={() => setShowModal(true)}>
                   <Image src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={renderPhoto(pic)} />}
+                </Card> */}
+                <Card onClick={() => renderZoomedPhoto(pic)}>
+                  <Image src={pic} alt="Photo"></Image>
+                  {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
               </div>
             )
