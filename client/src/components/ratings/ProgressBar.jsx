@@ -13,7 +13,7 @@ const ProgressBar = (props) => {
   const fillerStyles = {
     height: 10,
     width: `${starPercentage}%`,
-    backgroundColor: '#4d4d4d',
+    backgroundColor: 'darkgreen'
   }
 
   return (
