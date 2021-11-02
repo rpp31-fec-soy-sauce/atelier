@@ -15,13 +15,9 @@ const QuestionsDetails = ({ question }) => {
     isHelpful? setIsHelpful(false) : setIsHelpful(true);
     localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
 
-
     //add put request & send to api
 
   }
-
-
-
 
   return (
     <div key={question.question_id}>

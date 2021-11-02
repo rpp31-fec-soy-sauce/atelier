@@ -20,7 +20,7 @@ export const loadProduct = () =>
 
 export const loadStyles = () =>
   apiCallBegan({
-    url: `products/${getProductId()}/styles`,
+    url: `products/${getProductId()}styles`,
     method: 'GET',
     onSuccess: actions.stylesLoaded.type,
   });

@@ -9,8 +9,6 @@ const AnswersList = ({ answers }) => {
 
   // const [isAnswerListExpanded, setIsAnswerListExpanded] = useState(false);
 
-  // const answerId = Object.keys(answers)
-
   //Answers should appear in the order of ‘helpfulness’
   //any answers from the seller should appear at the top of the list
 
@@ -28,8 +26,6 @@ const AnswersList = ({ answers }) => {
         sortedList.push(answer)
       }
     })
-
-
 
   const displayMoreAnswers = () => {
     if (numberOfAnswers < sortedList.length) {
@@ -112,15 +108,9 @@ const AnswersList = ({ answers }) => {
     )
   }
 
-
   return (
-    <div>
-      {renderContent()} <br />
-
-    </div>
+    <div>{renderContent()} <br /> </div>
   )
-
-
 };
 
 export default AnswersList;

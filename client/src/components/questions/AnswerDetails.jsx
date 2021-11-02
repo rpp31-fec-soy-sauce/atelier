@@ -12,6 +12,7 @@ const AnswerDetails = ({ answer }) => {
   const [report, setReport] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null)
 
+
   const submitAnswerHelpfulness = (id) => {
     isHelpful ? setIsHelpful(false) : setIsHelpful(true);
     localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
@@ -63,7 +64,6 @@ const AnswerDetails = ({ answer }) => {
     setShowModal(true);
     // console.log('Render Zoomed Photo')
     setPhotoUrl(url);
-
   }
 
 
