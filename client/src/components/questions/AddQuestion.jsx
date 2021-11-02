@@ -33,9 +33,7 @@ const AddQuestion = () => {
   const submitQuestion = e => {
 
     e.preventDefault()
-    // console.log('Question body', questionBody)
 
-    //how to get the question_id???
 
     const newQuestion = {
       answers: {},
@@ -43,11 +41,12 @@ const AddQuestion = () => {
       question_body: questionBody,
       question_date: new Date().toISOString(),
       question_helpfulness: '0',
-      question_id: '00000',
       reported: false
     }
 
     console.log('Submitting new question!', newQuestion)
+    //add the closeModal as a callback to the post request
+    closeModal();
 
     //add newQuestion to the state.questions
 
@@ -106,7 +105,8 @@ const AddQuestion = () => {
           </li>
         </ul>
         <div className="modal-btns">
-          <Button onClick={closeModal}>Submit</Button>
+          {/* <Button onClick={closeModal}>Submit</Button> */}
+          <Button>Submit</Button>
         </div>
       </form>
     </div>
