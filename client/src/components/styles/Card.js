@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 export const Container1 = styled.div`
   display: flex;
   // justify-content: center;
   width: auto;
+  position: relative;
 `
 
 export const Container2 = styled.div`
@@ -70,4 +72,22 @@ export const Icon = styled.img`
 
 export const Overlay = styled.div`
   position: relative;
+`
+
+export const LeftArrow = styled(FaArrowAltCircleLeft)`
+  position: absolute;
+  top: 40%;
+  z-index: 5;
+  cursor: pointer;
+  left: 20px;
+  color: white;
+`
+
+export const RightArrow = styled(FaArrowAltCircleRight)`
+  position: absolute;
+  top: 40%;
+  z-index: 5;
+  cursor: pointer;
+  right: 20px;
+  color: white;
 `

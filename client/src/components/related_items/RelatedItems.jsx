@@ -9,7 +9,9 @@ import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle
 import xIcon from '../../../assets/xIcon.png';
 import noImage from '../../../assets/no-preview.jpg';
 import plusSign from '../../../assets/plussign.jpg';
-import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox, Icon, Overlay } from '../styles/Card.js'
+import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox, Icon, Overlay, LeftArrow, RightArrow } from '../styles/Card.js';
+
+
 
 const RelatedItems = () => {
 
@@ -41,11 +43,16 @@ const RelatedItems = () => {
     deleteOutfit(id);
   };
 
+  const [current, setCurrent] = useState(0);
+  const length = relatedProducts.length;
+
   return (
     <RelatedSection>
       <InnerBox>
       <h3>Related Products</h3>
-      <Container1>
+      <Container1 className='slider'>
+        <LeftArrow />
+        <RightArrow />
       {relatedProducts.map(product => {
         return <Anchor key={product.id}>
                 <Card>
