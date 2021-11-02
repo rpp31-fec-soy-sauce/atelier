@@ -9,7 +9,7 @@ import { selectProduct } from '../../store/selectors';
 
 
 
-const AddAnswer = () => {
+const AddAnswer = ({ question }) => {
 
   const dispatch = useDispatch();
 
@@ -17,13 +17,12 @@ const AddAnswer = () => {
 
   const product = useSelector(selectProduct);
 
-  const [questionBody, setQuestionBody] = useState('');
+  const [answerBody, setAnswerBody] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
 
 
   const [showModal, setShowModal] = useState(false);
-
 
   const closeModal = () => {
     setShowModal(false);
@@ -34,26 +33,30 @@ const AddAnswer = () => {
 
     e.preventDefault()
 
-
     const newAnswer = {
-
-
+      body: answerBody,
+      date: new Date().toISOString(),
+      answerer_name: nickname,
+      helpfulness: '0',
+      photot: []
     }
 
     console.log('Submitting new answer!', newAnswer)
 
+    //add the closeModal as a callback to the post request
+    closeModal();
     //add newQuestion to the state
 
   }
 
-//Need to refactor to controlled input
+  //Need to refactor to controlled input
 
   const renderContent = (
     <div>
       <h3>Submit your Answer</h3>
-      <h4>{product.name}: {questionBody}</h4>
+      <h4>{product.name}: {question}</h4>
       <div className="modal-btns">
-      <Button onClick={closeModal}>Close</Button>
+        <Button type="button" onClick={closeModal}>Close</Button>
       </div>
 
       <form onSubmit={submitAnswer}>
@@ -63,8 +66,8 @@ const AddAnswer = () => {
             <textarea
               maxLength="1000"
               type='text'
-              // value={questionBody}
-              // onChange={e => setQuestionBody(e.target.value)}
+              value={answerBody}
+              onChange={e => setAnswerBody(e.target.value)}
               placeholder='Add answer'
               required
             />
@@ -99,7 +102,7 @@ const AddAnswer = () => {
           </li>
         </ul>
         <div className="modal-btns">
-        <Button onClick={closeModal}>Submit</Button>
+          <Button>Submit</Button>
         </div>
       </form>
     </div>

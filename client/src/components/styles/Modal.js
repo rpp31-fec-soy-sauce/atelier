@@ -22,17 +22,17 @@ const StyledModal = styled.div`
     position: relative;
     padding: 10px;
 
-    animation-name: grow-modal;
-    animation-duration: .4s;
-    animation-timing-function: ease-in-out;
+    // animation-name: grow-modal;
+    // animation-duration: .4s;
+    // animation-timing-function: ease-in-out;
 
-    @keyframes grow-modal {
-      0% { opacity: .2; }
-      25% { opacity: .4; }
-      50% { opacity: .6; }
-      75% { opacity: .8; }
-      100% { width: 500px; height: 500px; opacity: .9; }
-    }
+    // @keyframes grow-modal {
+    //   0% { opacity: .2; }
+    //   25% { opacity: .4; }
+    //   50% { opacity: .6; }
+    //   75% { opacity: .8; }
+    //   100% { width: 500px; height: 500px; opacity: .9; }
+    // }
 
     h3 {
       text-align: center;

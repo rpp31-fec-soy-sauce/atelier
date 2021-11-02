@@ -17,6 +17,7 @@ export const Image = styled.img`
   width: 163px;
 `
 
+
 export const Category = styled.div`
   font-size: 12px;
   color: #696969;
