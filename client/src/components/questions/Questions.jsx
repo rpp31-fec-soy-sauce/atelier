@@ -39,28 +39,20 @@ const Questions = () => {
     }
   }
 
-  // const renderContent = () => {
-  //   if (!isQuestionListExpanded) {
-  //     return (
-  //       <div>
-  //         {questions[0] ? <QuestionDetails question={questions[0]} /> : ''} <hr />
-  //         {questions[1] ? <QuestionDetails question={questions[1]} /> : ''}  <hr />
-  //       </div>
-  //     )
+
+  // const moreQuestionsButton = () => {
+  //   console.log(questions.length)
+  //   if (questions.length <= 2) {
+  //     return null;
   //   } else {
   //     return (
-  //       <div>
-  //         {questions.map(question => {
-  //           return (
-  //             <div key={question.question_id}>
-  //               <QuestionDetails question={question} /> <hr />
-  //             </div>
-  //           )
-  //         })}
-  //       </div>
+  //       <Button onClick={moreQuestionsButton}>
+  //         {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
+  //       </Button>
   //     )
   //   }
   // }
+
 
   const renderContent = () => {
 
@@ -116,18 +108,19 @@ const Questions = () => {
           gap: '4rem',
         }}
       >
+        {/* {moreQuestionsButton()} */}
         <Button onClick={expandQuestions}>
-          {/* {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'} */}
           {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
         </Button>
-
         <AddQuestion />
       </div>
-
     </div >
 
   );
 };
+
+
+
 
 
 export default Questions;

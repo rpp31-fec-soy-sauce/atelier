@@ -39,6 +39,19 @@ const AnswersList = ({ answers }) => {
     }
   }
 
+  const moreAnswersButton = () => {
+    if (sortedList.length <= 2) {
+      return null;
+    } else {
+      return (
+        <Button onClick={displayMoreAnswers}>
+          {numberOfAnswers < sortedList.length ? 'MORE ANSWERS' : 'COLLAPPSE ANSWERS'}
+        </Button>
+      )
+    }
+
+  }
+
   // console.log('Sort: ', sortedList)
 
   // const displayMoreAnswers = e => {
@@ -94,10 +107,7 @@ const AnswersList = ({ answers }) => {
             </div>
           )
         })}
-        <Button onClick={e => displayMoreAnswers(e)}>
-          {/* {isAnswerListExpanded ? 'COLLAPPSE ANSWERS' : 'MORE ANSWERS'} */}
-          {numberOfAnswers < sortedList.length ? 'MORE ANSWERS' : 'COLLAPPSE ANSWERS'}
-        </Button>
+        {moreAnswersButton()}
       </div>
     )
   }
