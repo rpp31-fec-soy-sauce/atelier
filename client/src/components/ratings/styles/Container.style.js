@@ -11,7 +11,7 @@ export const RatingsContainer = styled.div`
 `
 export const RatingsAndProductBreakdownContainer = styled.div`
     order: 1;
-    gap: 10px;
+    gap: 30px;
     display: flex;
     flex-direction: column;
     width: 33vw;
@@ -32,11 +32,24 @@ export const RatingsFilterBreakdownContainer = styled.div`
     width: 33vw;
 `
 
+export const CharacteristicsBreakdownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 33vw;
+`
+
 export const RatingsFilterBreakdownRow = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 33vw;
+`
+
+export const RatingsBreakdownRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 230px;
 `
 
 export const ProductBreakDownContainer = styled.div`

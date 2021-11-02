@@ -3,8 +3,6 @@ import React from "react";
 const ProgressBar = (props) => {
   const { starPercentage } = props;
 
-  console.log('CONSOLE LOG PERCENTAGE', starPercentage)
-
   const containerStyles = {
     height: 10,
     width: '50%',
