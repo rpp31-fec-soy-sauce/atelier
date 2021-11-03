@@ -50,6 +50,7 @@ export const Add = styled.div`
 export const AllOutfits = styled.div`
   display: flex;
   justify-content: flex-start;
+  margin: 0 30px;
 `
 
 export const RelatedSection = styled.div`
@@ -80,8 +81,10 @@ export const LeftArrow = styled(FaArrowAltCircleLeft)`
   top: 40%;
   z-index: 5;
   cursor: pointer;
-  left: 20px;
-  color: white;
+  left: 3px;
+  color: black;
+  height: 20px;
+  width: 20px;
 `
 
 export const RightArrow = styled(FaArrowAltCircleRight)`
@@ -89,6 +92,13 @@ export const RightArrow = styled(FaArrowAltCircleRight)`
   top: 40%;
   z-index: 5;
   cursor: pointer;
-  right: 20px;
-  color: white;
+  right: 3px;
+  color: black;
+  height: 20px;
+  width: 20px;
+`
+
+export const Carousel = styled.div`
+  display: flex;
+  margin: 0 30px;
 `
