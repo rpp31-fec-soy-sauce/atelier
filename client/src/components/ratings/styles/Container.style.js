@@ -79,8 +79,6 @@ export const ReviewTilesListContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     width: 67vw;
-    height: 30vw;
-
 `
 
 export const ReviewListFooter = styled.div`
@@ -88,14 +86,12 @@ export const ReviewListFooter = styled.div`
     gap:10px;
     flex-direction: row;
     width: 67vw;
-    height: 15vw;
 `
 
 export const ReviewTile = styled.div`
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 15vw;
     border-bottom: solid 1px black;
 
 `
@@ -115,16 +111,15 @@ export const ReviewTileBody = styled.div`
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 10vw;
     margin-bottom: 1vw;
 `
 
 export const ReviewTileBodyResponse = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 50vw;
-    height: 15vw;
-    background-color: darkgray;
+    background-color: lightgray;
 `
 
 export const ReviewTileFooter = styled.div`
@@ -134,7 +129,6 @@ export const ReviewTileFooter = styled.div`
     gap: 5px;
     flex-direction: row;
     width: 50vw;
-    height: 5vw;
 
 `
 
