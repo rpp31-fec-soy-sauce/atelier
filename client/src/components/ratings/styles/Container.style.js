@@ -116,6 +116,7 @@ export const ReviewTileBody = styled.div`
     flex-direction: column;
     width: 50vw;
     height: 10vw;
+    margin-bottom: 1vw;
 `
 
 export const ReviewTileBodyResponse = styled.div`

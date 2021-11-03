@@ -4,24 +4,25 @@ import { bindActionCreators } from 'redux';
 import * as apiActions from '../../store/apiActions';
 import { selectTotalReviewCount } from '../../store/selectors';
 import ReviewTiles from './ReviewTiles.jsx'
-import { ReviewListHeader, ReviewListFooter} from './styles/Container.style'
+import { ReviewListHeader, ReviewListFooter } from './styles/Container.style'
 import Button from '../styles/Button.styled.js'
+import { FilterSelect } from './styles/Item.style'
 
 const ReviewList = () => {
 
   const reviewCountTotals = useSelector(selectTotalReviewCount);
 
-  const [filter, setFilter] = useState('helpful');
+  const [filter, setFilter] = useState('relevant');
 
   return (
   <>
       <ReviewListHeader>
-        <h2>{reviewCountTotals} reviews, sorted by &nbsp;  
-          <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+        <h2>{reviewCountTotals} reviews, sorted by  
+          <FilterSelect value={filter} onChange={(e) => setFilter(e.target.value)}>
             <option value="helpful">helpful</option>
             <option value="newest">newest</option>
             <option value="relevant">relevant</option>
-          </select>
+          </FilterSelect>
         </h2>
       </ReviewListHeader> 
       <ReviewTiles />

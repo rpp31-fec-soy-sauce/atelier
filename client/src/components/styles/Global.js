@@ -16,6 +16,11 @@ const GlobalStyles = createGlobalStyle`
     opacity: 0.8;
   }
 
+  .checkbox {
+    height: 18px; 
+    width: 18px;
+  }
+
   .single-star-outline {
     height: 26px;
     width: 21px;

@@ -16,13 +16,17 @@ const ProductBreakdown = () => {
   const productCharacteristicBreakdown = (characteristic) => {
     switch (characteristic) {
       case 'Fit':
-        return ['Small', 'Perfect', 'Big']
+        return ['Runs Tight', '', 'Runs Long']
+      case 'Size':
+        return ['Too Small', '', 'Too Wide']
+      case 'Width':
+        return ['Too Narrow', '', 'Too Wide']
       case 'Length':
         return ['Short', '', 'Long']
       case 'Comfort':
-        return ['Loose', 'Perfect', 'Snug']
+        return ['Uncomfortable', '', 'Perfect']
       case 'Quality':
-        return ['Poor', 'Mediocre', 'High']
+        return ['Poor', '', 'Perfect']
     }
   }
 
