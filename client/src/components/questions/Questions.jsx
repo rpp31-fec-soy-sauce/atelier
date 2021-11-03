@@ -78,7 +78,7 @@ const Questions = () => {
 
   return (
 
-    <div>
+    <div data-testid='questions'>
       <h3>QUESTIONS & ANSWERS</h3>
       {/* <p>{JSON.stringify(questions)}</p> */}
       <input
