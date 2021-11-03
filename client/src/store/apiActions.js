@@ -32,7 +32,7 @@ export const loadQuestions = (page = 1, count = 5) =>
     onSuccess: actions.questionsLoaded.type,
   });
 
-export const loadReviews = (page = 1, count = 2, sort = 'helpful') =>
+export const loadReviews = (page = 1, count = 2, sort = 'relevant') =>
   apiCallBegan({
     url: `reviews/?product_id=${getProductId()}&page=${page}&count=${count}&sort=${sort}`,
     method: 'GET',
