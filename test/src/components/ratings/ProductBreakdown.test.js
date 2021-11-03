@@ -9,9 +9,9 @@
  import configureStore from 'redux-mock-store'
 
  import ProductBreakdown from '../../../../client/src/components/ratings/ProductBreakdown';
- import { reviewAggregates } from './TestStates/InitialReduxStates'
+ import { reviewAggregates } from '../../TestStates/InitialReduxStates';
 
- afterEach(cleanup);
+ //afterEach(cleanup);
 
  describe('With React Testing Library', () => {
     const initialState = {reviewAggregates: [reviewAggregates]}
