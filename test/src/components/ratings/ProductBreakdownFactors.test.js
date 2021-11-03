@@ -9,14 +9,14 @@ import "@testing-library/jest-dom";
 
 import ProductBreakdownFactors from '../../../../client/src/components/ratings/ProductBreakdownFactors';
 
-afterEach(cleanup);
+//afterEach(cleanup);
 
 it("renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<ProductBreakdownFactors productFactorValue={161}></ProductBreakdownFactors>, div);
 })
 
-it("renders correct value", () => {
+it("renders at correct position", () => {
     const { getByTestId } = render(<ProductBreakdownFactors productFactorValue={161}></ProductBreakdownFactors>);
 
     expect(getByTestId('trianglePointer')).toHaveStyle(`left: 7396px`);    
