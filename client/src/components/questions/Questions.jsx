@@ -17,51 +17,64 @@ const Questions = () => {
   useEffect(() => dispatch(loadQuestions()), []);
 
   const [searchTerm, setSearchTerm] = useState('');
-  const [isQuestionListExpanded, setIsQuestionListExpanded] = useState(false);
+  // const [isQuestionListExpanded, setIsQuestionListExpanded] = useState(false);
 
 
   const questions = useSelector(selectQuestions(searchTerm));
 
-  // console.log('Search term', searchTerm)
-  // console.log('Questions', questions)
+  const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
-
-
+  // const expandQuestions = () => {
+  //   if (isQuestionListExpanded) {
+  //     setIsQuestionListExpanded(false);
+  //   } else {
+  //     setIsQuestionListExpanded(true);
+  //   }
+  // }
   const expandQuestions = () => {
-    if (isQuestionListExpanded === true) {
-      setIsQuestionListExpanded(false);
+    if (numberOfQuestions < questions.length) {
+      questions.length - numberOfQuestions === 1 ? setNumberOfQuestions(numberOfQuestions + 1) : setNumberOfQuestions(numberOfQuestions + 2)
     } else {
-      setIsQuestionListExpanded(true);
+      setNumberOfQuestions(2)
     }
   }
+
+
+  // const moreQuestionsButton = () => {
+  //   console.log(questions.length)
+  //   if (questions.length <= 2) {
+  //     return null;
+  //   } else {
+  //     return (
+  //       <Button onClick={moreQuestionsButton}>
+  //         {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
+  //       </Button>
+  //     )
+  //   }
+  // }
+
 
   const renderContent = () => {
 
-    if (!isQuestionListExpanded) {
-      return (
-        <div>
-          {questions[0] ? <QuestionDetails question={questions[0]} /> : ''} <hr />
-          {questions[1] ? <QuestionDetails question={questions[1]} /> : ''}  <hr />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          {questions.map(question => {
-            return (
-              <div key={question.question_id}>
-                <QuestionDetails question={question} /> <hr />
-              </div>
-            )
-          })}
-        </div>
-      )
-    }
+    const questionsList = questions.slice(0, numberOfQuestions)
+    // console.log(questionsList)
+    return (
+      <div>
+        {questionsList.map(question => {
+          return (
+            <div key={question.question_id}>
+              <QuestionDetails question={question} /> <hr />
+            </div>
+          )
+        })}
+      </div>
+    )
+
   }
 
-//rendering first two questions
+  //rendering first two questions
 
-//need to refactor again, clicking More Questions only load additional two questions
+  //need to refactor again, clicking More Questions only load additional two questions
 
   return (
 
@@ -95,17 +108,19 @@ const Questions = () => {
           gap: '4rem',
         }}
       >
+        {/* {moreQuestionsButton()} */}
         <Button onClick={expandQuestions}>
-          {isQuestionListExpanded ? 'Collapse Questions' : 'More Questions'}
+          {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
         </Button>
-
         <AddQuestion />
       </div>
-
     </div >
 
   );
 };
+
+
+
 
 
 export default Questions;

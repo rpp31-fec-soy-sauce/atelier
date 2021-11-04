@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import starValue from '../RatingsFiltering.jsx'
 
 export const RatingsContainer = styled.div`
     display: flex;
-    gap: 20px;
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100vw;
@@ -11,7 +11,7 @@ export const RatingsContainer = styled.div`
 `
 export const RatingsAndProductBreakdownContainer = styled.div`
     order: 1;
-    gap: 10px;
+    gap: 30px;
     display: flex;
     flex-direction: column;
     width: 33vw;
@@ -30,6 +30,26 @@ export const RatingsFilterBreakdownContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 33vw;
+`
+
+export const CharacteristicsBreakdownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 33vw;
+`
+
+export const RatingsFilterBreakdownRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 33vw;
+`
+
+export const RatingsBreakdownRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 230px;
 `
 
 export const ProductBreakDownContainer = styled.div`
@@ -59,8 +79,6 @@ export const ReviewTilesListContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     width: 67vw;
-    height: 30vw;
-
 `
 
 export const ReviewListFooter = styled.div`
@@ -68,14 +86,12 @@ export const ReviewListFooter = styled.div`
     gap:10px;
     flex-direction: row;
     width: 67vw;
-    height: 15vw;
 `
 
 export const ReviewTile = styled.div`
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 15vw;
     border-bottom: solid 1px black;
 
 `
@@ -95,15 +111,15 @@ export const ReviewTileBody = styled.div`
     display: flex;
     flex-direction: column;
     width: 50vw;
-    height: 10vw;
+    margin-bottom: 1vw;
 `
 
 export const ReviewTileBodyResponse = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 50vw;
-    height: 15vw;
-    background-color: darkgray;
+    background-color: lightgray;
 `
 
 export const ReviewTileFooter = styled.div`
@@ -113,6 +129,21 @@ export const ReviewTileFooter = styled.div`
     gap: 5px;
     flex-direction: row;
     width: 50vw;
-    height: 5vw;
 
+`
+
+export const ratingFilterContainer = styled.div`
+    height: 20;
+    width: '100%';
+    background-color: "#e0e0de";
+    border-radius: 50;
+    margin: 50
+`
+
+export const ratingFilterFiller = styled.div`
+    height: 100%;
+    width: 43%;
+    background-color: darkgray;
+    border-radius: 'inherit';
+    text-align: 'right';
 `

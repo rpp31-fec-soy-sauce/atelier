@@ -19,6 +19,12 @@ export const AverageRatingStars = styled.div`
     font-style: bold;
 `
 
-export const RatingsFilteringItem = styled.div`
-    width: 33vw;
+export const FilterSelect = styled.select`
+    text-decoration: underline;
+    border: none;
+    font-size: 18pt;
+    font-family: 'Qahiri', sans-serif;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
 `
