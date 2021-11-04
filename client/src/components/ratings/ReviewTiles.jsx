@@ -16,15 +16,13 @@ const ReviewTiles = () => {
     
     return (
       <ReviewTile key={review.review_id}>
-        <ReviewTileHeader>
-          <ReviewTileItem>
-            <StarRatingStatic averageRating={review.rating}/>
-          </ReviewTileItem>
-          <ReviewTileItem>
-            {review.reviewer_name}, {convertedDate}
-          </ReviewTileItem>
-        </ReviewTileHeader>
         <ReviewTileBody>
+          <ReviewTileBodyItem>
+            <StarRatingStatic averageRating={review.rating}/>
+          </ReviewTileBodyItem>
+          <ReviewTileBodyItem>
+            {review.reviewer_name}, {convertedDate}
+          </ReviewTileBodyItem>
           <ReviewTileBodyItem>{review.summary}</ReviewTileBodyItem>
           <ReviewTileBodyItem>{review.body}</ReviewTileBodyItem>
           {review.recommend ? <ReviewTileBodyItem>
@@ -32,11 +30,9 @@ const ReviewTiles = () => {
             I recommend this product
             </ReviewTileBodyItem> : null}
           {review.response ? <ReviewTileBodyResponse>{review.response}</ReviewTileBodyResponse> : null}
+          <ReviewTileBodyItem>Helpful? YES (make clickable) ({review.helpfulness}) | </ReviewTileBodyItem>
+          <ReviewTileBodyItem>Report (make clickable)</ReviewTileBodyItem>
         </ReviewTileBody>
-        <ReviewTileFooter>
-          <ReviewTileItem>Helpful? YES (make clickable) ({review.helpfulness}) |</ReviewTileItem>
-          <ReviewTileItem>Report (make clickable)</ReviewTileItem>
-        </ReviewTileFooter>
       </ReviewTile>
     )
   })
