@@ -9,7 +9,9 @@ import { selectRelatedProducts, selectProduct, selectCurrentStyle, selectedStyle
 import xIcon from '../../../assets/xIcon.png';
 import noImage from '../../../assets/no-preview.jpg';
 import plusSign from '../../../assets/plussign.jpg';
-import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox, Icon, Overlay } from '../styles/Card.js'
+import { Container1, Container2, Image, Category, Price, Anchor, Card, Add, AllOutfits, RelatedSection, InnerBox, Icon, Overlay, LeftArrow, RightArrow, Carousel } from '../styles/Card.js';
+
+
 
 const RelatedItems = () => {
 
@@ -41,24 +43,46 @@ const RelatedItems = () => {
     deleteOutfit(id);
   };
 
+  const [current, setCurrent] = useState(0);
+  const relatedLength = relatedProducts.length;
+
+  const moveLeft = () => {
+    if (current > 0) {
+      setCurrent(current - 1);
+    }
+  };
+
+  const moveRight = () => {
+    if (current < relatedLength) {
+      setCurrent(current + 1);
+    }
+  }
+
+  let start = current;
+  let end = start + 4;
+
   return (
     <RelatedSection>
       <InnerBox>
       <h3>Related Products</h3>
       <Container1>
-      {relatedProducts.map(product => {
-        return <Anchor key={product.id}>
-                <Card>
-                  {!product.url ? <Image src={noImage}></Image> : <Image src={product.url}></Image>}
-                  <div>
-                    <Category>{product.category}</Category>
-                    <h5><b>{product.name}</b></h5>
-                    <Price>${product.default_price}</Price>
-                    <Stars averageRating={product.rating}/>
-                  </div>
-                </Card>
-               </Anchor>
-      })}
+        {current > 0 ? <LeftArrow onClick={() => moveLeft()}/> : null}
+        {current === relatedLength - 4 ? null : <RightArrow onClick={() => moveRight()}/>}
+        <Carousel>
+          {relatedProducts.slice(start, end).map(product => {
+            return <Anchor key={product.id}>
+                    <Card>
+                      {!product.url ? <Image src={noImage}></Image> : <Image src={product.url}></Image>}
+                      <div>
+                        <Category>{product.category}</Category>
+                        <h5><b>{product.name}</b></h5>
+                        <Price>${product.default_price}</Price>
+                        <Stars averageRating={product.rating}/>
+                      </div>
+                    </Card>
+                  </Anchor>
+          })}
+        </Carousel>
       </Container1>
       <h3>Your Outfit</h3>
       <AllOutfits>

@@ -1,4 +1,4 @@
-import { getDefaultStyle, aggregateRatings, totalReviewCount, calculatePercentRecommended , calculatePercentByRating} from "../utils/utils";
+import { getDefaultStyle, aggregateRatings, totalReviewCount, calculatePercentRecommended , calculatePercentByRating } from "../utils/utils";
 
 export const selectProduct = state => state.product;
 export const selectRelatedProducts = state => state.relatedProducts;
