@@ -6,6 +6,8 @@ import HeaderPanel from './HeaderPanel.jsx';
 import StylePanel from './StylePanel.jsx';
 import ButtonPanel from './ButtonPanel.jsx';
 import Gallery from './styles/Gallery.styled.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const OverView = () => {
   const dispatch = useDispatch();
@@ -32,9 +34,9 @@ const OverView = () => {
     <div style={{ marginTop: '2rem' }}>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '70%' }}>
-          <button onClick={handleClickBack}>Back</button>
+          <button onClick={handleClickBack}><FontAwesomeIcon icon={faChevronLeft} /></button>
           <Gallery url={currentStyle?.photos[photoIndex].url} />
-          <button onClick={handleClickNext}>Next</button>
+          <button onClick={handleClickNext}><FontAwesomeIcon icon={faChevronRight} /></button>
         </div>
         <div
           style={{
