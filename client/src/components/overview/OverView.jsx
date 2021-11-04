@@ -19,12 +19,22 @@ const OverView = () => {
   const styles = useSelector(selectStyles);
   const [selectedStyle, setSelectedStyle] = useState(undefined);
   const currentStyle = useSelector(selectCurrentStyle(selectedStyle));
+  const [photoIndex, setPhotoIndex] = useState(0);
+
+  const handleClickBack = () => setPhotoIndex(photoIndex === 0 ? 0 : photoIndex - 1);
+  const handleClickNext = () => {
+    const lastIndex = currentStyle.photos.length - 1;
+    if (photoIndex === lastIndex) return;
+    setPhotoIndex(photoIndex + 1);
+  };
 
   return (
     <div style={{ marginTop: '2rem' }}>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '70%' }}>
-          <Gallery url={currentStyle?.photos[0].url} />
+          <button onClick={handleClickBack}>Back</button>
+          <Gallery url={currentStyle?.photos[photoIndex].url} />
+          <button onClick={handleClickNext}>Next</button>
         </div>
         <div
           style={{
