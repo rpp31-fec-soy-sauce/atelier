@@ -58,10 +58,6 @@ export const RelatedSection = styled.div`
   justify-content: center;
 `
 
-export const InnerBox = styled.div`
-
-`
-
 export const Icon = styled.img`
   height: 17px;
   width: 17px;
@@ -98,7 +94,7 @@ export const RightArrow = styled(FaArrowAltCircleRight)`
   width: 20px;
 `
 
-export const Carousel = styled.div`
+export const CarouselBox = styled.div`
   display: flex;
   margin: 0 30px;
 `
