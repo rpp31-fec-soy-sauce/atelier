@@ -16,7 +16,7 @@ const Ratings = () => {
 
   useEffect(() => {
     loadReviewsMeta();
-    loadReviews(1, 10);
+    loadReviews(1, 100);
   }, []);
 
   return (
