@@ -6,7 +6,7 @@ export const aggregateRatings = ratings => {
     sum += rating * parseInt(ratings[rating]);
     count += parseInt(ratings[rating]);
   }
-  return count === 0 ? 0 : sum / count;
+  return count === 0 ? 0 : Math.round((sum / count) * 100) / 100;
 };
 
 /* A helper function that takes an array of styles and return the default style object */
@@ -45,7 +45,7 @@ export const calculatePercentRecommended = (reviewsAggregate) => {
     })
   }
 
-  return total > 0 ? (recommendedSum/total)*100 : 0;    
+  return total > 0 ? Math.round((recommendedSum/total)*100) : 0;    
 }
 
 /* A helper function to calculate the star rating percentage out of all ratings */
