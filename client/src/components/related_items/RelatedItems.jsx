@@ -20,8 +20,6 @@ const RelatedItems = () => {
   useEffect(() => dispatch(getOutfits), []);
 
   const relatedProducts = useSelector(selectRelatedProducts);
-
-  console.log(relatedProducts)
   const currentProduct = useSelector(selectProduct);
   const currentStyle = useSelector(selectCurrentStyle(undefined));
   const averageRating = useSelector(selectAverageRating);
