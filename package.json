@@ -31,6 +31,9 @@
     "collectCoverage": true
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@reduxjs/toolkit": "^1.6.2",
     "axios": "^0.23.0",
     "express": "^4.17.1",
