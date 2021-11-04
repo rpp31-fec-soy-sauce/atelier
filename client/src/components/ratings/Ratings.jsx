@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as apiActions from '../../store/apiActions';
-import { selectReviews, selectReviewsMeta } from '../../store/selectors';
+import { selectReviews, selectReviewsMeta, selectTotalReviewCount } from '../../store/selectors';
 import ReviewList from './ReviewList.jsx';
 import { RatingsContainer, RatingsAndProductBreakdownContainer, ReviewListContainer } from './styles/Container.style'
 import RatingsBreakdown from './RatingsBreakdown.jsx'
@@ -15,14 +15,9 @@ const Ratings = () => {
 
 
   useEffect(() => {
-    loadReviews();
     loadReviewsMeta();
+    loadReviews(1, 10);
   }, []);
-
-  const reviews = useSelector(selectReviews);
-  const reviewAggregates = useSelector(selectReviewsMeta);
-
-
 
   return (
     <div>
