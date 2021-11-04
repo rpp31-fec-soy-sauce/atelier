@@ -19,11 +19,10 @@ const Gallery = ({ currentStyle }) => {
   };
 
   return (
-    <>
+    <ImageFrame url={currentStyle?.photos[photoIndex].url}>
       <button onClick={handleClickBack}>
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
-      <ImageFrame url={currentStyle?.photos[photoIndex].url} />
       <button onClick={handleClickNext}>
         <FontAwesomeIcon icon={faChevronRight} />
       </button>
@@ -40,7 +39,7 @@ const Gallery = ({ currentStyle }) => {
         />
       ))}
       </div>
-    </>
+    </ImageFrame>
   );
 };
 
