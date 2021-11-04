@@ -54,7 +54,7 @@ const AddAnswer = ({ question }) => {
   const renderContent = (
     <div>
       <h3>Submit your Answer</h3>
-      <h4>{product.name}: {question}</h4>
+      <h4>{product && product.name}: {question}</h4>
       <div className="modal-btns">
         <Button type="button" onClick={closeModal}>Close</Button>
       </div>

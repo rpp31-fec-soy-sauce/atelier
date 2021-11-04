@@ -17,15 +17,18 @@ const AnswersList = ({ answers }) => {
 
   const sortedList = [];
 
-  Object.entries(answers)
-    .sort((a, b) => b[1].helpfulness - a[1].helpfulness)
-    .forEach(answer => {
-      if (answer[1].answerer_name === 'Seller') {
-        sortedList.unshift(answer)
-      } else {
-        sortedList.push(answer)
-      }
-    })
+  if (answers) {
+    Object.entries(answers)
+      .sort((a, b) => b[1].helpfulness - a[1].helpfulness)
+      .forEach(answer => {
+        if (answer[1].answerer_name === 'Seller') {
+          sortedList.unshift(answer)
+        } else {
+          sortedList.push(answer)
+        }
+      })
+  }
+
 
   const displayMoreAnswers = () => {
     if (numberOfAnswers < sortedList.length) {
