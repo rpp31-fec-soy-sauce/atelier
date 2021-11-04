@@ -5,9 +5,7 @@ import { selectProduct, selectStyles, selectCurrentStyle } from '../../store/sel
 import HeaderPanel from './HeaderPanel.jsx';
 import StylePanel from './StylePanel.jsx';
 import ButtonPanel from './ButtonPanel.jsx';
-import Gallery from './styles/Gallery.styled.js';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import Gallery from './Gallery.jsx';
 
 const OverView = () => {
   const dispatch = useDispatch();
@@ -21,22 +19,12 @@ const OverView = () => {
   const styles = useSelector(selectStyles);
   const [selectedStyle, setSelectedStyle] = useState(undefined);
   const currentStyle = useSelector(selectCurrentStyle(selectedStyle));
-  const [photoIndex, setPhotoIndex] = useState(0);
-
-  const handleClickBack = () => setPhotoIndex(photoIndex === 0 ? 0 : photoIndex - 1);
-  const handleClickNext = () => {
-    const lastIndex = currentStyle.photos.length - 1;
-    if (photoIndex === lastIndex) return;
-    setPhotoIndex(photoIndex + 1);
-  };
 
   return (
     <div style={{ marginTop: '2rem' }}>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '70%' }}>
-          <button onClick={handleClickBack}><FontAwesomeIcon icon={faChevronLeft} /></button>
-          <Gallery url={currentStyle?.photos[photoIndex].url} />
-          <button onClick={handleClickNext}><FontAwesomeIcon icon={faChevronRight} /></button>
+          <Gallery currentStyle={currentStyle} />
         </div>
         <div
           style={{
