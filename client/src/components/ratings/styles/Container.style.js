@@ -90,6 +90,7 @@ export const ReviewTilesListContainer = styled.div`
 
 export const ReviewListFooter = styled.div`
     display: flex;
+    gap: 10px;
     flex-direction: row;
 `
 
