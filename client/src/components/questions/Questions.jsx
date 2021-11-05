@@ -9,7 +9,6 @@ import AddQuestion from './AddQuestion.jsx';
 import Button from '../styles/Button.styled.js';
 
 
-
 const Questions = () => {
 
   const dispatch = useDispatch();
@@ -25,13 +24,6 @@ const Questions = () => {
 
   const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
-  // const expandQuestions = () => {
-  //   if (isQuestionListExpanded) {
-  //     setIsQuestionListExpanded(false);
-  //   } else {
-  //     setIsQuestionListExpanded(true);
-  //   }
-  // }
   const expandQuestions = () => {
     // console.log(questions.length)
     if (numberOfQuestions < questions.length) {
@@ -40,23 +32,6 @@ const Questions = () => {
       setNumberOfQuestions(2)
     }
   }
-
-
-  // const renderContent = () => {
-
-  //   const renderQuestions = questions.slice(0, numberOfQuestions)
-  //   return (
-  //     <div>
-  //       {renderQuestions.map(question => {
-  //         return (
-  //           <div key={question.question_id}>
-  //             <QuestionDetails question={question} /> <hr />
-  //           </div>
-  //         )
-  //       })}
-  //     </div>
-  //   )
-  // }
 
 
   // let renderQuestions = questions.slice(0, numberOfQuestions)

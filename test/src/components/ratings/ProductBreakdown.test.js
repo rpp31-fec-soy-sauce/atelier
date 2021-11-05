@@ -17,6 +17,7 @@
     const mockStore = configureStore()
     let store,wrapper
 
+
     it("renders without crashing", () => {
         store = mockStore(initialState);
         const div = document.createElement("div");

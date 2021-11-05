@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
 import { Container1, Container2, Image, Card } from '../styles/Card'

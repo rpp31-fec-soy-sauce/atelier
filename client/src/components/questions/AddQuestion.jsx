@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Button from '../styles/Button.styled.js';
 import Modal from '../styles/Modal';
 
-
 import { useSelector, useDispatch } from 'react-redux';
 import { loadProduct } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';

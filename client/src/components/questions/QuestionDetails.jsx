@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import AnswersList from './AnswersList.jsx';
 import AddAnswer from './AddAnswer.jsx';
-
-
 
 
 const QuestionDetails = ({ question }) => {
