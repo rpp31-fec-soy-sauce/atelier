@@ -9,7 +9,7 @@ import { render, cleanup } from '@testing-library/react';
 // import { render as rtlRender, screen } from '@testing-library/react';
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
-import { answer } from '../../TestStates/InitialReduxStates';
+import { answer } from '../../../TestStates/InitialReduxStates';
 import AnswerDetails from '../../../../client/src/components/questions/AnswerDetails.jsx';
 import theme from '../../../../client/src/components/styles/theme';
 import { ThemeProvider } from 'styled-components';

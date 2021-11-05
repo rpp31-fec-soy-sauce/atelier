@@ -2,7 +2,6 @@ import makeApiCall from '../api';
 import * as actions from '../apiActions';
 
 const apiMiddleware = ({ dispatch }) => next => action => {
-  console.log(action);
   if (action.type !== actions.apiCallBegan.type) return next(action);
 
   const { url, method, data, onSuccess } = action.payload;

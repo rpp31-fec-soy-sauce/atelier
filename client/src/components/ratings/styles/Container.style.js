@@ -59,18 +59,18 @@ export const ProductBreakDownContainer = styled.div`
 `
 
 export const ReviewListContainer = styled.div`
+    display: flex;
     order: 2;
     gap: 20px;
-    display: flex;
     flex-direction: column;
-    width: 67vw;
+    max-width: 50vw;
     height: 100vw;
 `
 
 export const ReviewListHeader = styled.div`
     display: flex;
     flex-direction: row;
-    width: 67vw;
+    max-width: 50vw;
     align-items: center;
 `
 
@@ -79,46 +79,42 @@ export const ReviewTilesListContainer = styled.div`
     flex-direction: column;
     gap: 10px;
     height: 500px;
-    width: 67vw;
-    margin:4px, 4px;
+    max-width: 50vw;
+    margin: 4px, 4px, 4px, 4px;
     padding:4px;   
-    overflow: auto;
+    position: relative;
     overflow-x: hidden;
-    overflow-y: auto;
-    text-align: justify;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 `
 
 export const ReviewListFooter = styled.div`
     display: flex;
-    gap:10px;
     flex-direction: row;
-    width: 67vw;
 `
 
 export const ReviewTile = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50vw;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     border-bottom: solid 1px black;
-
 `
 
 export const ReviewTileHeader = styled.div`
-    order: 1;
     display: flex;
     flex-direction: row;
-    width: 50vw;
-    height: 5vw;
-
+    height: 4vw;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 50vw;
 `
 
-export const ReviewTileBody = styled.div`
-    order: 2;
-    gap: 10px;
+export const ReviewTileFooter = styled.div`
     display: flex;
-    flex-direction: column;
-    width: 50vw;
-    margin-bottom: 1vw;
+    flex-direction: row;
+    justify-content: flex-start;
+    max-width: 50vw;
 `
 
 export const ReviewTileBodyResponse = styled.div`
@@ -127,16 +123,6 @@ export const ReviewTileBodyResponse = styled.div`
     align-items: center;
     width: 50vw;
     background-color: lightgray;
-`
-
-export const ReviewTileFooter = styled.div`
-    order: 3;
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 5px;
-    flex-direction: row;
-    width: 50vw;
-
 `
 
 export const ratingFilterContainer = styled.div`
