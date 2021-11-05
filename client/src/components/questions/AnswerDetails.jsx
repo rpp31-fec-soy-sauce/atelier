@@ -12,6 +12,7 @@ const AnswerDetails = ({ answer }) => {
   const [report, setReport] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null)
 
+
   const submitAnswerHelpfulness = (id) => {
     isHelpful ? setIsHelpful(false) : setIsHelpful(true);
     localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
@@ -35,23 +36,11 @@ const AnswerDetails = ({ answer }) => {
   }
 
 
-  // const renderPhoto = (url) => {
-  //   return (
-  //     <div>
-  //       <div className="modal-btns">
-  //         <Button onClick={closeModal}>Close</Button>
-  //       </div><br />
-  //       <div className='wrapper'>
-  //         <Image style={{width: '500px', height: '500px'}} src={url} />
-  //       </div>
-  //     </div>
-  //   )
-  // }
 
   const zoomedPhoto = (
     <div>
       <div className="modal-btns">
-      <Button onClick={closeModal}>Close</Button>
+        <Button onClick={closeModal}>Close</Button>
       </div><br />
       <div>
         <Image style={{ width: '500px', height: '500px' }} src={photoUrl} />
@@ -63,7 +52,6 @@ const AnswerDetails = ({ answer }) => {
     setShowModal(true);
     // console.log('Render Zoomed Photo')
     setPhotoUrl(url);
-
   }
 
 
@@ -74,10 +62,6 @@ const AnswerDetails = ({ answer }) => {
           {photos.map(pic => {
             return (
               <div key={pic}>
-                {/* <Card onClick={() => setShowModal(true)}>
-                  <Image src={pic} alt="Photo"></Image>
-                  {showModal && <Modal closeModal={closeModal} renderContent={renderPhoto(pic)} />}
-                </Card> */}
                 <Card onClick={() => renderZoomedPhoto(pic)}>
                   <Image src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
@@ -92,30 +76,35 @@ const AnswerDetails = ({ answer }) => {
 
   // If the answer is from the seller, then the username should display “Seller” in bold.
 
-  return (
-    <div>
-      <p> <b>A:</b> {answer.body}</p>
-      <div>
-        {answer.photos.length === 0 ? null : showGallery(answer.photos)}
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'start',
-          gap: '1rem',
-        }}
-      >
-        <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
-        <p>|</p>
-        <p>Helpful?</p>
-        <p onClick={() => submitAnswerHelpfulness(answer.id)}>Yes ({answer.helpfulness | 0})</p>
-        <p>|</p>
-        <p onClick={() => reportAnswer(answer.id)}>Report</p>
-      </div>
 
-    </div>
-  )
+  if (answer) {
+    return (
+      <div data-testid='answerDetails'>
+        <p> <b>A:</b> {answer && answer.body}</p>
+        <div>
+          {answer.photos.length === 0 ? null : showGallery(answer.photos)}
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'start',
+            gap: '1rem',
+          }}
+        >
+          <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
+          <p>|</p>
+          <p>Helpful?</p>
+          <p onClick={() => submitAnswerHelpfulness(answer.id)}>Yes ({answer.helpfulness | 0})</p>
+          <p>|</p>
+          <p onClick={() => reportAnswer(answer.id)}>Report</p>
+        </div>
+
+      </div>
+    )
+  } else {
+    return null
+  }
 
 };
 

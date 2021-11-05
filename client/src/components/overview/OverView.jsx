@@ -5,7 +5,7 @@ import { selectProduct, selectStyles, selectCurrentStyle } from '../../store/sel
 import HeaderPanel from './HeaderPanel.jsx';
 import StylePanel from './StylePanel.jsx';
 import ButtonPanel from './ButtonPanel.jsx';
-import Gallery from './styles/Gallery.styled.js';
+import Gallery from './Gallery.jsx';
 
 const OverView = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const OverView = () => {
     <div style={{ marginTop: '2rem' }}>
       <div style={{ display: 'flex' }}>
         <div style={{ width: '70%' }}>
-          <Gallery url={currentStyle?.photos[0].url} />
+          <Gallery currentStyle={currentStyle} />
         </div>
         <div
           style={{
