@@ -1,4 +1,8 @@
 node_modules/
 dist/
 apiToken.js
+<<<<<<< HEAD
 coverage
+=======
+coverage/
+>>>>>>> 3aa891b5086537b0502877819f36249e46805712
