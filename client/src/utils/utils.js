@@ -19,7 +19,7 @@ export const getDefaultStyle = styles => {
 };
 
 /* A helper function to get the product id from the current url */
-export const getProductId = () => window.location.hash.split('#').join('');
+export const getProductId = () => window.location.pathname.split('/').pop();
 
 
 /* A helper function to get the total number of reviews for a given product */
