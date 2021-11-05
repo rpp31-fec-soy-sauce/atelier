@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for atelier/client/src/components/overview/OverView.jsx</title>
+    <title>Code coverage report for atelier/client/src/components/overview/Gallery.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../../base.css" />
@@ -19,27 +19,27 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">atelier/client/src/components/overview</a> OverView.jsx</h1>
+        <h1><a href="../../../../../index.html">All files</a> / <a href="index.html">atelier/client/src/components/overview</a> Gallery.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -105,7 +105,11 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -116,14 +120,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -131,6 +133,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,61 +161,59 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadProduct, loadStyles } from '../../store/apiActions.js';
-import { selectProduct, selectStyles, selectCurrentStyle } from '../../store/selectors';
-import HeaderPanel from './HeaderPanel.jsx';
-import StylePanel from './StylePanel.jsx';
-import ButtonPanel from './ButtonPanel.jsx';
-import Gallery from './Gallery.jsx';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from 'react';
 &nbsp;
-const OverView = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-  const dispatch = <span class="cstat-no" title="statement not covered" >useDispatch();</span>
+import ImageFrame from './styles/ImageFrame.styled.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronRight,
+  faChevronLeft,
+} from '@fortawesome/free-solid-svg-icons';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(loadProduct());</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(loadStyles());</span>
-  }, []);
+const isLastIndex = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>ndex, array) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  if (index === undefined || array === undefined) <span class="cstat-no" title="statement not covered" >return false;</span></span>
+<span class="cstat-no" title="statement not covered" >  return index === array.length - 1;</span>
+};
 &nbsp;
-  const product = <span class="cstat-no" title="statement not covered" >useSelector(selectProduct);</span>
-  const styles = <span class="cstat-no" title="statement not covered" >useSelector(selectStyles);</span>
-  const [selectedStyle, setSelectedStyle] = <span class="cstat-no" title="statement not covered" >useState(undefined);</span>
-  const currentStyle = <span class="cstat-no" title="statement not covered" >useSelector(selectCurrentStyle(selectedStyle));</span>
+const Gallery = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> currentStyle }) =&gt; {</span>
+  const [photoIndex, setPhotoIndex] = <span class="cstat-no" title="statement not covered" >useState(0);</span>
+&nbsp;
+  const handleClickBack = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPhotoIndex(photoIndex - 1);</span></span>
+  const handleClickNext = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPhotoIndex(photoIndex + 1);</span></span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;div style={{ marginTop: '2rem' }}&gt;
-      &lt;div style={{ display: 'flex' }}&gt;
-        &lt;div style={{ width: '70%' }}&gt;
-          &lt;Gallery currentStyle={currentStyle} /&gt;
-        &lt;/div&gt;
-        &lt;div
+    &lt;ImageFrame url={currentStyle?.photos[photoIndex].url}&gt;
+      &lt;div style={{ display: 'inline-block', width: '4rem' }}&gt;
+      {currentStyle?.photos.map(<span class="fstat-no" title="function not covered" >(p</span>hoto, index) =&gt; (
+<span class="cstat-no" title="statement not covered" >        &lt;div</span>
+          key={photo.thumbnail_url}
           style={{
-            width: '30%',
-            marginLeft: '4rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1.5rem',
+            height: '4rem',
+            width: '4rem',
+            backgroundImage: `url(${photo.thumbnail_url})`,
+            backgroundSize: 'cover',
+            marginBottom: '1rem',
+            border: `solid ${index === photoIndex ? 'red' : 'black'}`,
+            display: 'inline-block'
           }}
-        &gt;
-          &lt;HeaderPanel product={product} styles={styles} currentStyle={currentStyle} /&gt;
-          &lt;StylePanel styles={styles} currentStyle={currentStyle} setSelectedStyle={setSelectedStyle} /&gt;
-          &lt;ButtonPanel styles={styles} currentStyle={currentStyle} /&gt;
-        &lt;/div&gt;
+          onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setPhotoIndex(index)}</span>
+        /&gt;
+      ))}
       &lt;/div&gt;
-      &lt;h3&gt;{product.slogan}&lt;/h3&gt;
-      &lt;h3&gt;{product.description}&lt;/h3&gt;
-    &lt;/div&gt;
+      &lt;div style={{ display: 'inline-flex', width: '100%', justifyContent: 'space-between' }}&gt;
+        &lt;button onClick={handleClickBack} disabled={photoIndex === 0}&gt;
+          &lt;FontAwesomeIcon icon={faChevronLeft} /&gt;
+        &lt;/button&gt;
+        &lt;button onClick={handleClickNext} disabled={isLastIndex(photoIndex, currentStyle?.photos)}&gt;
+          &lt;FontAwesomeIcon icon={faChevronRight} /&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/ImageFrame&gt;
   );
 };
 &nbsp;
-export default OverView;</pre></td></tr></table></pre>
+export default Gallery;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
