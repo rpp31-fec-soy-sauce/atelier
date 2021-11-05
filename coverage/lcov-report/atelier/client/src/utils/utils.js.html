@@ -131,8 +131,10 @@
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -143,7 +145,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -152,26 +154,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -182,7 +170,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -204,6 +206,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* A helper function that takes a rating object and returns the average rating as a float */
 export const aggregateRatings = <span class="fstat-no" title="function not covered" >ra</span>tings =&gt; {
@@ -219,7 +223,7 @@ export const aggregateRatings = <span class="fstat-no" title="function not cover
 /* A helper function that takes an array of styles and return the default style object */
 export const getDefaultStyle = <span class="fstat-no" title="function not covered" >st</span>yles =&gt; {
   const defaultStyle = <span class="cstat-no" title="statement not covered" >styles.find(<span class="fstat-no" title="function not covered" >st</span>yle =&gt; <span class="cstat-no" title="statement not covered" >style['default?'])</span>;</span>
-  
+&nbsp;
   /* If there is no default style, return the first style */
 <span class="cstat-no" title="statement not covered" >  if (!defaultStyle) <span class="cstat-no" title="statement not covered" >return styles[0];</span></span>
 <span class="cstat-no" title="statement not covered" >  return defaultStyle;</span>
@@ -230,7 +234,7 @@ export const getProductId = <span class="fstat-no" title="function not covered" 
 &nbsp;
 &nbsp;
 /* A helper function to get the total number of reviews for a given product */
-export const totalReviewCount = <span class="fstat-no" title="function not covered" >(r</span>eviewRatingsObject = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> =&gt; { 
+export const totalReviewCount = <span class="fstat-no" title="function not covered" >(r</span>eviewRatingsObject = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> =&gt; {
   let totalReviewCount = <span class="cstat-no" title="statement not covered" >0;</span>
 <span class="cstat-no" title="statement not covered" >  if (reviewRatingsObject !== 0) {</span>
 <span class="cstat-no" title="statement not covered" >    Object.values(reviewRatingsObject).forEach(<span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {</span>
@@ -252,7 +256,11 @@ export const calculatePercentRecommended = <span class="fstat-no" title="functio
     })
   }
 &nbsp;
+<<<<<<< HEAD
 <span class="cstat-no" title="statement not covered" >  return total &gt; 0 ? Math.round((recommendedSum/total)*100) : 0;    </span>
+=======
+<span class="cstat-no" title="statement not covered" >  return total &gt; 0 ? Math.round((recommendedSum/total)*100) : 0;</span>
+>>>>>>> main
 }
 &nbsp;
 /* A helper function to calculate the star rating percentage out of all ratings */
@@ -268,7 +276,7 @@ export const calculatePercentByRating = <span class="fstat-no" title="function n
       1: 0,
       2: 0,
       3: 0,
-      4: 0, 
+      4: 0,
       5: 0
     };
 &nbsp;
@@ -279,14 +287,20 @@ export const calculatePercentByRating = <span class="fstat-no" title="function n
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return ratingsPercent;</span>
   }
-}</pre></td></tr></table></pre>
+}
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
+<<<<<<< HEAD
                 at Wed Nov 03 2021 21:24:13 GMT-0500 (Central Daylight Time)
+=======
+                at Thu Nov 04 2021 18:30:47 GMT-0400 (Eastern Daylight Time)
+>>>>>>> main
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

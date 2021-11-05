@@ -28,7 +28,7 @@ const ProductBreakdown = () => {
       case 'Quality':
         return ['Poor', '', 'Perfect']
     }
-  } 
+  }
 
   const productBreakdownRendering = characteristics ? Object.keys(characteristics).map( key => {
       let characteristicsBreakdown = productCharacteristicBreakdown(key)
@@ -36,7 +36,7 @@ const ProductBreakdown = () => {
         <CharacteristicsBreakdownContainer key={characteristics[key]['id']}>
             {key}
             <ProductBreakdownFactors productFactorValue={characteristics[key]['value']}/>
-            <RatingsBreakdownRow> 
+            <RatingsBreakdownRow>
                 <div>{characteristicsBreakdown[0]}</div>
                 <div>{characteristicsBreakdown[1]}</div>
                 <div>{characteristicsBreakdown[2]}</div>

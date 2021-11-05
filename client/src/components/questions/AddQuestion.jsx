@@ -44,7 +44,7 @@ const AddQuestion = () => {
       reported: false
     }
 
-    console.log('Submitting new question!', newQuestion)
+    // console.log('Submitting new question!', newQuestion)
     //add the closeModal as a callback to the post request
     closeModal();
 
@@ -57,7 +57,7 @@ const AddQuestion = () => {
   const renderContent = (
     <div>
       <h3>Ask Your Question</h3>
-      <h4>About the {product.name}</h4>
+      <h4>About the {product && product.name}</h4>
       <div className="modal-btns">
         <Button onClick={closeModal}>Close</Button>
       </div>

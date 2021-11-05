@@ -25,7 +25,7 @@ export const loadStyles = () =>
     onSuccess: actions.stylesLoaded.type,
   });
 
-export const loadQuestions = (page = 1, count = 5) =>
+export const loadQuestions = (page = 1, count = 15) =>
   apiCallBegan({
     url: `/qa/questions?product_id=${getProductId()}&page=${page}&count=${count}`,
     method: 'GET',
@@ -49,18 +49,22 @@ export const loadReviewsMeta = () =>
 export const loadRelatedProducts = () => {
   makeApiCall('GET', `products/${getProductId()}/related`)
     .then(response => {
+      /* Filter out the duplicate data */
+      response = Array.from(new Set(response.data));
+      console.log(response);
+
       /* Get product info on each related product */
-      const productPromises = response.data.map(id =>
+      const productPromises = response.map(id =>
         makeApiCall('GET', `products/${id}`)
       );
 
       /* Get review meta data on each related product */
-      const reviewPromises = response.data.map(id =>
+      const reviewPromises = response.map(id =>
         makeApiCall('GET', `reviews/meta?product_id=${id}`)
       );
 
       /* Get style info on each related product */
-      const stylePromises = response.data.map(id =>
+      const stylePromises = response.map(id =>
         makeApiCall('GET', `products/${id}/styles`)
       );
 

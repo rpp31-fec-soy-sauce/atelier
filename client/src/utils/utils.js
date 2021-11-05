@@ -12,18 +12,18 @@ export const aggregateRatings = ratings => {
 /* A helper function that takes an array of styles and return the default style object */
 export const getDefaultStyle = styles => {
   const defaultStyle = styles.find(style => style['default?']);
-  
+
   /* If there is no default style, return the first style */
   if (!defaultStyle) return styles[0];
   return defaultStyle;
 };
 
 /* A helper function to get the product id from the current url */
-export const getProductId = () => window.location.hash.split('#').join('');
+export const getProductId = () => window.location.pathname.split('/').pop();
 
 
 /* A helper function to get the total number of reviews for a given product */
-export const totalReviewCount = (reviewRatingsObject = 0) => { 
+export const totalReviewCount = (reviewRatingsObject = 0) => {
   let totalReviewCount = 0;
   if (reviewRatingsObject !== 0) {
     Object.values(reviewRatingsObject).forEach((value) => {
@@ -45,7 +45,7 @@ export const calculatePercentRecommended = (reviewsAggregate) => {
     })
   }
 
-  return total > 0 ? Math.round((recommendedSum/total)*100) : 0;    
+  return total > 0 ? Math.round((recommendedSum/total)*100) : 0;
 }
 
 /* A helper function to calculate the star rating percentage out of all ratings */
@@ -61,7 +61,7 @@ export const calculatePercentByRating = (reviewsAggregate) => {
       1: 0,
       2: 0,
       3: 0,
-      4: 0, 
+      4: 0,
       5: 0
     };
 
@@ -73,3 +73,4 @@ export const calculatePercentByRating = (reviewsAggregate) => {
     return ratingsPercent;
   }
 }
+
