@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as apiActions from '../../store/apiActions';
-import { selectReviews, selectReviewsMeta, selectTotalReviewCount } from '../../store/selectors';
 import ReviewList from './ReviewList.jsx';
 import { RatingsContainer, RatingsAndProductBreakdownContainer, ReviewListContainer } from './styles/Container.style'
 import RatingsBreakdown from './RatingsBreakdown.jsx'
