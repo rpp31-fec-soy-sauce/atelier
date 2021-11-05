@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
+export const Container0 = styled.div`
+  display: flex;
+  // justify-content: center;
+  width: auto;
+  position: relative;
+`
+
 export const Container1 = styled.div`
   display: flex;
   // justify-content: center;
@@ -74,21 +81,21 @@ export const Overlay = styled.div`
 
 export const LeftArrow = styled(FaArrowAltCircleLeft)`
   position: absolute;
-  top: 40%;
+  top: 45%;
   z-index: 5;
   cursor: pointer;
-  left: 3px;
+  left: 2px;
   color: black;
   height: 20px;
   width: 20px;
 `
 
 export const RightArrow = styled(FaArrowAltCircleRight)`
-  position: absolute;
-  top: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
   z-index: 5;
   cursor: pointer;
-  right: 3px;
   color: black;
   height: 20px;
   width: 20px;
@@ -96,5 +103,7 @@ export const RightArrow = styled(FaArrowAltCircleRight)`
 
 export const CarouselBox = styled.div`
   display: flex;
-  margin: 0 30px;
+  margin-left: 30px;
+  margin-right: 8px;
+  justify-content: flex-start;
 `
