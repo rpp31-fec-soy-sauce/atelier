@@ -5,8 +5,11 @@ export const ReviewTileItem = styled.div`
 `
 
 export const ReviewTileBodyItem = styled.div`
-    width: 50vw;
-    
+    display:flex;
+    margin-bottom: 15px;
+    max-width: 50vw;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 `
 export const AverageRatingNumber = styled.div`
     width: 10vw;
