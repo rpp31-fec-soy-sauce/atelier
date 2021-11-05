@@ -21,6 +21,7 @@ const Questions = () => {
 
 
   const questions = useSelector(selectQuestions(searchTerm));
+  // console.log('QUESTIONS:', questions);
 
   const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
@@ -32,6 +33,7 @@ const Questions = () => {
   //   }
   // }
   const expandQuestions = () => {
+    // console.log(questions.length)
     if (numberOfQuestions < questions.length) {
       questions.length - numberOfQuestions === 1 ? setNumberOfQuestions(numberOfQuestions + 1) : setNumberOfQuestions(numberOfQuestions + 2)
     } else {
@@ -40,37 +42,44 @@ const Questions = () => {
   }
 
 
-  // const moreQuestionsButton = () => {
-  //   console.log(questions.length)
-  //   if (questions.length <= 2) {
-  //     return null;
-  //   } else {
-  //     return (
-  //       <Button onClick={moreQuestionsButton}>
-  //         {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
-  //       </Button>
-  //     )
-  //   }
+  // const renderContent = () => {
+
+  //   const renderQuestions = questions.slice(0, numberOfQuestions)
+  //   return (
+  //     <div>
+  //       {renderQuestions.map(question => {
+  //         return (
+  //           <div key={question.question_id}>
+  //             <QuestionDetails question={question} /> <hr />
+  //           </div>
+  //         )
+  //       })}
+  //     </div>
+  //   )
   // }
 
 
-  const renderContent = () => {
+  // let renderQuestions = questions.slice(0, numberOfQuestions)
 
-    const questionsList = questions.slice(0, numberOfQuestions)
-    // console.log(questionsList)
-    return (
-      <div>
-        {questionsList.map(question => {
+  let renderContent = (
+    <div>
+      {questions
+        .slice(0, numberOfQuestions)
+        .map(question => {
           return (
-            <div key={question.question_id}>
+
+            //test will return warning if set key={question.question_id}
+            // <div key={question.question_id}>
+            <div key={Math.random()}>
               <QuestionDetails question={question} /> <hr />
             </div>
           )
         })}
-      </div>
-    )
+    </div >
+  )
 
-  }
+
+
 
   //rendering first two questions
 
@@ -78,10 +87,11 @@ const Questions = () => {
 
   return (
 
-    <div>
+    <div data-testid='questions'>
       <h3>QUESTIONS & ANSWERS</h3>
       {/* <p>{JSON.stringify(questions)}</p> */}
       <input
+        data-testid='searchBar'
         style={{
           width: '90%',
           height: '50px',
@@ -98,7 +108,7 @@ const Questions = () => {
       </input>
       <br />
       <div>
-        {renderContent()}
+        {renderContent}
       </div>
       <div
         style={{

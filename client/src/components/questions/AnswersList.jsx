@@ -9,8 +9,6 @@ const AnswersList = ({ answers }) => {
 
   // const [isAnswerListExpanded, setIsAnswerListExpanded] = useState(false);
 
-  // const answerId = Object.keys(answers)
-
   //Answers should appear in the order of ‘helpfulness’
   //any answers from the seller should appear at the top of the list
 
@@ -19,16 +17,17 @@ const AnswersList = ({ answers }) => {
 
   const sortedList = [];
 
-  Object.entries(answers)
-    .sort((a, b) => b[1].helpfulness - a[1].helpfulness)
-    .forEach(answer => {
-      if (answer[1].answerer_name === 'Seller') {
-        sortedList.unshift(answer)
-      } else {
-        sortedList.push(answer)
-      }
-    })
-
+  if (answers) {
+    Object.entries(answers)
+      .sort((a, b) => b[1].helpfulness - a[1].helpfulness)
+      .forEach(answer => {
+        if (answer[1].answerer_name === 'Seller') {
+          sortedList.unshift(answer)
+        } else {
+          sortedList.push(answer)
+        }
+      })
+  }
 
 
   const displayMoreAnswers = () => {
@@ -112,15 +111,9 @@ const AnswersList = ({ answers }) => {
     )
   }
 
-
   return (
-    <div>
-      {renderContent()} <br />
-
-    </div>
+    <div>{renderContent()} <br /> </div>
   )
-
-
 };
 
 export default AnswersList;
