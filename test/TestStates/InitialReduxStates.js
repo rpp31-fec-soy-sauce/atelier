@@ -1,4 +1,4 @@
-export const reviewAggregates = {
+export const reviewsAggregates = {
     "product_id": "59553",
     "ratings": {
         "4": "1",
@@ -118,4 +118,44 @@ export const answer = {
     "answerer_name": "marcanthony",
     "helpfulness": 8,
     "photos": []
+}
+
+export const averageRating = 4.91;
+
+export const percentRecommend = 73;
+
+export const reviewCountTotals = 11;
+
+export const starPercentage = 80;
+
+export const calculatePercentRecommended = 76;
+
+export const reviewsMeta = {
+    "product_id": "59553",
+    "ratings": {
+        "4": "1",
+        "5": "10"
+    },
+    "recommended": {
+        "false": "3",
+        "true": "1"
+    },
+    "characteristics": {
+        "Fit": {
+            "id": 199845,
+            "value": "3.1818181818181818"
+        },
+        "Length": {
+            "id": 199846,
+            "value": "3.0909090909090909"
+        },
+        "Comfort": {
+            "id": 199847,
+            "value": "5.0000000000000000"
+        },
+        "Quality": {
+            "id": 199848,
+            "value": "4.8181818181818182"
+        }
+    }
 }
