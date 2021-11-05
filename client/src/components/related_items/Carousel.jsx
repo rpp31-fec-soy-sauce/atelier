@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import noImage from '../../../assets/no-preview.jpg';
-import { Container1, CarouselBox, Anchor, Card, Image, Category, Price, RightArrow, LeftArrow } from '../styles/Card.js';
+import { Container0, CarouselBox, Anchor, Card, Image, Category, Price, RightArrow, LeftArrow } from '../styles/Card.js';
 import Stars from '../universal_components/StarRatingStaticSmall.jsx';
 import { loadRelatedProducts, loadReviewsMeta, loadReviews, loadQuestions, loadStyles, loadProduct } from '../../store/apiActions';
 import { selectRelatedProducts } from '../../store/selectors';
@@ -40,12 +40,22 @@ const Carousel = () => {
     dispatch(loadReviews());
     dispatch(loadReviewsMeta());
     dispatch(loadRelatedProducts);
+
+
+    setTimeout( () => {
+      window.scroll(0, 0);
+      setCurrent(0);
+    }, 400)
+
+
   };
 
-  return (
-    <Container1>
+  if (relatedLength === 0) {
+    return <div><b>NONE</b></div>
+  } else {
+    return (
+      <Container0>
         {current > 0 ? <LeftArrow onClick={() => moveLeft()}/> : null}
-        {current === relatedLength - 4 ? null : <RightArrow onClick={() => moveRight()}/>}
         <CarouselBox>
           {relatedProducts.slice(start, end).map(product => {
             return <Anchor key={product.id} onClick={() => handleProductChange(product.id)}>
@@ -61,8 +71,10 @@ const Carousel = () => {
                   </Anchor>
           })}
         </CarouselBox>
-      </Container1>
-  );
+        {current === relatedLength - 4 ? null : <RightArrow onClick={() => moveRight()}/>}
+      </Container0>
+    );
+  }
 };
 
 export default Carousel;
