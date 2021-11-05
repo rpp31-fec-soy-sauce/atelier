@@ -18,7 +18,7 @@ const ProgressBar = (props) => {
 
   return (
     <div style={containerStyles}>
-      <div style={fillerStyles}>
+      <div data-testid="star-filler" style={fillerStyles}>
       </div>
     </div>
   );

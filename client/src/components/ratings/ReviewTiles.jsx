@@ -11,7 +11,7 @@ const ReviewTiles = (props) => {
   const reviews = useSelector(selectReviews);
   const displayCount = props.displayCount;
 
-  const reviewsToDisplay = reviews.slice(0, displayCount)
+  const reviewsToDisplay = reviews && reviews.length > 0 ? reviews.slice(0, displayCount) : [];
 
   const reviewTileConstructor = reviewsToDisplay.map(review => {
     let dateStr =new Date(review.date);

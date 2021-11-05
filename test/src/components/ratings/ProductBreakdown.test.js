@@ -8,12 +8,12 @@
  import configureStore from 'redux-mock-store'
 
  import ProductBreakdown from '../../../../client/src/components/ratings/ProductBreakdown';
- import { reviewAggregates } from '../../../TestStates/InitialReduxStates';
+ import { reviewsAggregates } from '../../../TestStates/InitialReduxStates';
 
  //afterEach(cleanup);
 
  describe('With React Testing Library', () => {
-    const initialState = {reviewAggregates: [reviewAggregates]}
+    const initialState = {reviewsAggregates: reviewsAggregates}
     const mockStore = configureStore()
     let store,wrapper
 

@@ -23,15 +23,15 @@ export const selectCurrentStyle = styleId => state => {
 };
 
 export const selectPercentRecommendedProduct = state => {
-  const reviewsAggregate = selectReviewsMeta(state);
-  return calculatePercentRecommended(reviewsAggregate);
+  const reviewsAggregates = selectReviewsMeta(state);
+  return calculatePercentRecommended(reviewsAggregates);
 };
 
 export const selectUserOutfits = state => state.userOutfits;
 
 export const selectPercentByRating = state => {
-  const reviewsAggregate = selectReviewsMeta(state);
-  return calculatePercentByRating(reviewsAggregate);
+  const reviewsAggregates = selectReviewsMeta(state);
+  return calculatePercentByRating(reviewsAggregates);
 }
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);

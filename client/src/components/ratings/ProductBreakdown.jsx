@@ -9,9 +9,9 @@ import {} from './styles/Container.style'
 const ProductBreakdown = () => {
 
 
-  const reviewAggregates = useSelector(selectReviewsMeta);
+  const reviewsAggregates = useSelector(selectReviewsMeta);
 
-  const characteristics = reviewAggregates ? reviewAggregates.characteristics : undefined;
+  const characteristics = reviewsAggregates ? reviewsAggregates.characteristics : undefined;
 
   const productCharacteristicBreakdown = (characteristic) => {
     switch (characteristic) {
