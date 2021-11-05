@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import plusSign from '../../../assets/plussign.jpg';
 import xIcon from '../../../assets/xIcon.png';
+import noImage from '../../../assets/no-preview.jpg';
 import Stars from '../universal_components/StarRatingStaticSmall.jsx';
 import { getOutfits, addOutfit, deleteOutfit } from '../../store/funcActions.js';
 import { selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectUserOutfits } from '../../store/selectors';
