@@ -10,7 +10,7 @@
  import configureStore from 'redux-mock-store'
  import "@testing-library/jest-dom";
  
- import Ratings from '../../../../client/src/components/ratings/Ratings';
+ import RatingsFiltering from '../../../../client/src/components/ratings/RatingsFiltering';
  import theme from '../../../../client/src/components/styles/theme';
  
  import { 
@@ -39,13 +39,13 @@ describe('With React Testing Library', () => {
   const mockStore = configureStore()
   let store, wrapper
 
-  it("renders Ratings without crashing", () => {
+  it("renders RatingsFiltering without crashing", () => {
     store = mockStore(initialState);
     const div = document.createElement("div");
     ReactDOM.render(
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <Ratings />
+                <RatingsFiltering />
             </ThemeProvider>
         </Provider>, div);
   })
