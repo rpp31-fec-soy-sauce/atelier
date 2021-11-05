@@ -101,21 +101,3 @@ export const questions = {
     ]
 }
 
-export const question = {
-    "question_id": 513709,
-    "question_body": "Does this product run big or small?",
-    "question_date": "2019-01-17T00:00:00.000Z",
-    "asker_name": "jbilas",
-    "question_helpfulness": 12,
-    "reported": false,
-    "answers": {}
-}
-
-export const answer = {
-    "id": 4811951,
-    "body": "I've thrown it in the wash and it seems fine",
-    "date": "2018-02-08T00:00:00.000Z",
-    "answerer_name": "marcanthony",
-    "helpfulness": 8,
-    "photos": []
-}
