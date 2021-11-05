@@ -10,9 +10,13 @@ import { FilterSelect } from './styles/Item.style'
 
 const ReviewList = () => {
 
+  const dispatch = useDispatch();
+
   const reviewCountTotals = useSelector(selectTotalReviewCount);
+  const { loadReviews } = bindActionCreators(apiActions, dispatch);
 
   const [filter, setFilter] = useState('relevant');
+  const [reviewDisplayCount, setReviewDisplayCount] = useState(2);
 
   return (
   <>
@@ -25,9 +29,18 @@ const ReviewList = () => {
           </FilterSelect>
         </h2>
       </ReviewListHeader> 
-      <ReviewTiles />
+      <ReviewTiles displayCount={reviewDisplayCount} />
       <ReviewListFooter>
-        <div><Button>More Reviews</Button></div>
+        <div> {reviewDisplayCount === reviewCountTotals ? null : <Button onClick={ 
+            () => {
+              if (reviewCountTotals - reviewDisplayCount < 2) {
+                setReviewDisplayCount(reviewCountTotals)
+              } else {
+                setReviewDisplayCount(reviewDisplayCount + 2)
+              }
+            }}>More Reviews
+          </Button>}
+        </div>
         <div><Button>Add Review</Button></div>
       </ReviewListFooter>  
   </>

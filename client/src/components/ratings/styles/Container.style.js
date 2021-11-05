@@ -78,7 +78,14 @@ export const ReviewTilesListContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    height: 500px;
     width: 67vw;
+    margin:4px, 4px;
+    padding:4px;   
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
 `
 
 export const ReviewListFooter = styled.div`

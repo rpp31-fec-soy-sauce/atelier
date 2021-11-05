@@ -6,11 +6,14 @@ import { ReviewTileItem, ReviewTileBodyItem, checkbox } from './styles/Item.styl
 import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
 import check_box from '../../../assets/check_box.png'
 
-const ReviewTiles = () => {
+const ReviewTiles = (props) => {
 
   const reviews = useSelector(selectReviews);
+  const displayCount = props.displayCount;
 
-  const reviewTileConstructor = reviews.map(review => {
+  const reviewsToDisplay = reviews.slice(0, displayCount)
+
+  const reviewTileConstructor = reviewsToDisplay.map(review => {
     let dateStr =new Date(review.date);
     let convertedDate = dateStr.toLocaleDateString();
     
