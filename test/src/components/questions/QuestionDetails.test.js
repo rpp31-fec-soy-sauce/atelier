@@ -8,7 +8,7 @@
  import { render, cleanup} from '@testing-library/react';
  import { Provider } from 'react-redux'
  import configureStore from 'redux-mock-store'
- import { question } from '../../TestStates/InitialReduxStates';
+ import { question } from '../../../TestStates/InitialReduxStates';
  import QuestionDetails from '../../../../client/src/components/questions/QuestionDetails.jsx';
  import theme from '../../../../client/src/components/styles/theme';
  import { ThemeProvider } from 'styled-components';
