@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import noImage from '../../../assets/no-preview.jpg';
 import { Container1, CarouselBox, Anchor, Card, Image, Category, Price, RightArrow, LeftArrow } from '../styles/Card.js';
 import Stars from '../universal_components/StarRatingStaticSmall.jsx';
-import { loadRelatedProducts } from '../../store/apiActions';
+import { loadRelatedProducts, loadReviewsMeta, loadReviews, loadQuestions, loadStyles, loadProduct } from '../../store/apiActions';
 import { selectRelatedProducts } from '../../store/selectors';
 
 const Carousel = () => {
@@ -31,13 +31,24 @@ const Carousel = () => {
   let start = current;
   let end = start + 4;
 
+
+  const handleProductChange = (id) => {
+    history.pushState(null, null, id);
+    dispatch(loadProduct());
+    dispatch(loadStyles());
+    dispatch(loadQuestions());
+    dispatch(loadReviews());
+    dispatch(loadReviewsMeta());
+    dispatch(loadRelatedProducts);
+  };
+
   return (
     <Container1>
         {current > 0 ? <LeftArrow onClick={() => moveLeft()}/> : null}
         {current === relatedLength - 4 ? null : <RightArrow onClick={() => moveRight()}/>}
         <CarouselBox>
           {relatedProducts.slice(start, end).map(product => {
-            return <Anchor key={product.id}>
+            return <Anchor key={product.id} onClick={() => handleProductChange(product.id)}>
                     <Card>
                       {!product.url ? <Image src={noImage}></Image> : <Image src={product.url}></Image>}
                       <div>
