@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render, cleanup} from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import "@testing-library/jest-dom";
 
 import ProductBreakdownFactors from '../../../../client/src/components/ratings/ProductBreakdownFactors';
@@ -19,5 +19,5 @@ it("renders without crashing", () => {
 it("renders at correct position", () => {
     const { getByTestId } = render(<ProductBreakdownFactors productFactorValue={161}></ProductBreakdownFactors>);
 
-    expect(getByTestId('trianglePointer')).toHaveStyle(`left: 7396px`);    
+    expect(getByTestId('trianglePointer')).toHaveStyle(`left: 7396px`);
 })
