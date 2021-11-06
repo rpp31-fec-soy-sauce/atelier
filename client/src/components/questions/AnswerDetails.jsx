@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
 import { Container1, Container2, Image, Card } from '../styles/Card'
@@ -21,7 +21,7 @@ const AnswerDetails = ({ answer }) => {
   }
 
   const reportAnswer = (id) => {
-    report ? setReport(false) : setReport(true);
+    report ? null: setReport(true);
     localStorage.setItem(`${id}IsReported`, JSON.stringify(report))
     //add put request & send to api
 
@@ -62,7 +62,10 @@ const AnswerDetails = ({ answer }) => {
           {photos.map(pic => {
             return (
               <div key={pic}>
-                <Card onClick={() => renderZoomedPhoto(pic)}>
+                <Card
+                onClick={() => renderZoomedPhoto(pic)}
+                style={{border: 'none'}}
+                >
                   <Image src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
@@ -90,14 +93,14 @@ const AnswerDetails = ({ answer }) => {
             flexWrap: 'wrap',
             justifyContent: 'start',
             gap: '1rem',
+            cursor:'pointer'
           }}
         >
           <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
           <p>|</p>
-          <p>Helpful?</p>
-          <p onClick={() => submitAnswerHelpfulness(answer.id)}>Yes ({answer.helpfulness | 0})</p>
+          <p onClick={() => submitAnswerHelpfulness(answer.id)}>Helpful?&nbsp;Yes ({answer.helpfulness | 0})</p>
           <p>|</p>
-          <p onClick={() => reportAnswer(answer.id)}>Report</p>
+          <p onClick={() => reportAnswer(answer.id)}>{report? 'Reported' : 'Report'}</p>
         </div>
 
       </div>
