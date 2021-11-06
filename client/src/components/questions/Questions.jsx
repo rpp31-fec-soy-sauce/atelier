@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { loadQuestions } from '../../store/apiActions';
 import { selectQuestions } from '../../store/selectors';
 
@@ -40,6 +42,7 @@ const Questions = () => {
     <div
       style={{
         maxHeight: '50vh',
+        padding: '15px',
         overflow: 'auto'
       }}
     >
@@ -58,34 +61,40 @@ const Questions = () => {
   )
 
 
-
-
   //rendering first two questions
 
   //need to refactor again, clicking More Questions only load additional two questions
 
   return (
-
-    <div data-testid='questions'>
+    <div>
       <h3>QUESTIONS & ANSWERS</h3>
       {/* <p>{JSON.stringify(questions)}</p> */}
-      <input
-        data-testid='searchBar'
+
+      <div
         style={{
-          width: '90%',
-          height: '50px',
-          marginLeft: '1rem',
           display: 'flex',
           flexWrap: 'wrap',
-          fontSize: '1rem'
+          gap: '1rem',
+          fontSize: '1.5rem',
         }}
-        type="text"
-        value={searchTerm}
-        placeholder='Have a question? Search for answers...'
-        onChange={e => setSearchTerm(e.target.value)}
       >
-      </input>
-      <br />
+        <input
+          style={{
+            marginLeft: '1rem',
+            width: '90%',
+            height: '50px',
+          }}
+          type="text"
+          value={searchTerm}
+          placeholder='Have a question? Search for answers...'
+          onChange={e => setSearchTerm(e.target.value)}
+        >
+        </input>
+        <FontAwesomeIcon icon={faSearch} size='lg' />
+
+      </div>
+
+
       <div>
         {renderContent}
       </div>
