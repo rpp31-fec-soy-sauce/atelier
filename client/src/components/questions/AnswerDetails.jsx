@@ -93,12 +93,12 @@ const AnswerDetails = ({ answer }) => {
             flexWrap: 'wrap',
             justifyContent: 'start',
             gap: '1rem',
+            cursor:'pointer'
           }}
         >
           <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
           <p>|</p>
-          <p>Helpful?</p>
-          <p onClick={() => submitAnswerHelpfulness(answer.id)}>Yes ({answer.helpfulness | 0})</p>
+          <p onClick={() => submitAnswerHelpfulness(answer.id)}>Helpful?&nbsp;Yes ({answer.helpfulness | 0})</p>
           <p>|</p>
           <p onClick={() => reportAnswer(answer.id)}>Report</p>
         </div>

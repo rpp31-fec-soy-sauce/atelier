@@ -35,7 +35,7 @@ const AnswersList = ({ answers }) => {
     }
   }
 
-  const moreAnswersButton = () => {
+  const updateAnswers = () => {
     if (sortedList.length <= 2) {
       return null;
     } else {
@@ -45,7 +45,6 @@ const AnswersList = ({ answers }) => {
         </Button>
       )
     }
-
   }
 
   const renderContent = () => {
@@ -59,7 +58,7 @@ const AnswersList = ({ answers }) => {
             </div>
           )
         })}
-        {moreAnswersButton()}
+        {sortedList.length <= 2 ? null : updateAnswers()}
       </div>
     )
   }

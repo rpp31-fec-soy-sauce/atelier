@@ -22,9 +22,10 @@ const Questions = () => {
 
 
   const questions = useSelector(selectQuestions(searchTerm));
-  // console.log('QUESTIONS:', questions);
+  console.log('QUESTIONS:', questions);
 
   const [numberOfQuestions, setNumberOfQuestions] = useState(2);
+
 
   const expandQuestions = () => {
     // console.log(questions.length)
@@ -36,7 +37,14 @@ const Questions = () => {
   }
 
 
-  // let renderQuestions = questions.slice(0, numberOfQuestions)
+  const updateQuestions = () => {
+    return (
+      <Button onClick={expandQuestions}>
+        {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
+      </Button>
+    )
+  }
+
 
   let renderContent = (
     <div
@@ -59,6 +67,8 @@ const Questions = () => {
         })}
     </div >
   )
+
+
 
 
   //rendering first two questions
@@ -93,8 +103,6 @@ const Questions = () => {
         <FontAwesomeIcon icon={faSearch} size='lg' />
 
       </div>
-
-
       <div>
         {renderContent}
       </div>
@@ -106,10 +114,7 @@ const Questions = () => {
           gap: '4rem',
         }}
       >
-        {/* {moreQuestionsButton()} */}
-        <Button onClick={expandQuestions}>
-          {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
-        </Button>
+        {questions.length <= 2 ? null : updateQuestions()}
         <AddQuestion />
       </div>
     </div >
@@ -118,6 +123,10 @@ const Questions = () => {
 };
 
 
+// <Button onClick={expandQuestions}>
+// {/* {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'} */}
+
+// </Button>
 
 
 
