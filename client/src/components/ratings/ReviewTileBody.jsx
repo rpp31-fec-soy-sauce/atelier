@@ -12,7 +12,7 @@ const ReviewTileBody = (props) => {
       <>
         {ReviewBodyCurrentText}
         {ReviewBodyCurrentText !== reviewBodyText ? 
-            <ShowMore onClick={(e) => {setReviewBodyCurrentText(reviewBodyText)}}>Show more &#x25BE;</ShowMore>
+            <ShowMore onClick={(e) => {setReviewBodyCurrentText(reviewBodyText)}}>Show More &#x25BE;</ShowMore>
         : null}
       </>
     )
