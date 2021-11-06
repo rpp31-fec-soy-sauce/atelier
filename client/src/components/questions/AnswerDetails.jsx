@@ -62,7 +62,10 @@ const AnswerDetails = ({ answer }) => {
           {photos.map(pic => {
             return (
               <div key={pic}>
-                <Card onClick={() => renderZoomedPhoto(pic)}>
+                <Card
+                onClick={() => renderZoomedPhoto(pic)}
+                style={{border: 'none'}}
+                >
                   <Image src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
