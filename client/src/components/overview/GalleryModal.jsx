@@ -20,7 +20,7 @@ const GalleryModal = ({
             url={url}
             style={{ display: 'flex', flexDirection: 'column' }}
           >
-            \<div style={{ flex: 1 }}></div>
+            <div style={{ flex: 1 }}></div>
             <div
               style={{
                 display: 'flex',
