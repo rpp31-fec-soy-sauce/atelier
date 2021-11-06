@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Button from '../styles/Button.styled.js';
 import Modal from '../styles/Modal';
 
-
 import { useSelector, useDispatch } from 'react-redux';
 import { loadProduct } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';
@@ -35,7 +34,7 @@ const AddAnswer = ({ question }) => {
 
     const newAnswer = {
       body: answerBody,
-      date: new Date().toISOString(),
+      date: new Date().toString(),
       answerer_name: nickname,
       helpfulness: '0',
       photot: []

@@ -13,7 +13,7 @@ const HeaderPanel = ({ product, currentStyle }) => {
       <h3 style={{ fontWeight: 300, margin: 0, marginTop: '0.5rem' }}>
         {product.category?.toUpperCase()}
       </h3>
-      <h1 style={{ fontWeight: 'bold', fontSize: '3rem', margin: 0 }}>
+      <h1 role="heading" aria-level="1" style={{ fontWeight: 'bold', fontSize: '3rem', margin: 0 }}>
         {product.name}
       </h1>
       <PriceTag currentStyle={currentStyle} />
