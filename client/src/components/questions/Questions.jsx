@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { loadQuestions } from '../../store/apiActions';
 import { selectQuestions } from '../../store/selectors';
 
@@ -7,7 +9,6 @@ import { selectQuestions } from '../../store/selectors';
 import QuestionDetails from './QuestionDetails.jsx';
 import AddQuestion from './AddQuestion.jsx';
 import Button from '../styles/Button.styled.js';
-
 
 
 const Questions = () => {
@@ -25,13 +26,7 @@ const Questions = () => {
 
   const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
-  // const expandQuestions = () => {
-  //   if (isQuestionListExpanded) {
-  //     setIsQuestionListExpanded(false);
-  //   } else {
-  //     setIsQuestionListExpanded(true);
-  //   }
-  // }
+
   const expandQuestions = () => {
     // console.log(questions.length)
     if (numberOfQuestions < questions.length) {
@@ -42,32 +37,27 @@ const Questions = () => {
   }
 
 
-  // const renderContent = () => {
+  const updateQuestions = () => {
+    return (
+      <Button onClick={expandQuestions}>
+        {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
+      </Button>
+    )
+  }
 
-  //   const renderQuestions = questions.slice(0, numberOfQuestions)
-  //   return (
-  //     <div>
-  //       {renderQuestions.map(question => {
-  //         return (
-  //           <div key={question.question_id}>
-  //             <QuestionDetails question={question} /> <hr />
-  //           </div>
-  //         )
-  //       })}
-  //     </div>
-  //   )
-  // }
-
-
-  // let renderQuestions = questions.slice(0, numberOfQuestions)
 
   let renderContent = (
-    <div>
+    <div
+      style={{
+        maxHeight: '50vh',
+        padding: '15px',
+        overflow: 'auto'
+      }}
+    >
       {questions
         .slice(0, numberOfQuestions)
         .map(question => {
           return (
-
             //test will return warning if set key={question.question_id}
             // <div key={question.question_id}>
             <div key={Math.random()}>
@@ -79,34 +69,38 @@ const Questions = () => {
   )
 
 
-
-
   //rendering first two questions
 
   //need to refactor again, clicking More Questions only load additional two questions
 
   return (
-
-    <div data-testid='questions'>
+    <div>
       <h3>QUESTIONS & ANSWERS</h3>
       {/* <p>{JSON.stringify(questions)}</p> */}
-      <input
-        data-testid='searchBar'
+
+      <div
         style={{
-          width: '90%',
-          height: '50px',
-          marginLeft: '1rem',
           display: 'flex',
           flexWrap: 'wrap',
-          fontSize: '1rem'
+          gap: '1rem',
+          fontSize: '1.5rem',
         }}
-        type="text"
-        value={searchTerm}
-        placeholder='Have a question? Search for answers...'
-        onChange={e => setSearchTerm(e.target.value)}
       >
-      </input>
-      <br />
+        <input
+          style={{
+            marginLeft: '1rem',
+            width: '90%',
+            height: '50px',
+          }}
+          type="text"
+          value={searchTerm}
+          placeholder='Have a question? Search for answers...'
+          onChange={e => setSearchTerm(e.target.value)}
+        >
+        </input>
+        <FontAwesomeIcon icon={faSearch} size='lg' />
+
+      </div>
       <div>
         {renderContent}
       </div>
@@ -118,10 +112,7 @@ const Questions = () => {
           gap: '4rem',
         }}
       >
-        {/* {moreQuestionsButton()} */}
-        <Button onClick={expandQuestions}>
-          {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
-        </Button>
+        {questions.length <= 2 ? null : updateQuestions()}
         <AddQuestion />
       </div>
     </div >
@@ -130,6 +121,10 @@ const Questions = () => {
 };
 
 
+// <Button onClick={expandQuestions}>
+// {/* {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'} */}
+
+// </Button>
 
 
 
