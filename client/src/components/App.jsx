@@ -13,8 +13,8 @@ const App = () => {
       <GlobalStyles />
       <Container>
         <OverView />
-        <Questions />
         <RelatedItems />
+        <Questions />
         <Ratings />
       </Container>
     </>
