@@ -22,7 +22,7 @@ const Questions = () => {
 
 
   const questions = useSelector(selectQuestions(searchTerm));
-  console.log('QUESTIONS:', questions);
+  // console.log('QUESTIONS:', questions);
 
   const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
@@ -67,8 +67,6 @@ const Questions = () => {
         })}
     </div >
   )
-
-
 
 
   //rendering first two questions

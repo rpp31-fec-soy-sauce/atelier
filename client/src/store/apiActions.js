@@ -115,6 +115,16 @@ export const reportQuestion = id => {
     })
   );
 };
+// export const reportQuestion = question => {
+//   store.dispatch(
+//     apiCallBegan({
+//       url: `qa/questions/${question.question_id}/report`,
+//       method: 'PUT',
+//       body: question.reported,
+//       onSuccess: actions.reportQuestionUpdated.payload
+//     })
+//   );
+// };
 
 export const markAnswerHelpful = id => {
   store.dispatch(

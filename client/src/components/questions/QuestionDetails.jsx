@@ -8,12 +8,12 @@ import { reportQuestion } from '../../store/apiActions';
 
 const QuestionDetails = ({ question }) => {
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [isHelpful, setIsHelpful] = useState(false);
   const [report, setReport] = useState(false);
 
-  // useEffect(() => dispatch(reportQuestion(question.question_id)), [report]);
+  // useEffect(() => dispatch(reportQuestion(question)), [report]);
 
   const submitQuestionHelpfulness = (id) => {
 
@@ -25,9 +25,9 @@ const QuestionDetails = ({ question }) => {
   }
 
 
-  const updateReportQuestion = (id) => {
-    report ? setReport(false) : setReport(true);
-    localStorage.setItem(`${id}IsReported`, JSON.stringify(report))
+  const updateReportQuestion = () => {
+    report ? null: setReport(true);
+    localStorage.setItem(`${question.question_id}IsReported`, JSON.stringify(report))
     //add put request & send to api
     console.log('Report question')
 
@@ -44,8 +44,8 @@ const QuestionDetails = ({ question }) => {
           style={{
             display: 'flex',
             flexWrap: 'wrap',
+            flexDirection: 'row',
             justifyContent: 'space-between',
-            gap: '3rem',
           }}
         >
           <div>
@@ -63,7 +63,7 @@ const QuestionDetails = ({ question }) => {
             {/* <p>Helpful?</p> */}
             <p onClick={() => submitQuestionHelpfulness(question.question_id)}>Helpful?&nbsp;Yes ({question.helpfulness | 0})</p>
             <p>|</p>
-            <p onClick={updateReportQuestion}>Report</p>
+            <p onClick={updateReportQuestion}>{report? 'Reported' : 'Report'}</p>
             <p>|</p>
             <AddAnswer question={question.question_body} />
           </div>

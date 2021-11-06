@@ -21,7 +21,7 @@ const AnswerDetails = ({ answer }) => {
   }
 
   const reportAnswer = (id) => {
-    report ? setReport(false) : setReport(true);
+    report ? null: setReport(true);
     localStorage.setItem(`${id}IsReported`, JSON.stringify(report))
     //add put request & send to api
 
@@ -100,7 +100,7 @@ const AnswerDetails = ({ answer }) => {
           <p>|</p>
           <p onClick={() => submitAnswerHelpfulness(answer.id)}>Helpful?&nbsp;Yes ({answer.helpfulness | 0})</p>
           <p>|</p>
-          <p onClick={() => reportAnswer(answer.id)}>Report</p>
+          <p onClick={() => reportAnswer(answer.id)}>{report? 'Reported' : 'Report'}</p>
         </div>
 
       </div>
