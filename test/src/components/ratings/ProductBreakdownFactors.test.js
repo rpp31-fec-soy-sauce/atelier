@@ -11,7 +11,7 @@ import ProductBreakdownFactors from '../../../../client/src/components/ratings/P
 
 //afterEach(cleanup);
 
-it("renders without crashing", () => {
+it("renders ProductBreakdownFactors without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<ProductBreakdownFactors productFactorValue={161}></ProductBreakdownFactors>, div);
 })

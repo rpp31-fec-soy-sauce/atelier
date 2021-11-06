@@ -17,8 +17,7 @@
     const mockStore = configureStore()
     let store,wrapper
 
-
-    it("renders without crashing", () => {
+    it("renders ProductBreakdown without crashing", () => {
         store = mockStore(initialState);
         const div = document.createElement("div");
         ReactDOM.render(<Provider store={store}><ProductBreakdown></ProductBreakdown></Provider>, div);

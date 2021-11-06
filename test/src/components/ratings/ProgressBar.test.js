@@ -11,7 +11,7 @@ import ProgressBar from '../../../../client/src/components/ratings/ProgressBar';
 
 //afterEach(cleanup);
 
-it("renders without crashing", () => {
+it("renders ProgressBar without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(<ProgressBar starPercentage={90}></ProgressBar>, div);
 })
