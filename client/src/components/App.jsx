@@ -14,8 +14,8 @@ const App = () => {
       <Container>
         <OverView />
         <Questions />
-        <Ratings />
         <RelatedItems />
+        <Ratings />
       </Container>
     </>
   );
