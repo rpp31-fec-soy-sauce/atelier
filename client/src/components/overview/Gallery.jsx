@@ -47,12 +47,17 @@ const Gallery = ({ currentStyle }) => {
             justifyContent: 'space-between',
           }}
         >
-          <button onClick={handleClickBack} disabled={photoIndex === 0}>
+          <button
+            onClick={handleClickBack}
+            disabled={photoIndex === 0}
+            aria-label="back"
+          >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
           <button
             onClick={handleClickNext}
             disabled={isLastIndex(photoIndex, currentStyle?.photos)}
+            aria-label="next"
           >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
