@@ -73,7 +73,7 @@ export const ReviewTilesListContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 500px;
+    height: 600px;
     max-width: 50vw;
     margin: 4px, 4px, 4px, 4px;
     padding:4px;   
@@ -135,4 +135,10 @@ export const ratingFilterFiller = styled.div`
     background-color: darkgray;
     border-radius: 'inherit';
     text-align: 'right';
+`
+
+export const PhotoGallery = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 `

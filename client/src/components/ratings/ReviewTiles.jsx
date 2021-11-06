@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectReviews } from '../../store/selectors';
 import { ReviewTile, ReviewTileHeader, ReviewTileFooter, ReviewTilesListContainer, ReviewTileBodyResponse } from './styles/Container.style'
-import { ReviewTileBodyItem } from './styles/Item.style'
+import { ReviewTileBodyItem, ReviewTileBodySummary } from './styles/Item.style'
 import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
 import check_box from '../../../assets/check_box.png'
 import ReviewTileBody from './ReviewTileBody.jsx'
+import ReviewTilePictures from './ReviewTilePictures.jsx'
 
 const ReviewTiles = (props) => {
 
@@ -28,12 +29,15 @@ const ReviewTiles = (props) => {
               {review.reviewer_name}, {convertedDate}
             </ReviewTileBodyItem>
           </ReviewTileHeader>
-          <ReviewTileBodyItem>{review.summary}</ReviewTileBodyItem>
+          <ReviewTileBodySummary>{review.summary}</ReviewTileBodySummary>
           <ReviewTileBodyItem><ReviewTileBody reviewBodyText={review.body}/></ReviewTileBodyItem>
           {review.recommend ? <ReviewTileBodyItem>
             <img data-testid="checkbox" className="checkbox" src={check_box}></img> 
             I recommend this product
             </ReviewTileBodyItem> : null}
+          <ReviewTileBodyItem>
+            <ReviewTilePictures reviewPhotos={review.photos}/>
+          </ReviewTileBodyItem>
           {review.response ? <ReviewTileBodyResponse>{review.response}</ReviewTileBodyResponse> : null}
           <ReviewTileFooter>
             <ReviewTileBodyItem>Helpful? YES (make clickable) ({review.helpfulness}) | </ReviewTileBodyItem>
