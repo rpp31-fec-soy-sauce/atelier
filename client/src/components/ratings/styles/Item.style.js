@@ -30,4 +30,16 @@ export const FilterSelect = styled.select`
     color: #333;
     margin: 0;
     font-weight: bold;
+    background-color: transparent;
+`
+
+export const ShowMore = styled.button`
+    text-decoration: underline;
+    border: none;
+    font-size: 12pt;
+    font-family: 'Qahiri', sans-serif;
+    color: #333;
+    background-color: transparent;
+    margin: 0;
+    font-weight: bold;
 `

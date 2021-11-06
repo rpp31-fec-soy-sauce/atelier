@@ -5,13 +5,14 @@ import { ReviewTile, ReviewTileHeader, ReviewTileFooter, ReviewTilesListContaine
 import { ReviewTileBodyItem } from './styles/Item.style'
 import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
 import check_box from '../../../assets/check_box.png'
+import ReviewTileBody from './ReviewTileBody.jsx'
 
 const ReviewTiles = (props) => {
 
   const reviews = useSelector(selectReviews);
   const displayCount = props.displayCount;
 
-  const reviewsToDisplay = reviews && reviews.length > 0 ? reviews.slice(0, displayCount) : [];
+  const reviewsToDisplay = reviews && reviews.length > 0 ? reviews.slice(0, displayCount) : []; 
 
   const reviewTileConstructor = reviewsToDisplay.map(review => {
     let dateStr =new Date(review.date);
@@ -28,7 +29,7 @@ const ReviewTiles = (props) => {
             </ReviewTileBodyItem>
           </ReviewTileHeader>
           <ReviewTileBodyItem>{review.summary}</ReviewTileBodyItem>
-          <ReviewTileBodyItem>{review.body}</ReviewTileBodyItem>
+          <ReviewTileBodyItem><ReviewTileBody reviewBodyText={review.body}/></ReviewTileBodyItem>
           {review.recommend ? <ReviewTileBodyItem>
             <img data-testid="checkbox" className="checkbox" src={check_box}></img> 
             I recommend this product
