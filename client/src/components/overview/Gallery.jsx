@@ -20,30 +20,48 @@ const Gallery = ({ currentStyle }) => {
 
   return (
     <ImageFrame url={currentStyle?.photos[photoIndex].url}>
-      <div style={{ display: 'inline-block', width: '4rem' }}>
-      {currentStyle?.photos.map((photo, index) => (
-        <div
-          key={photo.thumbnail_url}
-          style={{
-            height: '4rem',
-            width: '4rem',
-            backgroundImage: `url(${photo.thumbnail_url})`,
-            backgroundSize: 'cover',
-            marginBottom: '1rem',
-            border: `solid ${index === photoIndex ? 'red' : 'black'}`,
-            display: 'inline-block'
-          }}
-          onClick={() => setPhotoIndex(index)}
-        />
-      ))}
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {currentStyle?.photos.map((photo, index) => (
+          <div
+            key={photo.thumbnail_url}
+            style={{
+              height: '4rem',
+              width: '4rem',
+              backgroundImage: `url(${photo.thumbnail_url})`,
+              backgroundSize: 'cover',
+              marginBottom: '1rem',
+              border: `solid ${index === photoIndex ? 'red' : 'black'}`,
+              display: 'inline-block',
+            }}
+            onClick={() => setPhotoIndex(index)}
+          />
+        ))}
       </div>
-      <div style={{ display: 'inline-flex', width: '100%', justifyContent: 'space-between' }}>
-        <button onClick={handleClickBack} disabled={photoIndex === 0}>
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </button>
-        <button onClick={handleClickNext} disabled={isLastIndex(photoIndex, currentStyle?.photos)}>
-          <FontAwesomeIcon icon={faChevronRight} />
-        </button>
+      <div style={{ flex: 1 }}>
+        <div
+          style={{
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <button
+            onClick={handleClickBack}
+            disabled={photoIndex === 0}
+            aria-label="back"
+          >
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </button>
+          <button
+            onClick={handleClickNext}
+            disabled={isLastIndex(photoIndex, currentStyle?.photos)}
+            aria-label="next"
+          >
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
       </div>
     </ImageFrame>
   );
