@@ -37,12 +37,16 @@ const Questions = () => {
   // let renderQuestions = questions.slice(0, numberOfQuestions)
 
   let renderContent = (
-    <div>
+    <div
+      style={{
+        maxHeight: '50vh',
+        overflow: 'auto'
+      }}
+    >
       {questions
         .slice(0, numberOfQuestions)
         .map(question => {
           return (
-
             //test will return warning if set key={question.question_id}
             // <div key={question.question_id}>
             <div key={Math.random()}>
