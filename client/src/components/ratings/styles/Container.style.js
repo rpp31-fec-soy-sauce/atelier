@@ -6,8 +6,6 @@ export const RatingsContainer = styled.div`
     flex-direction: row;
     flex-wrap: nowrap;
     width: 100vw;
-    height: 100vw;
-
 `
 export const RatingsAndProductBreakdownContainer = styled.div`
     order: 1;
@@ -15,8 +13,6 @@ export const RatingsAndProductBreakdownContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 33vw;
-    height: 100vw;
-
 `
 
 export const AverageRatingContainer = styled.div`
@@ -64,7 +60,6 @@ export const ReviewListContainer = styled.div`
     gap: 20px;
     flex-direction: column;
     max-width: 50vw;
-    height: 100vw;
 `
 
 export const ReviewListHeader = styled.div`
