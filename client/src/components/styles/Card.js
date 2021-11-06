@@ -62,7 +62,8 @@ export const AllOutfits = styled.div`
 
 export const RelatedSection = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  margin: 30px 0;
 `
 
 export const Icon = styled.img`
