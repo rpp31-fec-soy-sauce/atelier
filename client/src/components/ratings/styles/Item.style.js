@@ -11,6 +11,15 @@ export const ReviewTileBodyItem = styled.div`
     justify-content: flex-start;
     flex-wrap: wrap;
 `
+
+export const ReviewTileBodySummary = styled.div`
+    display:flex;
+    margin-bottom: 15px;
+    max-width: 50vw;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-weight: bold;
+`
 export const AverageRatingNumber = styled.div`
     width: 10vw;
     font-size: 36pt;
@@ -42,4 +51,9 @@ export const ShowMore = styled.button`
     background-color: transparent;
     margin: 0;
     font-weight: bold;
+`
+
+export const ReviewPicture = styled.img`
+    width: 100px;
+    height: 100px;
 `
