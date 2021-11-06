@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import ImageFrame from './styles/ImageFrame.styled.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,15 +16,17 @@ const isLastIndex = (index, array) => {
 const Gallery = ({ currentStyle }) => {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const imageRef = useRef(null);
 
   const handleClickBack = () => setPhotoIndex(photoIndex - 1);
   const handleClickNext = () => setPhotoIndex(photoIndex + 1);
+
+  const onImageClick = e => e.target === imageRef.current && setIsModalOpen(true);
 
   return (
     <>
       <ImageFrame
         url={currentStyle?.photos[photoIndex].url}
-        onClick={() => setIsModalOpen(true)}
       >
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {currentStyle?.photos.map((photo, index) => (
@@ -52,6 +54,8 @@ const Gallery = ({ currentStyle }) => {
               alignItems: 'center',
               justifyContent: 'space-between',
             }}
+            onClick={onImageClick}
+            ref={imageRef}
           >
             <button
               onClick={handleClickBack}
@@ -74,6 +78,9 @@ const Gallery = ({ currentStyle }) => {
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         url={currentStyle?.photos[photoIndex].url}
+        photos={currentStyle?.photos}
+        photoIndex={photoIndex}
+        setPhotoIndex={setPhotoIndex}
       />
     </>
   );
