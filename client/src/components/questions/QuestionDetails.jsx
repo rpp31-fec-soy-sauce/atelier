@@ -33,9 +33,6 @@ const QuestionDetails = ({ question }) => {
 
   }
 
-
-
-
   if (question) {
 
     return (
@@ -63,7 +60,7 @@ const QuestionDetails = ({ question }) => {
             {/* <p>Helpful?</p> */}
             <p onClick={() => submitQuestionHelpfulness(question.question_id)}>Helpful?&nbsp;Yes ({question.helpfulness | 0})</p>
             <p>|</p>
-            <p onClick={updateReportQuestion}>{report? 'Reported' : 'Report'}</p>
+            <p onClick={updateReportQuestion} role='report-question'>{report? 'Reported' : 'Report'}</p>
             <p>|</p>
             <AddAnswer question={question.question_body} />
           </div>
