@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PhotoGallery } from './styles/Container.style';
 import { ReviewPicture } from './styles/Item.style';
+import noPreview from '../../../assets/no-preview.jpg';
 
 const ReviewTilePictures = (props) => {
-    let reviewPhotos = props.reviewPhotos ? props.reviewPhotos : [];
+  let reviewPhotos = props.reviewPhotos ? props.reviewPhotos : [];
 
-    let photoGallery = reviewPhotos.map( photo => {
-        return <ReviewPicture key={photo.id} src={photo.url} alt="product photo"></ReviewPicture>
-    })
+  const addDefaultSrc = (e) => {
+    e.target.src = noPreview;
+  }
 
-    return (
-      <PhotoGallery>
-        {photoGallery}
-      </PhotoGallery>
-    )
+  let photoGallery = reviewPhotos.map( photo => {
+    return <ReviewPicture 
+      key={photo.id} 
+      src={photo.url ? photo.url : noPreview}
+      alt="product photo"
+      onError={ (e) => { addDefaultSrc(e) }}
+      >
+    </ReviewPicture>
+  })
+
+  return (
+    <PhotoGallery>
+      {photoGallery}
+    </PhotoGallery>
+  )
 };
 
 export default ReviewTilePictures;
