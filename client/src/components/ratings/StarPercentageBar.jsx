@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProgressBar = (props) => {
+const StarPercentageBar = (props) => {
   const { starPercentage } = props;
 
   const containerStyles = {
@@ -24,4 +24,4 @@ const ProgressBar = (props) => {
   );
 };
 
-export default ProgressBar;
+export default StarPercentageBar;

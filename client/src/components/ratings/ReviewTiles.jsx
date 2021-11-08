@@ -20,7 +20,7 @@ const ReviewTiles = (props) => {
     let convertedDate = dateStr.toLocaleDateString();
     
     return (
-      <ReviewTile key={review.review_id}>
+      <ReviewTile role={review.review_id} key={review.review_id}>
           <ReviewTileHeader>
             <ReviewTileBodyItem>
               <StarRatingStatic averageRating={review.rating}/>
