@@ -10,7 +10,7 @@ const ReviewTileBody = (props) => {
 
     return (
       <>
-        {ReviewBodyCurrentText}
+        {ReviewBodyCurrentText === reviewBodyText.concat('...') ? setReviewBodyCurrentText(reviewBodyText) : ReviewBodyCurrentText}
         {ReviewBodyCurrentText !== reviewBodyText ? 
             <ShowMore onClick={(e) => {setReviewBodyCurrentText(reviewBodyText)}}>Show More &#x25BE;</ShowMore>
         : null}
