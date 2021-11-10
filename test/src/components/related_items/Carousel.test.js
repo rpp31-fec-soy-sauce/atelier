@@ -16,10 +16,10 @@ test('Only 4 related products should be visible within the carousel', () => {
   expect(carousel.length).toBe(4);
 });
 
-// test('Image should not change its height', () => {
-//   const photo = screen.getByRole('images');
-//   expect(photo).toHaveStyle({height: '170px'})
-// });
+test('Image should not change its height', () => {
+  const photo = screen.getAllByRole('images');
+  expect(photo[0]).toHaveStyle({height: '170px'})
+});
 
 test('The left arrow should not be visible on page load', () => {
   const leftArrow = screen.queryByRole('left-arrow');
