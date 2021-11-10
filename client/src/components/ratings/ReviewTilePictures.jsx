@@ -11,7 +11,8 @@ const ReviewTilePictures = (props) => {
   }
 
   let photoGallery = reviewPhotos.map( photo => {
-    return <ReviewPicture 
+    return <ReviewPicture
+      role={photo.id} 
       key={photo.id} 
       src={photo.url ? photo.url : noPreview}
       alt="product photo"
@@ -21,7 +22,7 @@ const ReviewTilePictures = (props) => {
   })
 
   return (
-    <PhotoGallery>
+    <PhotoGallery role="photoGallery">
       {photoGallery}
     </PhotoGallery>
   )
