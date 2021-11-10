@@ -4,7 +4,7 @@
 
  import React from 'react';
  import { render, fireEvent, screen, within } from '../../../test-utils';
- import ReviewTiles from '../../../../client/src/components/Ratings/ReviewTiles.jsx';
+ import ReviewTiles from '../../../../client/src/components/ratings/ReviewTiles.jsx';
  
  beforeEach(() => render(<ReviewTiles />));
  

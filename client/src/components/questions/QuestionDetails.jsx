@@ -29,7 +29,7 @@ const QuestionDetails = ({ question }) => {
     report ? null: setReport(true);
     localStorage.setItem(`${question.question_id}IsReported`, JSON.stringify(report))
     //add put request & send to api
-    console.log('Report question')
+    //console.log('Report question')
 
   }
 
