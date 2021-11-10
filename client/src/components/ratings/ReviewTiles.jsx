@@ -40,7 +40,7 @@ const ReviewTiles = (props) => {
           </ReviewTileBodyItem>
           {review.response ? 
             <>
-              <ReviewTileBodyResponse><strong>Seller's Response:</strong></ReviewTileBodyResponse>
+              <ReviewTileBodyResponse><strong>Reponse From Seller:</strong></ReviewTileBodyResponse>
               <ReviewTileBodyResponse> {review.response}</ReviewTileBodyResponse> 
             </> : null}
           <ReviewTileFooter>
