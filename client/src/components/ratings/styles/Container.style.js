@@ -109,6 +109,7 @@ export const ReviewTileFooter = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     max-width: 50vw;
+    margin-top: 10px;
 `
 
 export const ReviewTileBodyResponse = styled.div`
