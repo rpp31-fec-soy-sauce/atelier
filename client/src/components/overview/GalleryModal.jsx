@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,  useRef } from 'react';
 import ModalBackground from './styles/Background.styled';
 import ImageModal from './styles/ImageModal.styled';
 
@@ -12,6 +12,14 @@ const GalleryModal = ({
   photoIndex,
   setPhotoIndex,
 }) => {
+
+  const [isZoomed, setIsZoomed] = useState(false);
+  const imageModalRef = useRef();
+
+  const onImageClick = e => {
+    if (e.target === imageModalRef.current) setIsZoomed(!isZoomed);
+  }
+
   return (
     <>
       {open ? (
@@ -19,8 +27,11 @@ const GalleryModal = ({
           <ImageModal
             url={url}
             style={{ display: 'flex', flexDirection: 'column' }}
+            isZoomed={isZoomed}
+            onClick={onImageClick}
+            ref={imageModalRef}
           >
-            <div style={{ flex: 1 }}></div>
+            <div style={{ flex: 1, pointerEvents: 'none' }}></div>
             <div
               style={{
                 display: 'flex',
@@ -31,6 +42,7 @@ const GalleryModal = ({
             >
               {photos.map((photo, index) => (
                 <Indicator
+                  key={index}
                   onClick={() => setPhotoIndex(index)}
                   style={{
                     backgroundColor: index === photoIndex ? 'red' : 'white',

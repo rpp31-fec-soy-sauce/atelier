@@ -12,6 +12,10 @@ const ImageModal = styled.div`
   background-color: black;
   background-image: url(${({ url }) => url});
   background-size: cover;
+  background-position: center;
+  &:hover {
+    background-size: ${({ isZoomed }) => isZoomed ? '150%' : 'cover'};
+  }
 `
 
 export default ImageModal;
