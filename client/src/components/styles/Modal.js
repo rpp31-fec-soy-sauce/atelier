@@ -104,8 +104,6 @@ const Modal = ({ closeModal, renderContent }) => {
   const hideModal = (e) => {
     if (modalRef && !modalRef.contains(e.target)) {
       closeModal();
-    } else {
-      e.preventDefault();
     }
   }
 
