@@ -5,7 +5,7 @@
 import React from 'react';
 import { render, fireEvent, screen } from '../../../test-utils';
 import RelatedItems from '../../../../client/src/components/related_items/RelatedItems.jsx';
-import initialState from '../../../initial-state';
+
 
 beforeEach(() => render(<RelatedItems />));
 

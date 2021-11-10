@@ -55,12 +55,12 @@ const Carousel = () => {
   } else {
     return (
       <Container0>
-        {current > 0 ? <LeftArrow onClick={() => moveLeft()}/> : null}
-        <CarouselBox>
+        {current > 0 ? <LeftArrow role='left-arrow' onClick={() => moveLeft()}/> : null}
+        <CarouselBox >
           {relatedProducts.slice(start, end).map(product => {
             return <Anchor key={product.id} onClick={() => handleProductChange(product.id)}>
-                    <Card>
-                      {!product.url ? <Image src={noImage}></Image> : <Image src={product.url}></Image>}
+                    <Card role='card'>
+                      {!product.url ? <Image role='images' src={noImage} style={{height: '170px'}}></Image> : <Image role='images' style={{height: '170px'}} src={product.url}></Image>}
                       <div>
                         <Category>{product.category}</Category>
                         <h5><b>{product.name}</b></h5>
@@ -71,7 +71,7 @@ const Carousel = () => {
                   </Anchor>
           })}
         </CarouselBox>
-        {current === relatedLength - 4 ? null : <RightArrow onClick={() => moveRight()}/>}
+        {current === relatedLength - 4 ? null : <RightArrow role='right-arrow' onClick={() => moveRight()}/>}
       </Container0>
     );
   }

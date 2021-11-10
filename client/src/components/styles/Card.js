@@ -20,7 +20,6 @@ export const Container2 = styled.div`
 `
 
 export const Image = styled.img`
-  height: 170px;
   width: 163px;
 `
 
