@@ -56,7 +56,7 @@ const AddQuestion = () => {
   const renderContent = (
     <div>
       <h3>Ask Your Question</h3>
-      <h4>About the {product && product.name}</h4>
+      <h4 role='product-name'>About the {product && product.name}</h4>
       <div className="modal-btns">
         <Button onClick={closeModal}>Close</Button>
       </div>

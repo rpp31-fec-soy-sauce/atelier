@@ -7,17 +7,17 @@ import ReactDOM from 'react-dom';
 import { render, cleanup} from '@testing-library/react';
 import "@testing-library/jest-dom";
 
-import ProgressBar from '../../../../client/src/components/ratings/ProgressBar';
+import StarPercentageBar from '../../../../client/src/components/ratings/StarPercentageBar';
 
 //afterEach(cleanup);
 
 it("renders ProgressBar without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<ProgressBar starPercentage={90}></ProgressBar>, div);
+    ReactDOM.render(<StarPercentageBar starPercentage={90}></StarPercentageBar>, div);
 })
 
 it("renders with correct stars filled", () => {
-    const { getByTestId } = render(<ProgressBar starPercentage={90}></ProgressBar>);
+    const { getByTestId } = render(<StarPercentageBar starPercentage={90}></StarPercentageBar>);
 
     expect(getByTestId('star-filler')).toHaveStyle(`width: 90%`);    
 })

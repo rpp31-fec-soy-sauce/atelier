@@ -66,7 +66,7 @@ const AnswerDetails = ({ answer }) => {
                 onClick={() => renderZoomedPhoto(pic)}
                 style={{border: 'none'}}
                 >
-                  <Image src={pic} alt="Photo"></Image>
+                  <Image role='photos' src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
               </div>
@@ -82,8 +82,8 @@ const AnswerDetails = ({ answer }) => {
 
   if (answer) {
     return (
-      <div data-testid='answerDetails'>
-        <p> <b>A:</b> {answer && answer.body}</p>
+      <div>
+        <p role='answer-body'> <b>A:</b> {answer.body}</p>
         <div>
           {answer.photos.length === 0 ? null : showGallery(answer.photos)}
         </div>
@@ -96,11 +96,11 @@ const AnswerDetails = ({ answer }) => {
             cursor:'pointer'
           }}
         >
-          <p>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
+          <p role='answerer'>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
           <p>|</p>
           <p onClick={() => submitAnswerHelpfulness(answer.id)}>Helpful?&nbsp;Yes ({answer.helpfulness | 0})</p>
           <p>|</p>
-          <p onClick={() => reportAnswer(answer.id)}>{report? 'Reported' : 'Report'}</p>
+          <p onClick={() => reportAnswer(answer.id)} role='report-answer'>{report? 'Reported' : 'Report'}</p>
         </div>
 
       </div>

@@ -25,13 +25,11 @@ export const AverageRatingContainer = styled.div`
 export const RatingsFilterBreakdownContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 33vw;
 `
 
 export const CharacteristicsBreakdownContainer = styled.div`
     display: flex;
     flex-direction: column;
-    width: 33vw;
 `
 
 export const RatingsFilterBreakdownRow = styled.div`
