@@ -12,36 +12,34 @@ const getMaxQuantity = (currentStyle, skusNum) => {
 };
 
 const ButtonPanel = ({ currentStyle }) => {
-  const [skus, setSkus] = useState(undefined);
-  const [quantity, setQuantity] = useState(1);
+  const [skus, setSkus] = useState('');
+  const [quantity, setQuantity] = useState(0);
 
-  // TODO: Deal with style change
   useEffect(() => {
-    setSkus(undefined);
-    setQuantity(1);
+    setSkus('');
+    setQuantity(0);
   }, [currentStyle]);
 
   return (
     <>
       <div style={{ display: 'flex', gap: '1rem' }}>
-        <Select style={{ flex: 1 }} onChange={e => setSkus(e.target.value)}>
-          {skus === undefined ? <option selected>Select Size</option> : null}
+        <Select style={{ flex: 1 }} onChange={e => setSkus(e.target.value)} value={skus}>
+          {skus === '' ? <option value="">Select Size</option> : null}
           {!currentStyle
             ? null
             : Object.keys(currentStyle.skus).map(skusNum => (
                 <option
                   key={skusNum}
                   value={skusNum}
-                  selected={skusNum === skus}
                 >
                   {currentStyle.skus[skusNum].size}
                 </option>
               ))}
         </Select>
-        <Select onChange={e => setQuantity(e.target.value)}>
-          {skus === undefined ? <option selected>-</option> : null}
+        <Select onChange={e => setQuantity(e.target.value)} value={quantity}>
+          {skus === '' ? <option value={0}>-</option> : null}
           {[...Array(getMaxQuantity(currentStyle, skus)).keys()].map(num => (
-            <option key={num + 1}>{num + 1}</option>
+            <option key={num + 1} value={num + 1}>{num + 1}</option>
           ))}
         </Select>
       </div>
