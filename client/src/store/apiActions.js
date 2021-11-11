@@ -98,49 +98,40 @@ export const loadRelatedProducts = () => {
     .catch(err => console.log(err));
 };
 
-export const markQuestionHelpful = id => {
-  store.dispatch(
-    apiCallBegan({
-      url: `qa/questions/${id}/helpful`,
-      method: 'PUT',
-    })
-  );
-};
-
-export const reportQuestion = id => {
-  store.dispatch(
-    apiCallBegan({
-      url: `qa/questions/${id}/report`,
-      method: 'PUT',
-    })
-  );
-};
-
-
-export const markAnswerHelpful = id => {
-  store.dispatch(
-    apiCallBegan({
-      url: `qa/answers/${id}/helpful`,
-      method: 'PUT',
-    })
-  );
-};
-
-export const reportAnswer = id => {
-  store.dispatch(apiCallBegan)({
-    url: `qa/answers/${id}/report`,
-    method: 'PUT',
-  });
-};
-
-
-// export const addQuestion = (product_id, body, name, email) => {
-//     // console.log(getProductId())
+// export const markQuestionHelpful = id => {
+//   store.dispatch(
 //     apiCallBegan({
-//       url: `/qa/questions?product_id=${getProductId()}`,
-//       method: 'POST',
-//       data: { product_id, body, name, email },
-//       onSuccess: actions.questionAdded.type,
+//       url: `qa/questions/${id}/helpful`,
+//       method: 'PUT',
 //     })
-// }
+//   );
+// };
+
+// export const reportQuestion = id => {
+//   store.dispatch(
+//     apiCallBegan({
+//       url: `qa/questions/${id}/report`,
+//       method: 'PUT',
+//     })
+//   );
+// };
+
+
+// export const markAnswerHelpful = id => {
+//   store.dispatch(
+//     apiCallBegan({
+//       url: `qa/answers/${id}/helpful`,
+//       method: 'PUT',
+//     })
+//   );
+// };
+
+// export const reportAnswer = id => {
+//   store.dispatch(apiCallBegan)({
+//     url: `qa/answers/${id}/report`,
+//     method: 'PUT',
+
+//   });
+// };
+
 
