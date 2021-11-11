@@ -51,7 +51,7 @@ export const loadRelatedProducts = () => {
     .then(response => {
       /* Filter out the duplicate data */
       response = Array.from(new Set(response.data));
-      console.log(response);
+      
 
       /* Get product info on each related product */
       const productPromises = response.map(id =>
