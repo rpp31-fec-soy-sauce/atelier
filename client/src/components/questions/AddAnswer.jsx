@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../styles/Button.styled.js';
 import Modal from '../styles/Modal';
-
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadProduct } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';
+import { actions } from '../../store/reducer';
+
+const headers = { Authorization: require('../../../../apiToken') };
 
 
-
-const AddAnswer = ({ question }) => {
+const AddAnswer = ({ question, setAnswers }) => {
 
   const dispatch = useDispatch();
 
@@ -34,17 +36,38 @@ const AddAnswer = ({ question }) => {
 
     const newAnswer = {
       body: answerBody,
-      date: new Date().toString(),
-      answerer_name: nickname,
-      helpfulness: '0',
-      photot: []
+      // date: new Date().toString(),
+      name: nickname,
+      email: email,
+      photo: []
     }
 
-    console.log('Submitting new answer!', newAnswer)
+    // console.log('Submitting new answer!', newAnswer)
+    // console.log('Answer List length:', Object.keys(question.answers).length)
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/answers`, newAnswer, { headers })
+      .then(() => {
+        let answer_id = Object.keys(question.answers).length;
+        let newAnswersList = { ...question.answers }
+        let newDate = new Date();
+        newAnswersList = Object.assign({
+          answer_id: {
+            id: answer_id,
+            body: answerBody,
+            date: newDate.toISOString().slice(0, 10),
+            answerer_name: nickname,
+            helpfulness: '0',
+            reported: false,
+            photos: []
+          }
+        }, newAnswersList)
+        setAnswers(newAnswersList)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     //add the closeModal as a callback to the post request
     closeModal();
-    //add newQuestion to the state
 
   }
 
@@ -53,7 +76,7 @@ const AddAnswer = ({ question }) => {
   const renderContent = (
     <div>
       <h3>Submit your Answer</h3>
-      <h4>{product && product.name}: {question}</h4>
+      <h4>{product && product.name}: {question.question_body}</h4>
       <div className="modal-btns">
         <Button type="button" onClick={closeModal}>Close</Button>
       </div>

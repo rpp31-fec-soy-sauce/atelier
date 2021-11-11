@@ -12,6 +12,7 @@ const QuestionDetails = ({ question }) => {
 
   const [isHelpful, setIsHelpful] = useState(false);
   const [report, setReport] = useState(false);
+  const [answers, setAnswers] = useState(question.answers);
 
   // useEffect(() => dispatch(reportQuestion(question)), [report]);
 
@@ -62,10 +63,10 @@ const QuestionDetails = ({ question }) => {
             <p>|</p>
             <p onClick={updateReportQuestion} role='report-question'>{report? 'Reported' : 'Report'}</p>
             <p>|</p>
-            <AddAnswer question={question.question_body} />
+            <AddAnswer question={question} setAnswers={setAnswers}/>
           </div>
         </div>
-        {question.answers && Object.keys(question.answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
+        {answers && Object.keys(answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={answers} />}
 
       </div>
     );

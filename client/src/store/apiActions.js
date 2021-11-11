@@ -115,16 +115,7 @@ export const reportQuestion = id => {
     })
   );
 };
-// export const reportQuestion = question => {
-//   store.dispatch(
-//     apiCallBegan({
-//       url: `qa/questions/${question.question_id}/report`,
-//       method: 'PUT',
-//       body: question.reported,
-//       onSuccess: actions.reportQuestionUpdated.payload
-//     })
-//   );
-// };
+
 
 export const markAnswerHelpful = id => {
   store.dispatch(
@@ -141,3 +132,15 @@ export const reportAnswer = id => {
     method: 'PUT',
   });
 };
+
+
+// export const addQuestion = (product_id, body, name, email) => {
+//     // console.log(getProductId())
+//     apiCallBegan({
+//       url: `/qa/questions?product_id=${getProductId()}`,
+//       method: 'POST',
+//       data: { product_id, body, name, email },
+//       onSuccess: actions.questionAdded.type,
+//     })
+// }
+

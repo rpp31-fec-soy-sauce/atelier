@@ -51,9 +51,10 @@ const slice = createSlice({
       state.userOutfits = action.payload;
     },
 
-    // reportQuestionUpdated(state, action) {
+    questionAdded(state, action) {
+      state.questions.push(action.payload);
+    },
 
-    // }
   }
 });
 
