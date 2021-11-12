@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../styles/Button.styled.js';
 import Modal from '../styles/Modal';
+import axios from 'axios'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProduct } from '../../store/apiActions';
+import { loadProduct, loadQuestions } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';
+import { actions } from '../../store/reducer';
 
-
+const headers = { Authorization: require('../../../../apiToken') };
 
 const AddQuestion = () => {
 
@@ -15,7 +17,6 @@ const AddQuestion = () => {
   useEffect(() => dispatch(loadProduct()), []);
 
   const product = useSelector(selectProduct);
-
   const [questionBody, setQuestionBody] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
@@ -33,21 +34,20 @@ const AddQuestion = () => {
 
     e.preventDefault()
 
-
     const newQuestion = {
-      answers: {},
-      asker_name: nickname,
-      question_body: questionBody,
-      question_date: new Date().toISOString(),
-      question_helpfulness: '0',
-      reported: false
+      product_id: product.id,
+      body: questionBody,
+      name: nickname,
+      email: email
     }
 
-    // console.log('Submitting new question!', newQuestion)
-    //add the closeModal as a callback to the post request
-    closeModal();
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product.id}`, newQuestion, { headers })
+      .then(() => {dispatch(loadQuestions())})
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    //add newQuestion to the state.questions
+    closeModal();
 
   }
 
@@ -85,7 +85,7 @@ const AddQuestion = () => {
               required
             />
           </li>
-          <li className="form-row"  style={{ paddingTop: '10px'}}>
+          <li className="form-row" style={{ paddingTop: '10px' }}>
             <p>For privacy reasons, do not use your full name or email address</p><br />
           </li>
           <li className="form-row">

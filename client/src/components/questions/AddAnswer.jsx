@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../styles/Button.styled.js';
 import Modal from '../styles/Modal';
-
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProduct } from '../../store/apiActions';
+import { loadProduct, loadQuestions } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';
+// import { actions } from '../../store/reducer';
+// import { selectQuestions } from '../../store/selectors';
 
+const headers = { Authorization: require('../../../../apiToken') };
 
 
 const AddAnswer = ({ question }) => {
@@ -34,17 +37,19 @@ const AddAnswer = ({ question }) => {
 
     const newAnswer = {
       body: answerBody,
-      date: new Date().toString(),
-      answerer_name: nickname,
-      helpfulness: '0',
-      photot: []
+      name: nickname,
+      email: email,
+      photo: []
     }
 
-    console.log('Submitting new answer!', newAnswer)
+    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/answers`, newAnswer, { headers })
+      .then(() => { dispatch(loadQuestions()) })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     //add the closeModal as a callback to the post request
     closeModal();
-    //add newQuestion to the state
 
   }
 
@@ -53,7 +58,7 @@ const AddAnswer = ({ question }) => {
   const renderContent = (
     <div>
       <h3>Submit your Answer</h3>
-      <h4>{product && product.name}: {question}</h4>
+      <h4>{product && product.name}: {question.question_body}</h4>
       <div className="modal-btns">
         <Button type="button" onClick={closeModal}>Close</Button>
       </div>
