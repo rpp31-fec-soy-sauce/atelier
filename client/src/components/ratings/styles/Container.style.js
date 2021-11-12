@@ -71,7 +71,7 @@ export const ReviewTilesListContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 50vw;
+    height: 35vw;
     max-width: 50vw;
     margin: 4px, 4px, 4px, 4px;
     padding:4px;   
