@@ -38,7 +38,11 @@ const ReviewTiles = (props) => {
           <ReviewTileBodyItem>
             <ReviewTilePictures reviewPhotos={review.photos}/>
           </ReviewTileBodyItem>
-          {review.response ? <ReviewTileBodyResponse>{review.response}</ReviewTileBodyResponse> : null}
+          {review.response ? 
+            <>
+              <ReviewTileBodyResponse><strong>Reponse From Seller:</strong></ReviewTileBodyResponse>
+              <ReviewTileBodyResponse> {review.response}</ReviewTileBodyResponse> 
+            </> : null}
           <ReviewTileFooter>
             <ReviewTileBodyItem>Helpful? YES (make clickable) ({review.helpfulness}) | </ReviewTileBodyItem>
             <ReviewTileBodyItem>Report (make clickable)</ReviewTileBodyItem>

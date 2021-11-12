@@ -31,7 +31,7 @@ const ReviewList = () => {
       </ReviewListHeader> 
       <ReviewTiles displayCount={reviewDisplayCount} />
       <ReviewListFooter>
-        <div> {reviewDisplayCount === reviewCountTotals ? null : <Button role="moreReviews" onClick={ 
+        <div> {reviewDisplayCount === reviewCountTotals || reviewCountTotals === 0 ? null : <Button role="moreReviews" onClick={ 
             () => {
               if (reviewCountTotals - reviewDisplayCount < 2) {
                 setReviewDisplayCount(reviewCountTotals)
