@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadProduct, loadQuestions } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';
 import { actions } from '../../store/reducer';
+import ErrorMessage from './ErrorMessage.jsx';
 
 const headers = { Authorization: require('../../../../apiToken') };
 
@@ -20,9 +21,8 @@ const AddQuestion = () => {
   const [questionBody, setQuestionBody] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
-
-
   const [showModal, setShowModal] = useState(false);
+  const [errors, setErrors] = useState({});
 
 
   const closeModal = () => {
@@ -32,22 +32,51 @@ const AddQuestion = () => {
 
   const submitQuestion = e => {
 
-    e.preventDefault()
+    e.preventDefault();
 
-    const newQuestion = {
-      product_id: product.id,
-      body: questionBody,
-      name: nickname,
-      email: email
+    //Validate user input
+    const newErrors = {};
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    // console.log(re.test(email))
+
+
+    if (!questionBody) {
+      newErrors.questionBody = 'Please Enter A Question';
     }
 
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product.id}`, newQuestion, { headers })
-      .then(() => {dispatch(loadQuestions())})
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (!nickname) {
+      newErrors.nickname = 'Please Enter A Nickname';
+    }
 
-    closeModal();
+    if (!email) {
+      newErrors.email = 'Please Enter An Email';
+    } else if (!re.test(email)) {
+      newErrors.email = 'Please Enter A Valid Email';
+    }
+
+
+    // console.log('Errors State', newErrors)
+    if (Object.keys(newErrors).length === 0) {
+
+      const newQuestion = {
+        product_id: product.id,
+        body: questionBody,
+        name: nickname,
+        email: email
+      }
+
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product.id}`, newQuestion, { headers })
+        .then(() => { dispatch(loadQuestions()) })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      closeModal();
+
+    } else {
+      setErrors(newErrors);
+    }
 
   }
 
@@ -58,9 +87,8 @@ const AddQuestion = () => {
       <h3>Ask Your Question</h3>
       <h4 role='product-name'>About the {product && product.name}</h4>
       <div className="modal-btns">
-        <Button onClick={closeModal}>Close</Button>
+        <Button type="button" onClick={closeModal}>Close</Button>
       </div>
-
       <form onSubmit={submitQuestion} >
         <ul className="wrapper">
           <li className="form-row">
@@ -71,7 +99,7 @@ const AddQuestion = () => {
               value={questionBody}
               onChange={e => setQuestionBody(e.target.value)}
               placeholder='Add question'
-              required
+            // required
             />
           </li>
           <li className="form-row">
@@ -82,7 +110,7 @@ const AddQuestion = () => {
               value={nickname}
               onChange={e => setNickname(e.target.value)}
               placeholder='Example: jackson11!'
-              required
+            // required
             />
           </li>
           <li className="form-row" style={{ paddingTop: '10px' }}>
@@ -92,19 +120,22 @@ const AddQuestion = () => {
             <label>Your email*</label> <br />
             <input
               maxLength="60"
-              type='email'
+              // type='email'
+              type='text'
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Why did you like the product or not?'
-              required
+            // required
             />
           </li>
           <li className="form-row">
-            <p>For authentication reasons, you will not be emailed</p><br />
+            <p>For authentication reasons, you will not be emailed</p>
           </li>
+          <div>
+            {Object.keys(errors).length ? <ErrorMessage errors={errors} /> : null}
+          </div>
         </ul>
         <div className="modal-btns">
-          {/* <Button onClick={closeModal}>Submit</Button> */}
           <Button>Submit</Button>
         </div>
       </form>
