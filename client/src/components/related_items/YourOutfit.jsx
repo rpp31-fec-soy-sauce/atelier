@@ -6,7 +6,7 @@ import noImage from '../../../assets/no-preview.jpg';
 import Stars from '../universal_components/StarRatingStaticSmall.jsx';
 import { getOutfits, addOutfit, deleteOutfit } from '../../store/funcActions.js';
 import { selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectUserOutfits } from '../../store/selectors';
-import { Container1, Container2, Image, Category, Price, Card, Add, AllOutfits, Icon, Overlay } from '../styles/Card.js';
+import { Container1, Container2, Image, Category, Price, Card, Add, AllOutfits, Icon, Parent } from '../styles/Card.js';
 
 const YourOutfit = () => {
 
@@ -49,8 +49,8 @@ const YourOutfit = () => {
           userOutfit.map(element => {
             return <Card key={element._id}>
                     {!element.photo ?
-                      <Overlay><Image src={noImage}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Overlay>
-                      : <Overlay><Image src={element.photo}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Overlay>}
+                      <Parent><Image src={noImage}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Parent>
+                      : <Parent><Image src={element.photo}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Parent>}
                     <div>
                       <Category>{element.category}</Category>
                       <h5><b>{element.name}</b></h5>

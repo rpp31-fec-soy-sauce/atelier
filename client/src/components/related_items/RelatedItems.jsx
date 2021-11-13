@@ -8,6 +8,7 @@ const RelatedItems = () => {
   return (
     <RelatedSection>
       <div>
+      {/* <div>&#10003;</div> */}
       <h3>RELATED PRODUCTS</h3>
       <Carousel></Carousel>
       <h3>YOUR OUTFIT</h3>
