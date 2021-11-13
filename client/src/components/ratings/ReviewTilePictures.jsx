@@ -32,17 +32,17 @@ const ReviewTilePictures = (props) => {
 
   const zoomedPhoto = (
     <div>
-      <div className="modal-btns">
-        <Button onClick={closeModal}>Close</Button>
-      </div><br />
       <div>
         <Image style={{ width: '500px', height: '500px' }} src={photoUrl} />
+      </div><br/>
+      <div className="modal-btns">
+        <Button onClick={closeModal}>Close</Button>
       </div>
     </div>
   )
 
   let photoGallery = reviewPhotos.map( photo => {
-    return <Card key={photo.id}>
+    return <Card key={photo.id} style={{ border: 'none'}}>
         <ReviewPicture
           role={photo.id} 
           src={photo.url ? photo.url : noPreview}

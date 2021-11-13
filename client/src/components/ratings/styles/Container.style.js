@@ -140,4 +140,11 @@ export const PhotoGallery = styled.div`
     display: flex;
     flex-direction: row;
     gap: 15px;
+    border: none;
+`
+
+export const ModalRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 `

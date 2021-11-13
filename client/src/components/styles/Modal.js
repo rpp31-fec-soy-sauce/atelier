@@ -93,6 +93,23 @@ const StyledModal = styled.div`
      border: 0;
     }
 
+    .form-row-characteristics {
+      display: flex;
+      justify-content: space-between;
+      padding: .5em;
+    }
+
+    .radioCharacteristics {
+      display: flex;
+      align-content: flex-start;
+      justify-content: space-between;
+    }
+
+    .rating-form {
+      display: flex;
+      flex-direction: column;
+    }
+
   }
 `;
 
