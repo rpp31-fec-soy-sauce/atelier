@@ -8,6 +8,9 @@ import { loadRelatedProducts, loadReviewsMeta, loadReviews, loadQuestions, loadS
 import { selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectRelatedProducts } from '../../store/selectors';
 import { getOutfits } from '../../store/funcActions.js';
 import { XButton } from '../styles/Card.js';
+import CompareRating from './CompareRating.jsx';
+import ComparePrice from './ComparePrice.jsx';
+import PictureGallery from './PictureGallery.jsx';
 
 const Carousel = () => {
 
@@ -21,9 +24,9 @@ const Carousel = () => {
 
   const relatedProducts = useSelector(selectRelatedProducts);
 
-  // console.log('related products: ', relatedProducts)
-  // console.log('current product: ', currentProduct)
-  // console.log('current style: ', currentStyle)
+  console.log('related products: ', relatedProducts)
+  console.log('current product: ', currentProduct)
+  console.log('current style: ', currentStyle)
   // console.log('rating: ', averageRating)
 
 
@@ -67,18 +70,20 @@ const Carousel = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-  const openModal = (rating, price, name) => {
+  const openModal = (rating, price, name, imageUrl) => {
     setShowModal(prev => !prev);
     setModalData({
       currentProduct: {
         name: currentProduct.name,
         rating: averageRating,
         price: currentProduct.default_price,
+        gallery: currentStyle.photos[0].url
       },
       clickedProduct: {
         name: name,
         rating: rating,
-        price: price
+        price: price,
+        gallery: imageUrl
       }
     });
   };
@@ -98,21 +103,9 @@ const Carousel = () => {
             <div>{modalData.clickedProduct.name}</div>
           </Products>
           <div>
-
-              {modalData.currentProduct.rating > modalData.clickedProduct.rating ?
-                <Row>
-                  <div>&#10003;</div>
-                  <div>Higher Rating</div>
-                  <div></div>
-                </Row>
-              :
-                <Row>
-                  <div></div>
-                  <div>Higher Rating</div>
-                  <div>&#10003;</div>
-                </Row>
-              }
-
+            <CompareRating currentRating={modalData.currentProduct.rating } clickedRating={modalData.clickedProduct.rating}></CompareRating>
+            <ComparePrice currentPrice={modalData.currentProduct.price } clickedPrice={modalData.clickedProduct.price}></ComparePrice>
+            <PictureGallery currentGallery={modalData.currentProduct.gallery} clickedGallery={modalData.clickedProduct.gallery}></PictureGallery>
           </div>
           </>
         )}
@@ -128,8 +121,8 @@ const Carousel = () => {
           {relatedProducts.slice(start, end).map(product => {
             return <Anchor key={product.id} >
                     <Card role='card'>
-                      {!product.url ? <Parent><Image onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar onClick={() => openModal(product.rating, product.default_price, product.name)}></ModalStar></Parent> :
-                      <Parent><Image onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar onClick={() => openModal(product.rating, product.default_price, product.name)}></ModalStar></Parent>}
+                      {!product.url ? <Parent><Image onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar onClick={() => openModal(product.rating, product.default_price, product.name, product.url)}></ModalStar></Parent> :
+                      <Parent><Image onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar onClick={() => openModal(product.rating, product.default_price, product.name, product.url)}></ModalStar></Parent>}
                       <div>
                         <Category>{product.category}</Category>
                         <h5><b>{product.name}</b></h5>
