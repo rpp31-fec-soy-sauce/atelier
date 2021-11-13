@@ -215,7 +215,7 @@ const AddAnswer = ({ question }) => {
   //Need to pass down closeModal and renderContent to the Modal style
   return (
     <div>
-      <p style={{cursor:'pointer'}} onClick={() => setShowModal(true)} role='add-answer'>Add Answer</p>
+      <p style={{cursor:'pointer', textDecoration: 'underline'}} onClick={() => setShowModal(true)} role='add-answer'>Add Answer</p>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
     </div>
   )
