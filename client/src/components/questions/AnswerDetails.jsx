@@ -1,29 +1,62 @@
 import React, { useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
 import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
 import { Container1, Container2, Image, Card } from '../styles/Card'
+import { actions } from '../../store/reducer';
+const headers = { Authorization: require('../../../../apiToken') };
+
 
 const AnswerDetails = ({ answer }) => {
 
+  const dispatch = useDispatch();
+
   const [showModal, setShowModal] = useState(false);
   const [zoomedPic, setZoomedPic] = useState(null);
-  const [isHelpful, setIsHelpful] = useState(false);
-  const [report, setReport] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null)
+  var [helpfulCount, setHelpfulCount] = useState(answer.helpfulness)
 
 
-  const submitAnswerHelpfulness = (id) => {
-    isHelpful ? setIsHelpful(false) : setIsHelpful(true);
-    localStorage.setItem(`${id}IsHelpful`, JSON.stringify(isHelpful))
-    //add put request & send to api
 
+  const localHelpful = localStorage.getItem(`${answer.body}isHelpful`);
+
+  const updateHelpfulAnswer = () => {
+
+    if (!localHelpful) {
+      setHelpfulCount(helpfulCount++)
+      localStorage.setItem(`${answer.body}isHelpful`, JSON.stringify(true))
+
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/helpful`, { helpfulness: helpfulCount }, { headers })
+        .then(() => {
+          dispatch(actions.answerHelpfulUpdated({ id: answer.id }))
+        })
+        .catch((err) => {
+          console.log('Failed to update question helpfulness', err);
+        });
+    }
   }
 
-  const reportAnswer = (id) => {
-    report ? null: setReport(true);
-    localStorage.setItem(`${id}IsReported`, JSON.stringify(report))
-    //add put request & send to api
+
+
+
+  const localReport = localStorage.getItem(`${answer.body}isReported`);
+
+  const updateReportAnswer = () => {
+
+    if (!localReport) {
+
+      localStorage.setItem(`${answer.body}isReported`, JSON.stringify(true))
+
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/report`, { reported: true }, { headers })
+        .then(() => {
+          dispatch(actions.answerReported({ id: answer.id }))
+          // dispatch(loadQuestions())
+        })
+        .catch((err) => {
+          console.log('Failed to report answer', err);
+        });
+    }
 
   }
 
@@ -63,10 +96,10 @@ const AnswerDetails = ({ answer }) => {
             return (
               <div key={pic}>
                 <Card
-                onClick={() => renderZoomedPhoto(pic)}
-                style={{border: 'none'}}
+                  onClick={() => renderZoomedPhoto(pic)}
+                  style={{ border: 'none' }}
                 >
-                  <Image role='photos' src={pic} alt="Photo"></Image>
+                  <Image style={{ cursor: 'pointer' }} role='photos' src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
               </div>
@@ -93,14 +126,24 @@ const AnswerDetails = ({ answer }) => {
             flexWrap: 'wrap',
             justifyContent: 'start',
             gap: '1rem',
-            cursor:'pointer'
+            // cursor:'pointer'
           }}
         >
           <p role='answerer'>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
           <p>|</p>
-          <p onClick={() => submitAnswerHelpfulness(answer.id)}>Helpful?&nbsp;Yes ({answer.helpfulness | 0})</p>
+          <p
+            onClick={updateHelpfulAnswer}
+            style={{ cursor: 'pointer' }}
+          >Helpful?&nbsp;
+            <span
+              style={{ textDecoration: 'underline' }}
+            >Yes</span> ({helpfulCount})</p>
           <p>|</p>
-          <p onClick={() => reportAnswer(answer.id)} role='report-answer'>{report? 'Reported' : 'Report'}</p>
+          <p
+            onClick={updateReportAnswer}
+            role='report-answer'
+            style={{ cursor: 'pointer' }}
+          >{localReport ? 'Reported' : 'Report'}</p>
         </div>
 
       </div>

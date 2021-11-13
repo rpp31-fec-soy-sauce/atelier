@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaStar } from 'react-icons/fa';
 
 export const Container0 = styled.div`
   display: flex;
@@ -23,7 +23,6 @@ export const Image = styled.img`
   height: 170px;
   width: 163px;
 `
-
 
 export const Category = styled.div`
   font-size: 12px;
@@ -76,7 +75,7 @@ export const Icon = styled.img`
   cursor: pointer;
 `
 
-export const Overlay = styled.div`
+export const Parent = styled.div`
   position: relative;
 `
 
@@ -108,3 +107,40 @@ export const CarouselBox = styled.div`
   margin-right: 8px;
   justify-content: flex-start;
 `
+
+export const ModalStar = styled(FaStar)`
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  right: 0;
+  margin-right: 3px;
+  margin-top: 3px;
+  z-index: 9;
+  cursor: pointer;
+  color: 	#daa520;
+`
+
+export const Compare = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  color: grey;
+  font-size: 10px;
+`
+export const Products = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-weight: bold;
+`
+export const Row = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+export const XButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+`
+
