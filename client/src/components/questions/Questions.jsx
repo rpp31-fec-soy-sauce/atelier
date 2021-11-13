@@ -39,7 +39,7 @@ const Questions = () => {
 
   const updateQuestions = () => {
     return (
-      <Button onClick={expandQuestions}>
+      <Button style={{cursor:'pointer'}} onClick={expandQuestions}>
         {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
       </Button>
     )
@@ -119,12 +119,6 @@ const Questions = () => {
 
   );
 };
-
-
-// <Button onClick={expandQuestions}>
-// {/* {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'} */}
-
-// </Button>
 
 
 

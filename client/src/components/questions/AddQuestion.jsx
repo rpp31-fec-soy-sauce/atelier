@@ -81,13 +81,12 @@ const AddQuestion = () => {
   }
 
 
-
   const renderContent = (
     <div>
       <h3>Ask Your Question</h3>
       <h4 role='product-name'>About the {product && product.name}</h4>
       <div className="modal-btns">
-        <Button type="button" onClick={closeModal}>Close</Button>
+        <Button type="button" style={{cursor:'pointer'}} onClick={closeModal}>Close</Button>
       </div>
       <form onSubmit={submitQuestion} >
         <ul className="wrapper">
@@ -136,7 +135,7 @@ const AddQuestion = () => {
           </div>
         </ul>
         <div className="modal-btns">
-          <Button>Submit</Button>
+          <Button style={{cursor:'pointer'}}>Submit</Button>
         </div>
       </form>
     </div>
@@ -145,7 +144,7 @@ const AddQuestion = () => {
   //Need to passdown closeModal and renderContent to the Modal style
   return (
     <div>
-      <Button onClick={() => setShowModal(true)}>Add A Question</Button>
+      <Button style={{cursor:'pointer'}} onClick={() => setShowModal(true)}>Add A Question</Button>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
     </div>
   )

@@ -100,7 +100,7 @@ const AnswerDetails = ({ answer }) => {
                 onClick={() => renderZoomedPhoto(pic)}
                 style={{border: 'none'}}
                 >
-                  <Image role='photos' src={pic} alt="Photo"></Image>
+                  <Image style={{cursor:'pointer'}} role='photos' src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
               </div>
