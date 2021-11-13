@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../styles/Button.styled.js';
 import Modal from '../styles/Modal';
-
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadProduct } from '../../store/apiActions';
+import { loadProduct, loadQuestions } from '../../store/apiActions';
 import { selectProduct } from '../../store/selectors';
+import ErrorMessage from './ErrorMessage.jsx';
+// import { actions } from '../../store/reducer';
+// import { selectQuestions } from '../../store/selectors';
 
+const headers = { Authorization: require('../../../../apiToken') };
 
 
 const AddAnswer = ({ question }) => {
@@ -19,8 +23,7 @@ const AddAnswer = ({ question }) => {
   const [answerBody, setAnswerBody] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
-
-
+  const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
 
   const closeModal = () => {
@@ -30,30 +33,56 @@ const AddAnswer = ({ question }) => {
 
   const submitAnswer = e => {
 
-    e.preventDefault()
+    e.preventDefault();
 
-    const newAnswer = {
-      body: answerBody,
-      date: new Date().toString(),
-      answerer_name: nickname,
-      helpfulness: '0',
-      photot: []
+    //Validate user input
+    const newErrors = {};
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    // console.log(re.test(email))
+
+
+    if (!answerBody) {
+      newErrors.answerBody = 'Please Enter An Answer';
     }
 
-    console.log('Submitting new answer!', newAnswer)
+    if (!nickname) {
+      newErrors.nickname = 'Please Enter A Nickname';
+    }
 
-    //add the closeModal as a callback to the post request
-    closeModal();
-    //add newQuestion to the state
+    if (!email) {
+      newErrors.email = 'Please Enter An Email';
+    } else if (!re.test(email)) {
+      newErrors.email = 'Please Enter A Valid Email';
+    }
+
+    if (Object.keys(newErrors).length === 0) {
+
+      const newAnswer = {
+        body: answerBody,
+        name: nickname,
+        email: email,
+        photo: []
+      }
+
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/answers`, newAnswer, { headers })
+        .then(() => { dispatch(loadQuestions()) })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      //add the closeModal as a callback to the post request
+      closeModal();
+    } else {
+      setErrors(newErrors);
+    }
 
   }
-
-  //Need to refactor to controlled input
 
   const renderContent = (
     <div>
       <h3>Submit your Answer</h3>
-      <h4>{product && product.name}: {question}</h4>
+      <h4>{product && product.name}: {question.question_body}</h4>
       <div className="modal-btns">
         <Button type="button" onClick={closeModal}>Close</Button>
       </div>
@@ -68,7 +97,7 @@ const AddAnswer = ({ question }) => {
               value={answerBody}
               onChange={e => setAnswerBody(e.target.value)}
               placeholder='Add answer'
-              required
+              // required
             />
           </li>
           <li className="form-row">
@@ -79,7 +108,7 @@ const AddAnswer = ({ question }) => {
               value={nickname}
               onChange={e => setNickname(e.target.value)}
               placeholder='Example: jack543!'
-              required
+              // required
             />
           </li>
           <li className="form-row">
@@ -89,16 +118,20 @@ const AddAnswer = ({ question }) => {
             <label>Your email*</label> <br />
             <input
               maxLength="60"
-              type='email'
+              // type='email'
+              type='text'
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Why did you like the product or not?'
-              required
+              // required
             />
           </li>
           <li className="form-row">
-            <p>For authentication reasons, you will not be emailed</p><br />
+            <p>For authentication reasons, you will not be emailed</p>
           </li>
+          <div>
+            {Object.keys(errors).length ? <ErrorMessage errors={errors} /> : null}
+          </div>
         </ul>
         <div className="modal-btns">
           <Button>Submit</Button>

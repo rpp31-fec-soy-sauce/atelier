@@ -8,7 +8,6 @@ const initialState = {
   reviewsMeta: {},
   questions: [],
   userOutfits: [],
-  reportedQuestions: []
 };
 
 const slice = createSlice({
@@ -51,9 +50,45 @@ const slice = createSlice({
       state.userOutfits = action.payload;
     },
 
-    // reportQuestionUpdated(state, action) {
+    questionReported(state, action) {
+      state.questions.forEach(question => {
+        if (question.question_id === action.payload.id) {
+          question.reported = true;
+        }
+      })
+    },
 
-    // }
+    questionHelpfulUpdated(state, action) {
+      state.questions.forEach(question => {
+        if (question.question_id === action.payload.id) {
+          question.question_helpfulness++;
+        }
+      })
+    },
+
+    answerReported(state, action) {
+      state.questions.forEach(question => {
+        Object.entries(question.answers)
+          .forEach(answer => {
+            if (answer[1].id === action.payload.id) {
+              answer[1].reported = true;
+            }
+          })
+      })
+    },
+
+    answerHelpfulUpdated(state, action) {
+      state.questions.forEach(question => {
+        Object.entries(question.answers)
+          .forEach(answer => {
+            if (answer[1].id === action.payload.id) {
+              answer[1].helpfulness++;
+            }
+          })
+      })
+    }
+
+
   }
 });
 

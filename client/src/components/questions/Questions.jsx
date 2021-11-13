@@ -61,7 +61,7 @@ const Questions = () => {
             //test will return warning if set key={question.question_id}
             // <div key={question.question_id}>
             <div key={Math.random()} >
-              <QuestionDetails question={question} role='questions-list'/> <hr />
+              <QuestionDetails question={question}/> <hr />
             </div>
           )
         })}

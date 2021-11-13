@@ -98,46 +98,40 @@ export const loadRelatedProducts = () => {
     .catch(err => console.log(err));
 };
 
-export const markQuestionHelpful = id => {
-  store.dispatch(
-    apiCallBegan({
-      url: `qa/questions/${id}/helpful`,
-      method: 'PUT',
-    })
-  );
-};
-
-export const reportQuestion = id => {
-  store.dispatch(
-    apiCallBegan({
-      url: `qa/questions/${id}/report`,
-      method: 'PUT',
-    })
-  );
-};
-// export const reportQuestion = question => {
+// export const markQuestionHelpful = id => {
 //   store.dispatch(
 //     apiCallBegan({
-//       url: `qa/questions/${question.question_id}/report`,
+//       url: `qa/questions/${id}/helpful`,
 //       method: 'PUT',
-//       body: question.reported,
-//       onSuccess: actions.reportQuestionUpdated.payload
 //     })
 //   );
 // };
 
-export const markAnswerHelpful = id => {
-  store.dispatch(
-    apiCallBegan({
-      url: `qa/answers/${id}/helpful`,
-      method: 'PUT',
-    })
-  );
-};
+// export const reportQuestion = id => {
+//   store.dispatch(
+//     apiCallBegan({
+//       url: `qa/questions/${id}/report`,
+//       method: 'PUT',
+//     })
+//   );
+// };
 
-export const reportAnswer = id => {
-  store.dispatch(apiCallBegan)({
-    url: `qa/answers/${id}/report`,
-    method: 'PUT',
-  });
-};
+
+// export const markAnswerHelpful = id => {
+//   store.dispatch(
+//     apiCallBegan({
+//       url: `qa/answers/${id}/helpful`,
+//       method: 'PUT',
+//     })
+//   );
+// };
+
+// export const reportAnswer = id => {
+//   store.dispatch(apiCallBegan)({
+//     url: `qa/answers/${id}/report`,
+//     method: 'PUT',
+
+//   });
+// };
+
+
