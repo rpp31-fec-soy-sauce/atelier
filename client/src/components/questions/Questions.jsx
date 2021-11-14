@@ -39,7 +39,7 @@ const Questions = () => {
 
   const updateQuestions = () => {
     return (
-      <Button style={{cursor:'pointer'}} onClick={expandQuestions}>
+      <Button onClick={expandQuestions}>
         {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
       </Button>
     )

@@ -6,6 +6,7 @@ export const Button = styled.button`
   padding: 1rem;
   border-radius: 5px;
   border: 2px solid ${({ theme }) => theme.color.primary};
+  cursor: pointer
 `
 
 export const InlineButton = styled.button`

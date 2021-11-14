@@ -15,6 +15,10 @@ const AnswerDetails = ({ answer }) => {
   const [showModal, setShowModal] = useState(false);
   const [zoomedPic, setZoomedPic] = useState(null);
   const [photoUrl, setPhotoUrl] = useState(null)
+
+  const localReport = localStorage.getItem(`${answer.body}isReported`);
+  const [report, setReport] = useState(localReport)
+
   var [helpfulCount, setHelpfulCount] = useState(answer.helpfulness)
 
 
@@ -40,12 +44,11 @@ const AnswerDetails = ({ answer }) => {
 
 
 
-  const localReport = localStorage.getItem(`${answer.body}isReported`);
 
   const updateReportAnswer = () => {
 
     if (!localReport) {
-
+      setReport(true);
       localStorage.setItem(`${answer.body}isReported`, JSON.stringify(true))
 
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/report`, { reported: true }, { headers })
@@ -143,7 +146,7 @@ const AnswerDetails = ({ answer }) => {
             onClick={updateReportAnswer}
             role='report-answer'
             style={{ cursor: 'pointer' }}
-          >{localReport ? 'Reported' : 'Report'}</p>
+          >{report ? 'Reported' : 'Report'}</p>
         </div>
 
       </div>

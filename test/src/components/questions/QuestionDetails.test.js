@@ -22,8 +22,8 @@ describe('QuestionDetails', () => {
   });
 
 
-  it('should report question when report is clicked', () => {
-    const reportQuestion = screen.getByRole('report-question')
+  it('should report question when report is clicked', async () => {
+    const reportQuestion = await screen.getByRole('report-question')
     fireEvent.click(reportQuestion)
     expect(reportQuestion.textContent).toBe('Reported');
   });
