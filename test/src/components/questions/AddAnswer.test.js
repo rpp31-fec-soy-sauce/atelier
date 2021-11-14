@@ -12,9 +12,9 @@ beforeEach(() => render(<AddAnswer />));
 
 describe('AddAnswer', () => {
 
-  it('should render Add Answer option', () => {
-    const addAnswer = screen.getByText(/Add Answer/i);
-    expect(addAnswer).toHaveTextContent('Add Answer');
+  it('should render Add Answer option', async () => {
+    const addAnswer = await screen.findByRole('add-answer');
+    expect(addAnswer).toHaveTextContent('Add Answer')
   });
 
 

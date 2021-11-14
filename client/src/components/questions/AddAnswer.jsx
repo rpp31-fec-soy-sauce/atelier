@@ -14,7 +14,6 @@ const headers = { Authorization: require('../../../../apiToken') };
 
 
 const AddAnswer = ({ question }) => {
-
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(loadProduct()), []);
@@ -127,9 +126,9 @@ const AddAnswer = ({ question }) => {
   const renderContent = (
     <div>
       <h3>Submit your Answer</h3>
-      <h4>{product && product.name}: {question.question_body}</h4>
+      <h4>{product && product.name}: {question? question.question_body : null}</h4>
       <div className="modal-btns">
-        <Button type="button" style={{cursor:'pointer'}} onClick={closeModal}>Close</Button>
+        <Button type="button" onClick={closeModal}>Close</Button>
       </div>
 
       <form onSubmit={submitAnswer}>
@@ -205,7 +204,7 @@ const AddAnswer = ({ question }) => {
           </div>
         </ul>
         <div className="modal-btns">
-          <Button style={{cursor:'pointer'}}>Submit</Button>
+          <Button>Submit</Button>
         </div>
 
       </form>
@@ -215,7 +214,12 @@ const AddAnswer = ({ question }) => {
   //Need to pass down closeModal and renderContent to the Modal style
   return (
     <div>
-      <p style={{cursor:'pointer', textDecoration: 'underline'}} onClick={() => setShowModal(true)} role='add-answer'>Add Answer</p>
+      <p
+        style={{ cursor: 'pointer', textDecoration: 'underline' }}
+        onClick={() => setShowModal(true)}
+        role='add-answer'
+        >
+        Add Answer</p>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
     </div>
   )
