@@ -127,7 +127,7 @@ const StyledModal = styled.div`
 
     .reviewBody {
       width: 400px;
-      height: 120px;
+      height: 60px;
       border: 3px solid #cccccc;
       padding: 5px;
       font-family: Tahoma, sans-serif;

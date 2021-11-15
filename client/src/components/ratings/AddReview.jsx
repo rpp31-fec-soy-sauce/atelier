@@ -7,25 +7,20 @@ import Button from '../styles/Button.styled.js';
 import { Image, Card } from '../styles/Card';
 import { ReviewPicture } from './styles/Item.style';
 import axios from 'axios';
+import noPreview from '../../../assets/no-preview.jpg';
 
 
 
 const AddReview = () => {
-  
 
   const product = useSelector(selectProduct);
   const reviewsAggregates = useSelector(selectReviewsMeta);
 
   const [showModal, setShowModal] = useState(false);
 
-  const productBreakdownRatingsObject = {};
-
-
-  const productBreakdownRatingsQualitativeObject = {};
-
   // component states
-  const [productBreakdownRatings, setProductBreakdownRatings] = useState(productBreakdownRatingsObject);
-  const [productBreakdownRatingsQualitative, setProductBreakdownRatingsQualitative] = useState(productBreakdownRatingsQualitativeObject);
+  const [productBreakdownRatings, setProductBreakdownRatings] = useState({});
+  const [productBreakdownRatingsQualitative, setProductBreakdownRatingsQualitative] = useState({});
   const [productRecommended, setProductRecommended] = useState(null);
   const [overallProductRecommendation, setOverallProductRecommendation] = useState(null);
   const [productReviewSummary, setProductReviewSummary] = useState('Example: Best purchase ever!');
@@ -49,41 +44,29 @@ const AddReview = () => {
     name: userName,
     email: userEmail,
     photos: productReviewPhotos,
-    characteristics: Object.values(productBreakdownRatings)
+    characteristics: productBreakdownRatings
   }
 
 
-  // "photos": [{
-  //   "id": 1,
-  //   "url": "urlplaceholder/review_5_photo_number_1.jpg"
-  // },
-  // {
-  //   "id": 2,
-  //   "url": "urlplaceholder/review_5_photo_number_2.jpg"
-  // }
-
-
-
-
   //product ratings change to correct format
-  const productBreakdownRatingsChange = (event) => {
-    let value = event.target.value;
-    let key = event.target.name.slice(7)
-    let characteristicId = event.target.attributes.characteristicid.value
+  const productBreakdownRatingsChange = (e) => {
+    let value = e.target.value;
+    let key = e.target.name.slice(7)
+    let characteristicId = e.target.attributes.characteristicid.value
 
-    productBreakdownRatingsObject[key] = {
-      id: characteristicId,
-      value: value
-    }
-    
-    setProductBreakdownRatings(productBreakdownRatingsObject);
+    setProductBreakdownRatings(productBreakdownRatings => ({
+      ...productBreakdownRatings,
+      [characteristicId]: value
+    }));
 
-    productBreakdownRatingsQualitativeObject[key] = titleBreakdownForKeys[key][value - 1]
-    setProductBreakdownRatingsQualitative(productBreakdownRatingsQualitativeObject);
+    console.log('productBreakdownRatings', productBreakdownRatings)
+
+    setProductBreakdownRatingsQualitative(productBreakdownRatingsQualitative => ({
+      ...productBreakdownRatingsQualitative,
+      [key]: titleBreakdownForKeys[key][value - 1]
+    }));
 
   } 
-
-  
 
 
   //characteristics control for selection and formatting
@@ -136,7 +119,6 @@ const AddReview = () => {
   const overallRecommendation = (
     <>
       <div><strong>Overall Rating:</strong></div>
-      <div>
         <ul className="rate-area">
           <input type="radio" id="5-star" name="overallRating" value="5" onChange={(e) => {
                 setOverallProductRecommendation(e.target.value);}}/>
@@ -154,7 +136,6 @@ const AddReview = () => {
                 setOverallProductRecommendation(e.target.value);}}/>
             <label htmlFor="1-star" title="Bad">1 star</label>
         </ul>
-      </div>
     </>
   )
 
@@ -280,13 +261,14 @@ const AddReview = () => {
   }
 
   const productBreakdownRendering = characteristics ? Object.keys(characteristics).map( key => {
-    let characteristicsBreakdown = productCharacteristicBreakdown(key) 
-    let characteristicId = characteristics[key]['id']
+    let characteristicsBreakdown = productCharacteristicBreakdown(key); 
+    let characteristicId = characteristics[key]['id'];
     return (   
       <div key={characteristics[key]['id']}>
-        <div className="form-row-characteristics">
+        <div className={"form-row-characteristics"} >
           <div><strong>{key}</strong></div>
-        <div>{productBreakdownRatingsQualitative[key] ? productBreakdownRatingsQualitative[key] : null}</div>
+        <div name="product qual">{productBreakdownRatingsQualitative[`${key}`] ? productBreakdownRatingsQualitative[`${key}`] : null}
+        </div>
         </div>
         <div className="radioCharacteristics">
           <div>
@@ -319,7 +301,7 @@ const AddReview = () => {
             <div>{characteristicsBreakdown[0]}</div>
             <div>{characteristicsBreakdown[1]}</div>
             <div>{characteristicsBreakdown[2]}</div>
-        </div><br/>
+        </div>
       </div>
     )
   }) : null
@@ -344,18 +326,22 @@ const AddReview = () => {
   }
 
   const handleFileSubmit = () => {
-    const reader = new FileReader();
-    const file = selectedPhoto;
+    console.log('selectedPhoto', selectedPhoto)
+    const fd = new FormData();
+    fd.append('file', selectedPhoto)
+    fd.append('upload_preset', 'cloudinaryUpload')
 
-    reader.onloadend = () => {
-      setProductReviewPhotos(productReviewPhotos.concat(reader.result));
-    };
-
-    reader.readAsDataURL(file);
-
-    setPhotoCount(photoCount + 1);
-
-    
+    axios.post('https://api.cloudinary.com/v1_1/dcuxezkzp/image/upload/', fd, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+      .then(res => {
+        console.log('res.data.secure_url', res.data.secure_url)
+        setProductReviewPhotos([...productReviewPhotos, res.data.secure_url])
+        console.log('ProductReviewPhotos', productReviewPhotos)
+        setPhotoCount(photoCount + 1);
+      })
+      .catch(err => {
+       console.log('error', err); 
+    })
+ 
   }
 
   const submitReview = (e) => {
@@ -378,8 +364,7 @@ const AddReview = () => {
       <>
         <form className="rating-form" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <h3>Write Your Review</h3>
-            <h4>About the product {product.name}:</h4>
+            <h3>Write your Review for {product.name}:</h3>
           </div>
           <div>
             {overallRecommendation}
@@ -394,18 +379,18 @@ const AddReview = () => {
           <div className="review-form-row">
             <div>{reviewUserName}</div>
             <div>{reviewUserEmail}</div>
-          </div><br/>
+          </div>
           <div>
             {productRecommendation}
           </div><br/>
           <div>
-            <div><strong>Product Details:</strong></div><br/>
+            <div><strong>Product Details:</strong></div>
             {productBreakdownRendering}
           </div><br/>
           {photoCount < 5 ? photoButtons : null }
           <div className="review-form-row">
             {productReviewPhotos ? photoGallery : null}
-          </div><br />
+          </div>
           <div className='modal-btns'>
             <Button className='modal-btns' type="submit" onClick={ (e) => { submitReview(e) }}>Submit</Button>
             <Button className='modal-btns' onClick={closeModal}>Close</Button>
