@@ -16,8 +16,8 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   let filterCurrent = stringCurrentFeatures.filter(e => sameFeature.indexOf(e) < 0);
   let filterClicked = stringClickedFeatures.filter(e => sameFeature.indexOf(e) < 0);
 
-  console.log(stringCurrentFeatures)
-  console.log(stringClickedFeatures)
+  // console.log(stringCurrentFeatures)
+  // console.log(stringClickedFeatures)
   // console.log('sameFeature: ', sameFeature)
   // console.log('filterCurrent: ', filterCurrent)
   // console.log('filterClicked: ', filterClicked)
@@ -26,9 +26,9 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   let parsedCurrent = filterCurrent.map(e => JSON.parse(e));
   let parsedClicked = filterClicked.map(e => JSON.parse(e));
 
-  console.log(parsedSameFeature)
-  console.log(parsedCurrent)
-  console.log(parsedClicked)
+  // console.log(parsedSameFeature)
+  // console.log(parsedCurrent)
+  // console.log(parsedClicked)
 
   let transformSame = [];
   let transformCurrent = [];
