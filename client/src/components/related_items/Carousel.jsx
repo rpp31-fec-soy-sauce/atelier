@@ -8,9 +8,9 @@ import { loadRelatedProducts, loadReviewsMeta, loadReviews, loadQuestions, loadS
 import { selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectRelatedProducts } from '../../store/selectors';
 import { getOutfits } from '../../store/funcActions.js';
 import { XButton } from '../styles/Card.js';
-import CompareRating from './CompareRating.jsx';
-import ComparePrice from './ComparePrice.jsx';
-import PictureGallery from './PictureGallery.jsx';
+import CompareFeatures from './CompareFeatures.jsx';
+
+
 
 const Carousel = () => {
 
@@ -70,20 +70,16 @@ const Carousel = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalData, setModalData] = useState(null);
 
-  const openModal = (rating, price, name, imageUrl) => {
+  const openModal = (name, features) => {
     setShowModal(prev => !prev);
     setModalData({
       currentProduct: {
         name: currentProduct.name,
-        rating: averageRating,
-        price: currentProduct.default_price,
-        gallery: currentStyle.photos[0].url
+        features: currentProduct.features
       },
       clickedProduct: {
         name: name,
-        rating: rating,
-        price: price,
-        gallery: imageUrl
+        features: features
       }
     });
   };
@@ -93,19 +89,17 @@ const Carousel = () => {
   }
 
   const renderContent = (
-      <div style={{width: '450px'}}>
+      <div style={{width: '600px'}}>
         <XButton onClick={closeModal}>X</XButton>
         <Compare>Comparing</Compare>
         {!modalData ? <div>Data Loading</div> : (
           <>
           <Products>
-            <div>{modalData.currentProduct.name}</div>
-            <div>{modalData.clickedProduct.name}</div>
+            <div style={{marginLeft: '15px'}}>{modalData.currentProduct.name}</div>
+            <div style={{marginRight: '15px'}}>{modalData.clickedProduct.name}</div>
           </Products>
           <div>
-            <CompareRating currentRating={modalData.currentProduct.rating } clickedRating={modalData.clickedProduct.rating}></CompareRating>
-            <ComparePrice currentPrice={modalData.currentProduct.price } clickedPrice={modalData.clickedProduct.price}></ComparePrice>
-            <PictureGallery currentGallery={modalData.currentProduct.gallery} clickedGallery={modalData.clickedProduct.gallery}></PictureGallery>
+            <CompareFeatures currentFeatures={modalData.currentProduct.features } clickedFeatures={modalData.clickedProduct.features}></CompareFeatures>
           </div>
           </>
         )}
@@ -121,8 +115,8 @@ const Carousel = () => {
           {relatedProducts.slice(start, end).map(product => {
             return <Anchor key={product.id} >
                     <Card role='card'>
-                      {!product.url ? <Parent><Image onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar onClick={() => openModal(product.rating, product.default_price, product.name, product.url)}></ModalStar></Parent> :
-                      <Parent><Image onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar onClick={() => openModal(product.rating, product.default_price, product.name, product.url)}></ModalStar></Parent>}
+                      {!product.url ? <Parent><Image onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar onClick={() => openModal(product.name, product.features)}></ModalStar></Parent> :
+                      <Parent><Image onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar onClick={() => openModal(product.name, product.features)}></ModalStar></Parent>}
                       <div>
                         <Category>{product.category}</Category>
                         <h5><b>{product.name}</b></h5>
