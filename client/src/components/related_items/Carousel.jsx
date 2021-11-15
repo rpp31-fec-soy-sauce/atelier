@@ -89,14 +89,14 @@ const Carousel = () => {
   }
 
   const renderContent = (
-      <div style={{width: '550px'}}>
+      <div style={{width: '600px'}}>
         <XButton onClick={closeModal}>X</XButton>
         <Compare>Comparing</Compare>
         {!modalData ? <div>Data Loading</div> : (
           <>
           <Products>
-            <div>{modalData.currentProduct.name}</div>
-            <div>{modalData.clickedProduct.name}</div>
+            <div style={{marginLeft: '15px'}}>{modalData.currentProduct.name}</div>
+            <div style={{marginRight: '15px'}}>{modalData.clickedProduct.name}</div>
           </Products>
           <div>
             <CompareFeatures currentFeatures={modalData.currentProduct.features } clickedFeatures={modalData.clickedProduct.features}></CompareFeatures>

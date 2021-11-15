@@ -16,8 +16,8 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   let filterCurrent = stringCurrentFeatures.filter(e => sameFeature.indexOf(e) < 0);
   let filterClicked = stringClickedFeatures.filter(e => sameFeature.indexOf(e) < 0);
 
-  // console.log(stringCurrentFeatures)
-  // console.log(stringClickedFeatures)
+  console.log(stringCurrentFeatures)
+  console.log(stringClickedFeatures)
   // console.log('sameFeature: ', sameFeature)
   // console.log('filterCurrent: ', filterCurrent)
   // console.log('filterClicked: ', filterClicked)
@@ -26,9 +26,9 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   let parsedCurrent = filterCurrent.map(e => JSON.parse(e));
   let parsedClicked = filterClicked.map(e => JSON.parse(e));
 
-  // console.log(parsedSameFeature)
-  // console.log(parsedCurrent)
-  // console.log(parsedClicked)
+  console.log(parsedSameFeature)
+  console.log(parsedCurrent)
+  console.log(parsedClicked)
 
   let transformSame = [];
   let transformCurrent = [];
@@ -38,9 +38,9 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
     transformSame = parsedSameFeature.map((e, i) => {
       return (
         <Row key={i}>
-          <div style={{width: '33%'}}>{e.value}</div>
-          <div style={{width: '33%'}}><b>{e.feature}</b></div>
-          <div style={{width: '33%'}}>{e.value}</div>
+          <div>{e.value}</div>
+          <div><b>{e.feature}</b></div>
+          <div>{e.value}</div>
         </Row>
       );
     })
@@ -50,9 +50,9 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
     transformCurrent = parsedCurrent.map((e, i) => {
       return (
         <Row key={i}>
-          {e.value ? <div style={{width: '33%'}}>{e.value}</div> : <div style={{width: '33%'}}>&#10003;</div>}
-          <div style={{width: '33%'}}><b>{e.feature}</b></div>
-          <div style={{width: '33%'}}></div>
+          {e.value ? <div>{e.value}</div> : <div>&#10003;</div>}
+          <div><b>{e.feature}</b></div>
+          <div></div>
         </Row>
       );
     })
@@ -62,9 +62,9 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
     transformClicked = parsedClicked.map((e, i) => {
       return (
         <Row key={i}>
-          <div style={{width: '33%'}}></div>
-          <div style={{width: '33%'}}><b>{e.feature}</b></div>
-          {e.value ? <div style={{width: '33%'}}>{e.value}</div> : <div style={{width: '33%'}}>&#10003;</div>}
+          <div></div>
+          <div><b>{e.feature}</b></div>
+          {e.value ? <div>{e.value}</div> : <div>&#10003;</div>}
         </Row>
       );
     })
