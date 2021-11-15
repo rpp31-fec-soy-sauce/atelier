@@ -349,7 +349,6 @@ const AddReview = () => {
 
     reader.onloadend = () => {
       setProductReviewPhotos(productReviewPhotos.concat(reader.result));
-      console.log('productReviewPhotos', productReviewPhotos)
     };
 
     reader.readAsDataURL(file);
@@ -361,7 +360,6 @@ const AddReview = () => {
 
   const submitReview = (e) => {
     setSubmitAttempted(true);
-    console.log('submitReview', e);
     console.log('postReviewFormat', postReviewFormat);
   }
 
