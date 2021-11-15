@@ -17,19 +17,26 @@ const AddReview = () => {
 
   const productBreakdownRatingsObject = {};
 
+  const productReviewPhotosArray = [];
+
   const productBreakdownRatingsQualitativeObject = {};
 
+  // component states
   const [productBreakdownRatings, setProductBreakdownRatings] = useState(productBreakdownRatingsObject);
   const [productBreakdownRatingsQualitative, setProductBreakdownRatingsQualitative] = useState(productBreakdownRatingsQualitativeObject);
   const [productRecommended, setProductRecommended] = useState(null);
   const [overallProductRecommendation, setOverallProductRecommendation] = useState(null);
-  const [productReviewSummary, setProductReviewSummary] = useState(null);
-  const [productReviewBody, setProductReviewBody] = useState(null);
-  const [userName, setUserName] = useState(null);
-  const [userEmail, setUserEmail] = useState(null);
-  const [productReviewPhotos, setProductReviewPhotos] = useState(null);
+  const [productReviewSummary, setProductReviewSummary] = useState('Example: Best purchase ever!');
+  const [productReviewBody, setProductReviewBody] = useState('Why did you like the product or not?');
+  const [productReviewBodyCharCount, setProductReviewBodyCharCount] = useState(productReviewBody.length);
+  const [userName, setUserName] = useState('Example: jackson11!');
+  const [userEmail, setUserEmail] = useState('Example: jackson11@email.com');
+  const [productReviewPhotos, setProductReviewPhotos] = useState(productReviewPhotosArray);
+  const [emailValid, setEmailValid] = useState(false);
+  const [submitAttempted, setsubmitAttempted] = useState(false);
+  const [photoCount, setPhotoCount] = useState(0);
 
-
+  //structure for API
   const postReviewFormat = {
     product_id: product.id,
     rating: overallProductRecommendation,
@@ -39,16 +46,27 @@ const AddReview = () => {
     name: userName,
     email: userEmail,
     photos: productReviewPhotos,
-    characteristics: Object.values(productBreakdownRatingsObject)
+    characteristics: Object.values(productBreakdownRatings)
   }
 
 
+  // "photos": [{
+  //   "id": 1,
+  //   "url": "urlplaceholder/review_5_photo_number_1.jpg"
+  // },
+  // {
+  //   "id": 2,
+  //   "url": "urlplaceholder/review_5_photo_number_2.jpg"
+  // }
+
+
+
+
+  //product ratings change to correct format
   const productBreakdownRatingsChange = (event) => {
     let value = event.target.value;
     let key = event.target.name.slice(7)
-    let characteristicId = event.target.attributes.characteristicId
-
-    console.log(characteristicId);
+    let characteristicId = event.target.attributes.characteristicid.value
 
     productBreakdownRatingsObject[key] = {
       id: characteristicId,
@@ -62,8 +80,11 @@ const AddReview = () => {
 
   } 
 
+  
+
+
+  //characteristics control for selection and formatting
   const characteristics = reviewsAggregates ? reviewsAggregates.characteristics : undefined;
-  console.log('characteristics', characteristics)
 
   const productCharacteristicBreakdown = (characteristic) => {
     switch (characteristic) {
@@ -105,31 +126,155 @@ const AddReview = () => {
               setProductRecommended(e.target.value);}}/>
           No
         </label>
-      </div><br/>
+      </div>
     </>
   )
 
   const overallRecommendation = (
     <>
-      <ul className="rate-area">
-        <input type="radio" id="5-star" name="overallRating" value="5" onChange={(e) => {
-              setOverallProductRecommendation(e.target.value);}}/>
-          <label for="5-star" title="Amazing">5 stars</label>
-        <input type="radio" id="4-star" name="overallRating" value="4" onChange={(e) => {
-              setOverallProductRecommendation(e.target.value);}}/>
-          <label for="4-star" title="Good">4 stars</label>
-        <input type="radio" id="3-star" name="overallRating" value="3" onChange={(e) => {
-              setOverallProductRecommendation(e.target.value);}}/>
-          <label for="3-star" title="Average">3 stars</label>
-        <input type="radio" id="2-star" name="overallRating" value="2" onChange={(e) => {
-              setOverallProductRecommendation(e.target.value);}}/>
-          <label for="2-star" title="Not Good">2 stars</label>
-        <input type="radio" id="1-star" required="" name="overallRating" value="1" aria-required="true" onChange={(e) => {
-              setOverallProductRecommendation(e.target.value);}}/>
-          <label for="1-star" title="Bad">1 star</label>
-      </ul>
+      <div><strong>Overall Rating:</strong></div>
+      <div>
+        <ul className="rate-area">
+          <input type="radio" id="5-star" name="overallRating" value="5" onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);}}/>
+            <label htmlFor="5-star" title="Amazing">5 stars</label>
+          <input type="radio" id="4-star" name="overallRating" value="4" onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);}}/>
+            <label htmlFor="4-star" title="Good">4 stars</label>
+          <input type="radio" id="3-star" name="overallRating" value="3" onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);}}/>
+            <label htmlFor="3-star" title="Average">3 stars</label>
+          <input type="radio" id="2-star" name="overallRating" value="2" onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);}}/>
+            <label htmlFor="2-star" title="Not Good">2 stars</label>
+          <input type="radio" id="1-star" required="" name="overallRating" value="1" aria-required="true" onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);}}/>
+            <label htmlFor="1-star" title="Bad">1 star</label>
+        </ul>
+      </div>
     </>
   )
+
+  const overallRecommendationError = (
+    <div>
+      {overallProductRecommendation === null && submitAttempted === true ? <div className='error'>Overall rating required.</div> : null}
+    </div>
+  )
+
+  const reviewSummary = (
+    <>
+      <label htmlFor="review summary"><strong>Review Summary: </strong></label>
+      <div>
+        <input 
+          className="reviewSummary"
+          id="reviewSummary" 
+          type="text"
+          maxLength={60} 
+          name="reviewSummary" 
+          value={productReviewSummary}
+          onChange={ (e) => { 
+            setProductReviewSummary(e.target.value);  
+            }}
+        ></input>
+      </div>
+    </>
+  )
+
+  const reviewBody = (
+    <>
+      <label htmlFor="review body"><strong>Review Body: </strong></label>
+      <div>
+        <textarea
+          className="reviewBody"
+          id="reviewBody" 
+          maxLength={1000} 
+          name="reviewBody" 
+          value={productReviewBody}
+          onChange={ (e) => { 
+            setProductReviewBody(e.target.value) 
+            setProductReviewBodyCharCount(e.target.value.length);
+          }}
+          ></textarea> 
+      </div>
+      <div>
+        {productReviewBodyCharCount < 50 ? `Minimum required characters left: ${50-productReviewBodyCharCount}` : 'Minimum reached'}
+      </div>  
+      {productReviewBodyCharCount < 50 && submitAttempted === true ? <div className='error'>Review must be 50 or more characters.</div> : null}      
+    </>
+  )
+
+  const reviewUserName = (
+    <>
+      <label htmlFor="review userName"><strong>Username: </strong></label>
+      <div>
+        <input
+          className="reviewUserName"
+          type="text"
+          id="reviewUserName" 
+          maxLength={60} 
+          name="reviewUserName" 
+          value={userName}
+          onChange={ (e) => { setUserName(e.target.value) }}
+          ></input> 
+      </div>
+      <div className="reviewWarningMessages">For privacy reasons, do not use your full name or email address.</div>
+      {
+        (userName === null ||  
+        userName === 'Example: jackson11!') && 
+        submitAttempted === true ? <div className='error'>Username required.</div> : null
+      }  
+    </>
+  )
+
+  const reviewUserEmail = (
+    <>
+      <label htmlFor="review user email"><strong>Email: </strong></label>
+      <div>
+        <input
+          className="reviewUserName"
+          type="text"
+          id="reviewUserEmail" 
+          maxLength={60} 
+          name="reviewUserEmail" 
+          value={userEmail}
+          onChange={ (e) => { 
+            setUserEmail(e.target.value)
+            setEmailValid(emailValidation(e.target.value)) 
+          }}
+          ></input> 
+      </div>
+      <div className="reviewWarningMessages">For authentication reasons, you will not be emailed” will appear.</div>
+      {
+        (userEmail === null ||  
+        userEmail === 'Example: jackson11@email.com') && 
+        submitAttempted === true ? <div className='error'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
+      }   
+    </>
+  )
+
+  const emailValidation = (email) => {
+    let emailValidation = false;
+    let last4Email = email.slice(email.length-4)
+    let atSymbolIncluded = false;
+    let noSpaces = true;
+
+    for (let i = 0; i < email.length; i++) {
+      if (email[i] === '@') {
+        atSymbolIncluded = true;
+      }
+
+      if (email[i] === ' ') {
+        noSpaces = false;
+      }
+    }
+    
+    if (last4Email = '.com' && atSymbolIncluded && noSpaces) {
+      emailValidation = true;
+    }
+    
+    
+    return emailValidation;
+  }
 
   const productBreakdownRendering = characteristics ? Object.keys(characteristics).map( key => {
     let characteristicsBreakdown = productCharacteristicBreakdown(key) 
@@ -142,29 +287,29 @@ const AddReview = () => {
         </div>
         <div className="radioCharacteristics">
           <div>
-            <input type='radio' id={`${key} 1-value`} name={`rating-${key}`} value="1" characteristicId={characteristicId}
+            <input type='radio' id={`${key} 1-value`} name={`rating-${key}`} value="1" characteristicid={characteristicId}
               onChange={(e) => {productBreakdownRatingsChange(e);}}/>
-            <label for={`${key} 1-value`}>1</label>
+            <label htmlFor={`${key} 1-value`}>1</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 2-value`} name={`rating-${key}`} value="2" characteristicId={characteristicId}
+            <input type='radio' id={`${key} 2-value`} name={`rating-${key}`} value="2" characteristicid={characteristicId}
               onChange={(e) => {productBreakdownRatingsChange(e);}}/>
-            <label for={`${key} 2-value`}>2</label>
+            <label htmlFor={`${key} 2-value`}>2</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 3-value`} name={`rating-${key}`} value="3" characteristicId={characteristicId}
+            <input type='radio' id={`${key} 3-value`} name={`rating-${key}`} value="3" characteristicid={characteristicId}
               onChange={(e) => {productBreakdownRatingsChange(e);}}/>
-            <label for={`${key} 3-value`}>3</label>
+            <label htmlFor={`${key} 3-value`}>3</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 4-value`} name={`rating-${key}`} value="4" characteristicId={characteristicId}
+            <input type='radio' id={`${key} 4-value`} name={`rating-${key}`} value="4" characteristicid={characteristicId}
               onChange={(e) => {productBreakdownRatingsChange(e);}}/>
-            <label for={`${key} 4-value`}>4</label>
+            <label htmlFor={`${key} 4-value`}>4</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 5-value`} name={`rating-${key}`} value="5" characteristicId={characteristicId}
+            <input type='radio' id={`${key} 5-value`} name={`rating-${key}`} value="5" characteristicid={characteristicId}
               onChange={(e) => {productBreakdownRatingsChange(e);}}/>
-            <label for={`${key} 5-value`}>5</label>
+            <label htmlFor={`${key} 5-value`}>5</label>
           </div>
         </div>
         <div className="form-row-characteristics">
@@ -182,7 +327,9 @@ const AddReview = () => {
   }
 
   const submitReview = (e) => {
+    setsubmitAttempted(true);
     console.log('submitReview', e);
+    console.log('postReviewFormat', postReviewFormat);
   }
 
   const addReview =
@@ -190,26 +337,36 @@ const AddReview = () => {
       <>
         <form className="rating-form" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <h2>Write Your Review</h2>
+            <h3>Write Your Review</h3>
             <h4>About the product {product.name}:</h4>
           </div>
-          <div><strong>Overall Rating:</strong></div>
           <div>
             {overallRecommendation}
+          </div>
+          <div>
+            {overallRecommendationError}
+          </div><br/>
+          <div className="review-form-row">
+            <div>{reviewSummary}</div>
+            <div>{reviewBody}</div>
+          </div><br/>
+          <div className="review-form-row">
+            <div>{reviewUserName}</div>
+            <div>{reviewUserEmail}</div>
           </div><br/>
           <div>
             {productRecommendation}
-          </div>
+          </div><br/>
           <div>
-            <div><strong>Product Details:</strong></div>
-            <br/>
+            <div><strong>Product Details:</strong></div><br/>
             {productBreakdownRendering}
           </div><br/>
-
-
-          <div className='form-row'>
-            <Button type="submit" onClick={submitReview}>Submit</Button>
-            <Button onClick={closeModal}>Close</Button>
+          <div className="review-form-row">
+            <Button className='modal-btns' type="button" onClick={(e) => {console.log('add photo')}}>Add Photos</Button>
+          </div>
+          <div className='modal-btns'>
+            <Button className='modal-btns' type="submit" onClick={(e) => {submitReview(e)}}>Submit</Button>
+            <Button className='modal-btns' onClick={closeModal}>Close</Button>
           </div>
         </form>
       </>

@@ -48,6 +48,7 @@ const StyledModal = styled.div`
 
     .modal-btns {
       display: flex;
+      gap: 5px;
       justify-content: center;
     }
 
@@ -99,6 +100,12 @@ const StyledModal = styled.div`
       padding: .5em;
     }
 
+    .review-form-row {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+    }
+
     .radioCharacteristics {
       display: flex;
       align-content: flex-start;
@@ -108,6 +115,48 @@ const StyledModal = styled.div`
     .rating-form {
       display: flex;
       flex-direction: column;
+    }
+
+    .reviewSummary {
+      width: 400px;
+      height: 60px;
+      border: 3px solid #cccccc;
+      padding: 5px;
+      font-family: Tahoma, sans-serif;
+    }
+
+    .reviewBody {
+      width: 400px;
+      height: 120px;
+      border: 3px solid #cccccc;
+      padding: 5px;
+      font-family: Tahoma, sans-serif;
+    }
+
+    .reviewUserName {
+      display: flex;
+      flex-wrap: wrap;
+      width: 400px;
+      height: 40px;
+      border: 3px solid #cccccc;
+      padding: 5px;
+      font-family: Tahoma, sans-serif;
+      max-width: 400px;
+    }
+
+    .reviewWarningMessages {
+      display: flex;
+      width:400px;
+      flex-wrap: wrap;
+      padding: 5px;
+      font-family: Tahoma, sans-serif;
+      max-width: 400px;
+    }
+
+    .error {
+      font-weight: bold;
+      font-size: 1rem;
+      color: red;
     }
 
   }
