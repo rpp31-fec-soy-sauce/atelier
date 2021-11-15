@@ -3,7 +3,10 @@ import { selectProduct } from '../../store/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectReviewsMeta } from '../../store/selectors';
 import Modal from '../styles/Modal';
-import Button from '../styles/Button.styled.js'
+import Button from '../styles/Button.styled.js';
+import { Image, Card } from '../styles/Card';
+import { ReviewPicture } from './styles/Item.style';
+import axios from 'axios';
 
 
 
@@ -17,7 +20,6 @@ const AddReview = () => {
 
   const productBreakdownRatingsObject = {};
 
-  const productReviewPhotosArray = [];
 
   const productBreakdownRatingsQualitativeObject = {};
 
@@ -31,9 +33,10 @@ const AddReview = () => {
   const [productReviewBodyCharCount, setProductReviewBodyCharCount] = useState(productReviewBody.length);
   const [userName, setUserName] = useState('Example: jackson11!');
   const [userEmail, setUserEmail] = useState('Example: jackson11@email.com');
-  const [productReviewPhotos, setProductReviewPhotos] = useState(productReviewPhotosArray);
+  const [productReviewPhotos, setProductReviewPhotos] = useState([]);
   const [emailValid, setEmailValid] = useState(false);
-  const [submitAttempted, setsubmitAttempted] = useState(false);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [photoCount, setPhotoCount] = useState(0);
 
   //structure for API
@@ -326,11 +329,51 @@ const AddReview = () => {
     setShowModal(false);
   }
 
+  const photoButtons = (
+    <>
+      <div className="review-form-row">
+        <input className='modal-btns' type="file" onChange={ (e) => { handleFileSelect(e) }} />
+        <button className='modal-btns' onClick={ (e) => {handleFileSubmit(e) }}>Submit Photo</button>
+      </div><br/>
+    </>
+  )
+
+  const handleFileSelect = (e) => {
+    const file = e.target.files[0];
+    setSelectedPhoto(file);
+  }
+
+  const handleFileSubmit = () => {
+    const reader = new FileReader();
+    const file = selectedPhoto;
+
+    reader.onloadend = () => {
+      setProductReviewPhotos(productReviewPhotos.concat(reader.result));
+      console.log('productReviewPhotos', productReviewPhotos)
+    };
+
+    reader.readAsDataURL(file);
+
+    setPhotoCount(photoCount + 1);
+
+    
+  }
+
   const submitReview = (e) => {
-    setsubmitAttempted(true);
+    setSubmitAttempted(true);
     console.log('submitReview', e);
     console.log('postReviewFormat', postReviewFormat);
   }
+
+  const photoGallery = productReviewPhotos.map( (photo, index) => {
+    return <Card key={index} style={{ border: 'none'}}>
+        <ReviewPicture 
+          src={photo ? photo : noPreview}
+          alt="review photo"
+          onError={ (e) => { addDefaultSrc(e) }}
+        ></ReviewPicture>
+      </Card>
+  })
 
   const addReview =
     (
@@ -361,11 +404,12 @@ const AddReview = () => {
             <div><strong>Product Details:</strong></div><br/>
             {productBreakdownRendering}
           </div><br/>
+          {photoCount < 5 ? photoButtons : null }
           <div className="review-form-row">
-            <Button className='modal-btns' type="button" onClick={(e) => {console.log('add photo')}}>Add Photos</Button>
-          </div>
+            {productReviewPhotos ? photoGallery : null}
+          </div><br />
           <div className='modal-btns'>
-            <Button className='modal-btns' type="submit" onClick={(e) => {submitReview(e)}}>Submit</Button>
+            <Button className='modal-btns' type="submit" onClick={ (e) => { submitReview(e) }}>Submit</Button>
             <Button className='modal-btns' onClick={closeModal}>Close</Button>
           </div>
         </form>
