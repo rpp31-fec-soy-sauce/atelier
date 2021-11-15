@@ -121,11 +121,5 @@ const Questions = () => {
 };
 
 
-// <Button onClick={expandQuestions}>
-// {/* {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'} */}
-
-// </Button>
-
-
 
 export default Questions;

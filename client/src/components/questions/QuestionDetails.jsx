@@ -12,7 +12,10 @@ const QuestionDetails = ({ question }) => {
 
   const dispatch = useDispatch();
 
-  const [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness)
+  var [helpfulCount, setHelpfulCount] = useState(question.question_helpfulness)
+
+  const localReport = localStorage.getItem(`${question.question_body}isReported`);
+  var [report, setReport] = useState(localReport);
 
   const localHelpful = localStorage.getItem(`${question.question_body}isHelpful`);
 
@@ -35,12 +38,12 @@ const QuestionDetails = ({ question }) => {
 
 
 
-  const localReport = localStorage.getItem(`${question.question_body}isReported`);
+
 
   const updateReportQuestion = () => {
 
     if (!localReport) {
-
+      setReport(true);
       localStorage.setItem(`${question.question_body}isReported`, JSON.stringify(true))
 
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/report`, { reported: true }, { headers })
@@ -76,13 +79,22 @@ const QuestionDetails = ({ question }) => {
               flexWrap: 'wrap',
               justifyContent: 'flex-end',
               gap: '1rem',
-              cursor: 'pointer'
+              // cursor: 'pointer'
             }}
           >
-
-            <p onClick={updateHelpfulQuestion}>Helpful?&nbsp;Yes ({helpfulCount})</p>
+            <p
+              style={{ cursor: 'pointer' }}
+              onClick={updateHelpfulQuestion}
+            >Helpful?&nbsp;
+              <span
+                style={{ textDecoration: 'underline' }}
+              >Yes</span> ({helpfulCount})</p>
             <p>|</p>
-            <p onClick={updateReportQuestion} role='report-question'>{localReport ? 'Reported' : 'Report'}</p>
+            <p
+              onClick={updateReportQuestion}
+              role='report-question'
+              style={{ cursor: 'pointer' }}
+            >{report ? 'Reported' : 'Report'}</p>
             <p>|</p>
             <AddAnswer question={question} />
           </div>

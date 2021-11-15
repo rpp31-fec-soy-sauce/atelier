@@ -15,7 +15,11 @@ const AnswerDetails = ({ answer }) => {
   const [showModal, setShowModal] = useState(false);
   const [zoomedPic, setZoomedPic] = useState(null);
   const [photoUrl, setPhotoUrl] = useState(null)
-  const [helpfulCount, setHelpfulCount] = useState(answer.helpfulness)
+
+  const localReport = localStorage.getItem(`${answer.body}isReported`);
+  const [report, setReport] = useState(localReport)
+
+  var [helpfulCount, setHelpfulCount] = useState(answer.helpfulness)
 
 
 
@@ -24,13 +28,12 @@ const AnswerDetails = ({ answer }) => {
   const updateHelpfulAnswer = () => {
 
     if (!localHelpful) {
-      setHelpfulCount(helpfulCount + 1)
+      setHelpfulCount(helpfulCount++)
       localStorage.setItem(`${answer.body}isHelpful`, JSON.stringify(true))
 
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${answer.id}/helpful`, { helpfulness: helpfulCount }, { headers })
+      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/helpful`, { helpfulness: helpfulCount }, { headers })
         .then(() => {
-          dispatch(actions.answerHelpfulUpdated({  id: answer.id }))
-          // dispatch(loadQuestions())
+          dispatch(actions.answerHelpfulUpdated({ id: answer.id }))
         })
         .catch((err) => {
           console.log('Failed to update question helpfulness', err);
@@ -41,12 +44,11 @@ const AnswerDetails = ({ answer }) => {
 
 
 
-  const localReport = localStorage.getItem(`${answer.body}isReported`);
 
   const updateReportAnswer = () => {
 
     if (!localReport) {
-
+      setReport(true);
       localStorage.setItem(`${answer.body}isReported`, JSON.stringify(true))
 
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/report`, { reported: true }, { headers })
@@ -97,10 +99,10 @@ const AnswerDetails = ({ answer }) => {
             return (
               <div key={pic}>
                 <Card
-                onClick={() => renderZoomedPhoto(pic)}
-                style={{border: 'none'}}
+                  onClick={() => renderZoomedPhoto(pic)}
+                  style={{ border: 'none' }}
                 >
-                  <Image role='photos' src={pic} alt="Photo"></Image>
+                  <Image style={{ cursor: 'pointer' }} role='photos' src={pic} alt="Photo"></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
               </div>
@@ -127,14 +129,24 @@ const AnswerDetails = ({ answer }) => {
             flexWrap: 'wrap',
             justifyContent: 'start',
             gap: '1rem',
-            cursor:'pointer'
+            // cursor:'pointer'
           }}
         >
           <p role='answerer'>by {answer.answerer_name === 'Seller' ? <b>Seller</b> : answer.answerer_name}, {answer.date.slice(0, 10)}</p>
           <p>|</p>
-          <p onClick={updateHelpfulAnswer}>Helpful?&nbsp;Yes ({helpfulCount})</p>
+          <p
+            onClick={updateHelpfulAnswer}
+            style={{ cursor: 'pointer' }}
+          >Helpful?&nbsp;
+            <span
+              style={{ textDecoration: 'underline' }}
+            >Yes</span> ({helpfulCount})</p>
           <p>|</p>
-          <p onClick={updateReportAnswer} role='report-answer'>{localReport ? 'Reported' : 'Report'}</p>
+          <p
+            onClick={updateReportAnswer}
+            role='report-answer'
+            style={{ cursor: 'pointer' }}
+          >{report ? 'Reported' : 'Report'}</p>
         </div>
 
       </div>
