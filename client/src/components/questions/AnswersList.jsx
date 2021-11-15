@@ -40,7 +40,7 @@ const AnswersList = ({ answers }) => {
       return null;
     } else {
       return (
-        <Button style={{cursor:'pointer'}} onClick={displayMoreAnswers}>
+        <Button onClick={displayMoreAnswers}>
           {numberOfAnswers < sortedList.length ? 'MORE ANSWERS' : 'COLLAPPSE ANSWERS'}
         </Button>
       )

@@ -135,7 +135,7 @@ const AddQuestion = () => {
           </div>
         </ul>
         <div className="modal-btns">
-          <Button style={{cursor:'pointer'}}>Submit</Button>
+          <Button>Submit</Button>
         </div>
       </form>
     </div>
@@ -144,7 +144,7 @@ const AddQuestion = () => {
   //Need to passdown closeModal and renderContent to the Modal style
   return (
     <div>
-      <Button style={{cursor:'pointer'}} onClick={() => setShowModal(true)}>Add A Question</Button>
+      <Button onClick={() => setShowModal(true)}>Add A Question</Button>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
     </div>
   )
