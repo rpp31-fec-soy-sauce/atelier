@@ -89,7 +89,7 @@ const Carousel = () => {
   }
 
   const renderContent = (
-      <div style={{width: '450px'}}>
+      <div style={{width: '550px'}}>
         <XButton onClick={closeModal}>X</XButton>
         <Compare>Comparing</Compare>
         {!modalData ? <div>Data Loading</div> : (

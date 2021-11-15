@@ -1,31 +1,81 @@
-import { current } from "immer";
 import React from "react";
 import { Row } from "../styles/Card.js";
-import "underscore"
 
 const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
 
-  console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
+  // console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
 
   let copyCurrentFeatures = currentFeatures.slice();
   let copyClickedFeatures = clickedFeatures.slice();
 
-  let sameFeature = [];
+  let stringCurrentFeatures = copyCurrentFeatures.map(e => JSON.stringify(e));
+  let stringClickedFeatures = copyClickedFeatures.map(e => JSON.stringify(e));
 
-  copyCurrentFeatures.forEach((element, currIndex) => {
-    copyClickedFeatures.forEach((item, clickedIndex) => {
-      if (_.isEqual(element, item)) {
-        sameFeature.push(element);
-      }
-    });
-  });
+  let sameFeature = stringCurrentFeatures.filter(e => stringClickedFeatures.indexOf(e) >= 0);
 
-  console.log(sameFeature)
-  // console.log(copyCurrentFeatures)
-  // console.log(copyClickedFeatures)
+  let filterCurrent = stringCurrentFeatures.filter(e => sameFeature.indexOf(e) < 0);
+  let filterClicked = stringClickedFeatures.filter(e => sameFeature.indexOf(e) < 0);
+
+  // console.log(stringCurrentFeatures)
+  // console.log(stringClickedFeatures)
+  // console.log('sameFeature: ', sameFeature)
+  // console.log('filterCurrent: ', filterCurrent)
+  // console.log('filterClicked: ', filterClicked)
+
+  let parsedSameFeature = sameFeature.map(e => JSON.parse(e));
+  let parsedCurrent = filterCurrent.map(e => JSON.parse(e));
+  let parsedClicked = filterClicked.map(e => JSON.parse(e));
+
+  // console.log(parsedSameFeature)
+  // console.log(parsedCurrent)
+  // console.log(parsedClicked)
+
+  let transformSame = [];
+  let transformCurrent = [];
+  let transformClicked = [];
+
+  if (parsedSameFeature.length > 0) {
+    transformSame = parsedSameFeature.map((e, i) => {
+      return (
+        <Row key={i}>
+          <div style={{width: '33%'}}>{e.value}</div>
+          <div style={{width: '33%'}}><b>{e.feature}</b></div>
+          <div style={{width: '33%'}}>{e.value}</div>
+        </Row>
+      );
+    })
+  }
+
+  if (parsedCurrent.length > 0) {
+    transformCurrent = parsedCurrent.map((e, i) => {
+      return (
+        <Row key={i}>
+          {e.value ? <div style={{width: '33%'}}>{e.value}</div> : <div style={{width: '33%'}}>&#10003;</div>}
+          <div style={{width: '33%'}}><b>{e.feature}</b></div>
+          <div style={{width: '33%'}}></div>
+        </Row>
+      );
+    })
+  }
+
+  if (parsedClicked.length > 0) {
+    transformClicked = parsedClicked.map((e, i) => {
+      return (
+        <Row key={i}>
+          <div style={{width: '33%'}}></div>
+          <div style={{width: '33%'}}><b>{e.feature}</b></div>
+          {e.value ? <div style={{width: '33%'}}>{e.value}</div> : <div style={{width: '33%'}}>&#10003;</div>}
+        </Row>
+      );
+    })
+  }
 
   return (
-    <div>Hello</div>
+    <div>
+      {transformSame.length > 0 ? transformSame : null}
+      {transformCurrent.length > 0 ? transformCurrent : null}
+      {transformClicked.length > 0 ? transformClicked : null}
+    </div>
   );
 
 };
