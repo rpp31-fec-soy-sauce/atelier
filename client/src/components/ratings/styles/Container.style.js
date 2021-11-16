@@ -71,7 +71,7 @@ export const ReviewTilesListContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 50vw;
+    height: 35vw;
     max-width: 50vw;
     margin: 4px, 4px, 4px, 4px;
     padding:4px;   
@@ -109,6 +109,7 @@ export const ReviewTileFooter = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     max-width: 50vw;
+    margin-top: 10px;
 `
 
 export const ReviewTileBodyResponse = styled.div`
@@ -136,6 +137,13 @@ export const ratingFilterFiller = styled.div`
 `
 
 export const PhotoGallery = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: none;
+`
+
+export const ModalRow = styled.div`
     display: flex;
     flex-direction: row;
     gap: 15px;
