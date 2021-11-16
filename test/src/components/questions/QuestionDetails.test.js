@@ -28,5 +28,12 @@ describe('QuestionDetails', () => {
     expect(reportQuestion.textContent).toBe('Reported');
   });
 
+  it('should increase helpful when helpful is clicked', async () => {
+    const helpfulQuestion = await screen.getByRole('helpful-question')
+    fireEvent.click(helpfulQuestion)
+    const helpfulCount = await screen.getByRole('helpful-question-count')
+    expect(helpfulCount.textContent).toBe('(9)');
+  });
+
 
 })

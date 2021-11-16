@@ -37,9 +37,6 @@ const QuestionDetails = ({ question }) => {
   }
 
 
-
-
-
   const updateReportQuestion = () => {
 
     if (!localReport) {
@@ -85,28 +82,29 @@ const QuestionDetails = ({ question }) => {
             <p
               style={{ cursor: 'pointer' }}
               onClick={updateHelpfulQuestion}
+              role='helpful-question'
             >Helpful?&nbsp;
-              <span
-                style={{ textDecoration: 'underline' }}
-              >Yes</span> ({helpfulCount})</p>
+            <span style={{ textDecoration: 'underline' }}>Yes</span>
+            <span role='helpful-question-count'>({helpfulCount})</span>
+            </p>
             <p>|</p>
             <p
-              onClick={updateReportQuestion}
-              role='report-question'
-              style={{ cursor: 'pointer' }}
-            >{report ? 'Reported' : 'Report'}</p>
+            onClick={updateReportQuestion}
+            role='report-question'
+            style={{ cursor: 'pointer' }}
+            >{report?'Reported': 'Report'}</p>
             <p>|</p>
             <AddAnswer question={question} />
+            </div>
           </div>
-        </div>
-        {question.answers && Object.keys(question.answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
+          {question.answers && Object.keys(question.answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
 
-      </div>
-    );
+        </div>
+        );
   } else {
     return null
   }
 };
 
-export default QuestionDetails;
+        export default QuestionDetails;
 
