@@ -135,6 +135,12 @@ export const Products = styled.div`
 export const Row = styled.div`
   display: flex;
   justify-content: space-around;
+
+  div {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+  }
 `
 export const XButton = styled.div`
   display: flex;
