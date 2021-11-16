@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { selectProduct } from '../../store/selectors';
 import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { selectReviewsMeta } from '../../store/selectors';
 import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
@@ -8,10 +9,14 @@ import { Image, Card } from '../styles/Card';
 import { ReviewPicture } from './styles/Item.style';
 import axios from 'axios';
 import noPreview from '../../../assets/no-preview.jpg';
+import makeApiCall from '../../store/api';
+import * as apiActions from '../../store/apiActions';
 
 
 
 const AddReview = () => {
+
+  const dispatch = useDispatch();
 
   const product = useSelector(selectProduct);
   const reviewsAggregates = useSelector(selectReviewsMeta);
@@ -33,11 +38,12 @@ const AddReview = () => {
   const [submitAttempted, setSubmitAttempted] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [photoCount, setPhotoCount] = useState(0);
+  const [reviewValid, setReviewValid] = useState(false);
 
   //structure for API
   const postReviewFormat = {
     product_id: product.id,
-    rating: overallProductRecommendation,
+    rating: Number.parseInt(overallProductRecommendation),
     summary: productReviewSummary,
     body: productReviewBody,
     recommend: productRecommended ? productRecommended === 'Yes' ? true : false : null,
@@ -50,7 +56,7 @@ const AddReview = () => {
 
   //product ratings change to correct format
   const productBreakdownRatingsChange = (e) => {
-    let value = e.target.value;
+    let value = Number.parseInt(e.target.value);
     let key = e.target.name.slice(7)
     let characteristicId = e.target.attributes.characteristicid.value
 
@@ -58,8 +64,6 @@ const AddReview = () => {
       ...productBreakdownRatings,
       [characteristicId]: value
     }));
-
-    console.log('productBreakdownRatings', productBreakdownRatings)
 
     setProductBreakdownRatingsQualitative(productBreakdownRatingsQualitative => ({
       ...productBreakdownRatingsQualitative,
@@ -120,29 +124,30 @@ const AddReview = () => {
     <>
       <div><strong>Overall Rating:</strong></div>
         <ul className="rate-area">
-          <input type="radio" id="5-star" name="overallRating" value="5" onChange={(e) => {
+          <input type="radio" id="5-star" name="overallRating" value={5} onChange={(e) => {
                 setOverallProductRecommendation(e.target.value);}}/>
             <label htmlFor="5-star" title="Amazing">5 stars</label>
-          <input type="radio" id="4-star" name="overallRating" value="4" onChange={(e) => {
+          <input type="radio" id="4-star" name="overallRating" value={4} onChange={(e) => {
                 setOverallProductRecommendation(e.target.value);}}/>
             <label htmlFor="4-star" title="Good">4 stars</label>
-          <input type="radio" id="3-star" name="overallRating" value="3" onChange={(e) => {
+          <input type="radio" id="3-star" name="overallRating" value={3} onChange={(e) => {
                 setOverallProductRecommendation(e.target.value);}}/>
             <label htmlFor="3-star" title="Average">3 stars</label>
-          <input type="radio" id="2-star" name="overallRating" value="2" onChange={(e) => {
+          <input type="radio" id="2-star" name="overallRating" value={2} onChange={(e) => {
                 setOverallProductRecommendation(e.target.value);}}/>
             <label htmlFor="2-star" title="Not Good">2 stars</label>
-          <input type="radio" id="1-star" required="" name="overallRating" value="1" aria-required="true" onChange={(e) => {
+          <input type="radio" id="1-star" required="" name="overallRating" value={1} aria-required="true" onChange={(e) => {
                 setOverallProductRecommendation(e.target.value);}}/>
             <label htmlFor="1-star" title="Bad">1 star</label>
         </ul>
     </>
   )
 
-  const overallRecommendationError = (
-    <div>
-      {overallProductRecommendation === null && submitAttempted === true ? <div className='error'>Overall rating required.</div> : null}
-    </div>
+  const overallRecommendationValidation = (
+      <div>
+        {overallProductRecommendation === null && submitAttempted === true ? 
+          <div className='formError'>Overall rating required.</div> : null}
+      </div>
   )
 
   const reviewSummary = (
@@ -183,7 +188,9 @@ const AddReview = () => {
       <div>
         {productReviewBodyCharCount < 50 ? `Minimum required characters left: ${50-productReviewBodyCharCount}` : 'Minimum reached'}
       </div>  
-      {productReviewBodyCharCount < 50 && submitAttempted === true ? <div className='error'>Review must be 50 or more characters.</div> : null}      
+      {productReviewBodyCharCount < 50 && submitAttempted === true ? 
+        <div className='formError'>Review must be 50 or more characters.</div>
+        : null}      
     </>
   )
 
@@ -205,8 +212,7 @@ const AddReview = () => {
       {
         (userName === null ||  
         userName === 'Example: jackson11!') && 
-        submitAttempted === true ? <div className='error'>Username required.</div> : null
-      }  
+        submitAttempted === true ? <div className='formError'>Username required.</div> : null}  
     </>
   )
 
@@ -229,9 +235,9 @@ const AddReview = () => {
       </div>
       <div className="reviewWarningMessages">For authentication reasons, you will not be emailed” will appear.</div>
       {
-        (userEmail === null ||  
+        (userEmail === '' ||  
         userEmail === 'Example: jackson11@email.com') && 
-        submitAttempted === true ? <div className='error'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
+        submitAttempted === true ? <div className='formError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
       }   
     </>
   )
@@ -267,7 +273,7 @@ const AddReview = () => {
       <div key={characteristics[key]['id']}>
         <div className={"form-row-characteristics"} >
           <div><strong>{key}</strong></div>
-        <div name="product qual">{productBreakdownRatingsQualitative[`${key}`] ? productBreakdownRatingsQualitative[`${key}`] : null}
+        <div name="product qual">{productBreakdownRatingsQualitative[`${key}`] ? productBreakdownRatingsQualitative[`${key}`] : 'None Selected'}
         </div>
         </div>
         <div className="radioCharacteristics">
@@ -345,9 +351,37 @@ const AddReview = () => {
   }
 
   const submitReview = (e) => {
-    setSubmitAttempted(true);
-    console.log('postReviewFormat', postReviewFormat);
+    let submit = async () => await setSubmitAttempted(true);
+    let formError = async () => await document.getElementsByClassName('formError').length;
+
+    submit()
+    .then( (value) => {
+      formError()
+      .then( (value) => {
+        if (value === 0)  {
+          setReviewValid(true);
+          console.log('api call')
+          postReview(postReviewFormat);
+          closeModal(e);
+        } else {
+          setReviewValid (false);
+          console.log('NO API CALL') 
+        }
+      })
+    })
   }
+
+  const postReview = (postReviewFormat) => {
+    makeApiCall('POST', '/reviews', postReviewFormat)
+    .then( (res) => {
+      console.log(res);
+      dispatch(loadReviewsMeta());
+      dispatch(loadReviews(1, 100));
+    })
+    .catch( (err) => {
+      console.log(err);
+    })
+  } 
 
   const photoGallery = productReviewPhotos.map( (photo, index) => {
     return <Card key={index} style={{ border: 'none'}}>
@@ -370,7 +404,7 @@ const AddReview = () => {
             {overallRecommendation}
           </div>
           <div>
-            {overallRecommendationError}
+            {overallRecommendationValidation}
           </div><br/>
           <div className="review-form-row">
             <div>{reviewSummary}</div>
