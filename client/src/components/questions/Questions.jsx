@@ -91,6 +91,10 @@ const Questions = () => {
             marginLeft: '1rem',
             width: '90%',
             height: '50px',
+            backgroundImage: 'url("https://t4.ftcdn.net/jpg/04/34/10/11/360_F_434101175_Yir0sEEGd4XsS8m8DXsWgWGi5LAFiwX7.jpg")',
+            backgroundPosition: 'right',
+            backgroundSize: '30px 30px',
+            backgroundRepeat: 'no-repeat'
           }}
           type="text"
           value={searchTerm}
@@ -98,7 +102,7 @@ const Questions = () => {
           onChange={e => setSearchTerm(e.target.value)}
         >
         </input>
-        <FontAwesomeIcon icon={faSearch} size='lg' />
+        {/* <FontAwesomeIcon icon={faSearch} size='lg' /> */}
 
       </div>
       <div>
