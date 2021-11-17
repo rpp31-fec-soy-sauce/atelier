@@ -5,15 +5,19 @@ const headers = { Authorization: require('../apiToken') };
 const router = (req, res, next) => {
   if (!req.url.startsWith('/api')) return next();
   const url = req.url.split('/').slice(2).join('/');
-  
+
   axios.request({
     headers,
     method: req.method,
     baseURL,
-    url
+    url,
+    data: req.body
   })
     .then(response => res.send(response.data))
-    .catch(err => res.status(500).send(err));
+    .catch(err => {
+      console.log('Err', err);
+      res.status(500).send(err);
+    });
 };
 
 module.exports = router;
