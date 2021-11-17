@@ -14,7 +14,10 @@ const router = (req, res, next) => {
     data: req.body
   })
     .then(response => res.send(response.data))
-    .catch(err => res.status(500).send(err));
+    .catch(err => {
+      console.log('Err', err);
+      res.status(500).send(err);
+    });
 };
 
 module.exports = router;

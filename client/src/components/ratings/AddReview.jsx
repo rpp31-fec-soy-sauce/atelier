@@ -20,6 +20,7 @@ const AddReview = () => {
 
   const product = useSelector(selectProduct);
   const reviewsAggregates = useSelector(selectReviewsMeta);
+  const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -117,6 +118,7 @@ const AddReview = () => {
           No
         </label>
       </div>
+      {productRecommended === null && submitAttempted === true ? <div className='formError'>Recommendation Required</div> : null}      
     </>
   )
 
@@ -360,12 +362,12 @@ const AddReview = () => {
       .then( (value) => {
         if (value === 0)  {
           setReviewValid(true);
-          console.log('api call')
+        
           postReview(postReviewFormat);
           closeModal(e);
         } else {
           setReviewValid (false);
-          console.log('NO API CALL') 
+         
         }
       })
     })
@@ -374,9 +376,11 @@ const AddReview = () => {
   const postReview = (postReviewFormat) => {
     makeApiCall('POST', '/reviews', postReviewFormat)
     .then( (res) => {
-      console.log(res);
-      dispatch(loadReviewsMeta());
-      dispatch(loadReviews(1, 100));
+      return res;
+    })
+    .then ( (resDone) => {
+      loadReviewsMeta();
+      loadReviews(1, 100);
     })
     .catch( (err) => {
       console.log(err);
