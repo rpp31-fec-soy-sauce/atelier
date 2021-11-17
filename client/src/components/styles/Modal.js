@@ -153,7 +153,7 @@ const StyledModal = styled.div`
       max-width: 400px;
     }
 
-    .error {
+    .formError {
       font-weight: bold;
       font-size: 1rem;
       color: red;
@@ -163,7 +163,6 @@ const StyledModal = styled.div`
 `;
 
 const Modal = ({ closeModal, renderContent }) => {
-
 
   let modalRef;
 
@@ -180,14 +179,14 @@ const Modal = ({ closeModal, renderContent }) => {
     }
   }, []);
 
-
   return (
     <StyledModal>
       <div ref={(node) => modalRef = node} className="modal">
        {renderContent}
       </div>
-    </StyledModal >
+    </StyledModal>
   )
+
 }
 
 export default Modal;
