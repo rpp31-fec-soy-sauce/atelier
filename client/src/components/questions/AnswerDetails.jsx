@@ -74,7 +74,7 @@ const AnswerDetails = ({ answer }) => {
 
 
   const zoomedPhoto = (
-    <div>
+    <div role='photo-modal'>
       <div className="modal-btns">
         <Button onClick={closeModal}>Close</Button>
       </div><br />
@@ -137,10 +137,11 @@ const AnswerDetails = ({ answer }) => {
           <p
             onClick={updateHelpfulAnswer}
             style={{ cursor: 'pointer' }}
+            role='helpful-answer'
           >Helpful?&nbsp;
-            <span
-              style={{ textDecoration: 'underline' }}
-            >Yes</span> ({helpfulCount})</p>
+            <span style={{ textDecoration: 'underline' }}>Yes</span>
+            <span role='helpful-answer-count'>({helpfulCount})</span>
+          </p>
           <p>|</p>
           <p
             onClick={updateReportAnswer}

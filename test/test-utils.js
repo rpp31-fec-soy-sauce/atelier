@@ -12,7 +12,14 @@ function render(
   ui,
   {
     preloadedState = initialState,
-    store = configureStore({ reducer, preloadedState }),
+    store = configureStore({
+      reducer,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        immutableCheck: false,
+        serializableCheck: false,
+      }),
+      preloadedState
+    }),
     ...renderOptions
   } = {}
 ) {

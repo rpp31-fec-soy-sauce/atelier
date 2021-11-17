@@ -33,9 +33,19 @@ describe('AnswerDetails', () => {
    });
 
 
-  it('should render all the photos', () => {
+  it('should render pic and zoomedPic', () => {
     const photos = screen.getAllByRole('photos');
     expect(photos.length).toBe(2);
+
+    const photo = photos[0];
+    fireEvent.click(photo);
+    const photoModal = screen.getAllByRole('photo-modal')[0]
+    expect(photoModal).toBeInTheDocument();
+
+    const closeButton = screen.getAllByRole('button',{ name: 'Close' })[0]
+    fireEvent.click(closeButton)
+    expect(photoModal).not.toBeInTheDocument();
+
   });
 
 
@@ -45,5 +55,15 @@ describe('AnswerDetails', () => {
      expect(reportAnswer.textContent).toBe('Reported');
    });
 
+   it('should increase helpful when helpful is clicked', async () => {
+    const helpfulAnswer = await screen.getByRole('helpful-answer')
+    fireEvent.click(helpfulAnswer)
+    const helpfulCount = await screen.getByRole('helpful-answer-count')
+    expect(helpfulCount.textContent).toBe('(1)');
+  });
+
+
 
 })
+
+
