@@ -43,7 +43,7 @@ const AddReview = () => {
 
   //structure for API
   const postReviewFormat = {
-    product_id: product.id,
+    product_id: product ? product.id : null,
     rating: Number.parseInt(overallProductRecommendation),
     summary: productReviewSummary,
     body: productReviewBody,
@@ -334,16 +334,15 @@ const AddReview = () => {
   }
 
   const handleFileSubmit = () => {
-    console.log('selectedPhoto', selectedPhoto)
+    
     const fd = new FormData();
     fd.append('file', selectedPhoto)
     fd.append('upload_preset', 'cloudinaryUpload')
 
     axios.post('https://api.cloudinary.com/v1_1/dcuxezkzp/image/upload/', fd, { headers: { "X-Requested-With": "XMLHttpRequest" } })
       .then(res => {
-        console.log('res.data.secure_url', res.data.secure_url)
+        
         setProductReviewPhotos([...productReviewPhotos, res.data.secure_url])
-        console.log('ProductReviewPhotos', productReviewPhotos)
         setPhotoCount(photoCount + 1);
       })
       .catch(err => {
@@ -383,7 +382,7 @@ const AddReview = () => {
       loadReviews(1, 100);
     })
     .catch( (err) => {
-      console.log(err);
+      console.log('error', err);
     })
   } 
 
@@ -402,7 +401,7 @@ const AddReview = () => {
       <>
         <form className="rating-form" onSubmit={(e) => e.preventDefault()}>
           <div>
-            <h3>Write your Review for {product.name}:</h3>
+            <h3>Write your Review for {product ? product.name : null}:</h3>
           </div>
           <div>
             {overallRecommendation}
