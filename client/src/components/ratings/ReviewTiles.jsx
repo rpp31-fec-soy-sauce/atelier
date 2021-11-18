@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectReviews } from '../../store/selectors';
 import { ReviewTile, ReviewTileHeader, ReviewTileFooter, ReviewTilesListContainer, ReviewTileBodyResponse } from './styles/Container.style'
 import { ReviewTileBodyItem, ReviewTileBodySummary } from './styles/Item.style'
@@ -7,17 +8,50 @@ import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
 import check_box from '../../../assets/check_box.png'
 import ReviewTileBody from './ReviewTileBody.jsx'
 import ReviewTilePictures from './ReviewTilePictures.jsx'
+import makeApiCall from '../../store/api';
+import * as apiActions from '../../store/apiActions';
 
 const ReviewTiles = (props) => {
 
+  const dispatch = useDispatch();
+  const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
   const reviews = useSelector(selectReviews);
   const displayCount = props.displayCount;
 
   const reviewsToDisplay = reviews && reviews.length > 0 ? reviews.slice(0, displayCount) : []; 
 
+
+  const handleHelpfulClick = (e) => {
+    let localHelpful = e.target.attributes.localhelpful ? e.target.attributes.localhelpful.value : false;
+
+    console.log('localhelpful', e.target.attributes.localhelpful)
+
+    if (!localHelpful) {
+      let reviewId = e.target.attributes.reviewid.value;
+      let reviewHelpfulness = e.target.attributes.reviewhelpfulness.value;
+      
+      localStorage.setItem(`${reviewId}isHelpful`, JSON.stringify(true))
+      
+      
+      makeApiCall('PUT', `/reviews/${reviewId}/helpful`, {helpfulness: reviewHelpfulness + 1})
+      .then( (res) => {
+        return res;
+      })
+      .then ( (resDone) => {
+        loadReviewsMeta();
+        loadReviews(1, 100);
+      })
+      .catch( (err) => {
+        console.log('error', err);
+      })
+    }
+  }
+
   const reviewTileConstructor = reviewsToDisplay.map(review => {
     let dateStr =new Date(review.date);
     let convertedDate = dateStr.toLocaleDateString();
+    let localHelpful = localStorage.getItem(`${review.review_id}isHelpful`);
+    console.log('localHelpful', localHelpful)
     
     return (
       <ReviewTile role={review.review_id} key={review.review_id}>
@@ -44,8 +78,20 @@ const ReviewTiles = (props) => {
               <ReviewTileBodyResponse> {review.response}</ReviewTileBodyResponse> 
             </> : null}
           <ReviewTileFooter>
-            <ReviewTileBodyItem>Helpful? YES (make clickable) ({review.helpfulness}) | </ReviewTileBodyItem>
-            <ReviewTileBodyItem>Report (make clickable)</ReviewTileBodyItem>
+            <ReviewTileBodyItem>Helpful? 
+              <button 
+                reviewid={review.review_id}
+                reviewhelpfulness={review.helpfulness}
+                localhelpful={localHelpful}                
+                onClick={ (e) => { handleHelpfulClick(e) }}  
+                style={{
+                  border: 'none', 
+                  backgroundColor: 'white', 
+                  textDecoration: 'underline',
+                  cursor: 'pointer'
+                }}>
+              Yes </button> &nbsp; ({review.helpfulness})
+            </ReviewTileBodyItem>
           </ReviewTileFooter>
       </ReviewTile>
     )
