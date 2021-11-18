@@ -24,8 +24,6 @@ const ReviewTiles = (props) => {
   const handleHelpfulClick = (e) => {
     let localHelpful = e.target.attributes.localhelpful ? e.target.attributes.localhelpful.value : false;
 
-    console.log('localhelpful', e.target.attributes.localhelpful)
-
     if (!localHelpful) {
       let reviewId = e.target.attributes.reviewid.value;
       let reviewHelpfulness = e.target.attributes.reviewhelpfulness.value;
@@ -51,7 +49,6 @@ const ReviewTiles = (props) => {
     let dateStr =new Date(review.date);
     let convertedDate = dateStr.toLocaleDateString();
     let localHelpful = localStorage.getItem(`${review.review_id}isHelpful`);
-    console.log('localHelpful', localHelpful)
     
     return (
       <ReviewTile role={review.review_id} key={review.review_id}>
