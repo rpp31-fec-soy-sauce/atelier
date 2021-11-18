@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectReviews } from '../../store/selectors';
+import { selectReviews, selectStarFilters } from '../../store/selectors';
 import { ReviewTile, ReviewTileHeader, ReviewTileFooter, ReviewTilesListContainer, ReviewTileBodyResponse } from './styles/Container.style'
 import { ReviewTileBodyItem, ReviewTileBodySummary } from './styles/Item.style'
 import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
@@ -16,9 +16,11 @@ const ReviewTiles = (props) => {
   const dispatch = useDispatch();
   const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
   const reviews = useSelector(selectReviews);
+  const filters = useSelector(selectStarFilters);
   const displayCount = props.displayCount;
-
   const reviewsToDisplay = reviews && reviews.length > 0 ? reviews.slice(0, displayCount) : []; 
+
+  console.log('filters from store', filters);
 
 
   const handleHelpfulClick = (e) => {
