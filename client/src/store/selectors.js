@@ -37,4 +37,19 @@ export const selectPercentByRating = state => {
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
 
+export const selectFilteredReviews = state => {
+  const reviews = selectReviews(state);
+  const filters = selectStarFilters(state);
+
+  console.log('selector reviews', reviews);
+  console.log('selector filters', filters);
+
+  if (filters.length > 0) {
+    const filteredReviews = reviews.filter(review => filters.indexOf(review.rating) !== -1);
+    return filteredReviews;
+  } else {
+    return reviews;
+  }
+};
+
 

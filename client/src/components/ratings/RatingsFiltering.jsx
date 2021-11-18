@@ -15,7 +15,7 @@ const RatingsFiltering = () => {
 
   const handleFilterClick = async (e) => {
     let filters = filtersApplied.slice(0);
-    let filterValue = e.target.attributes.filtervalue.value;
+    let filterValue = Number.parseInt(e.target.attributes.filtervalue.value);
 
     if (filters.indexOf(filterValue) === -1) {
       filters.push(filterValue);
