@@ -30,3 +30,7 @@ export const deleteOutfit = id => {
   localStorage.setItem('outfits', JSON.stringify(outfits));
   store.dispatch(actions.userOutfitsUpdated(outfits));
 };
+
+export const updateStarFilters = starFilterArray => {
+  store.dispatch(actions.updateStarFilter(starFilterArray));
+};

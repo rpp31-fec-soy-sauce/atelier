@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectReviews } from '../../store/selectors';
+import { selectFilteredReviews } from '../../store/selectors';
 import { ReviewTile, ReviewTileHeader, ReviewTileFooter, ReviewTilesListContainer, ReviewTileBodyResponse } from './styles/Container.style'
 import { ReviewTileBodyItem, ReviewTileBodySummary } from './styles/Item.style'
 import StarRatingStatic from '../universal_components/StarRatingStatic.jsx'
@@ -15,16 +15,12 @@ const ReviewTiles = (props) => {
 
   const dispatch = useDispatch();
   const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
-  const reviews = useSelector(selectReviews);
+  const filteredReviews = useSelector(selectFilteredReviews);
   const displayCount = props.displayCount;
-
-  const reviewsToDisplay = reviews && reviews.length > 0 ? reviews.slice(0, displayCount) : []; 
-
+  const reviewsToDisplay = filteredReviews && filteredReviews.length > 0 ? filteredReviews.slice(0, displayCount) : []; 
 
   const handleHelpfulClick = (e) => {
     let localHelpful = e.target.attributes.localhelpful ? e.target.attributes.localhelpful.value : false;
-
-    console.log('localhelpful', e.target.attributes.localhelpful)
 
     if (!localHelpful) {
       let reviewId = e.target.attributes.reviewid.value;
@@ -51,7 +47,6 @@ const ReviewTiles = (props) => {
     let dateStr =new Date(review.date);
     let convertedDate = dateStr.toLocaleDateString();
     let localHelpful = localStorage.getItem(`${review.review_id}isHelpful`);
-    console.log('localHelpful', localHelpful)
     
     return (
       <ReviewTile role={review.review_id} key={review.review_id}>

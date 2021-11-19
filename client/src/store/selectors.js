@@ -5,6 +5,7 @@ export const selectRelatedProducts = state => state.relatedProducts;
 export const selectStyles = state => state.styles;
 export const selectReviews = state => state.reviews;
 export const selectReviewsMeta = state => state.reviewsMeta;
+export const selectStarFilters = state => state.starFilters;
 
 export const selectQuestions = searchText => ({ questions }) => {
   if (searchText.length < 3) return questions;
@@ -35,3 +36,17 @@ export const selectPercentByRating = state => {
 }
 
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
+
+export const selectFilteredReviews = state => {
+  const reviews = selectReviews(state);
+  const filters = selectStarFilters(state);
+
+  if (filters.length > 0) {
+    const filteredReviews = reviews.filter(review => filters.indexOf(review.rating) !== -1);
+    return filteredReviews;
+  } else {
+    return reviews;
+  }
+};
+
+
