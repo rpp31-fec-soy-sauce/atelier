@@ -8,9 +8,18 @@ const router = (req, res, next) => {
   /* Remove api from the request path */
   const url = req.url.split('/').slice(2).join('/');
 
-  makeApiRequest(req.method, url, req.body)
+  axios.request({
+    headers,
+    method: req.method,
+    baseURL,
+    url,
+    data: req.body
+  })
     .then(response => res.send(response.data))
-    .catch(err => res.status(500).send(err));
+    .catch(err => {
+      console.log('Err', err);
+      res.status(500).send(err);
+    });
 };
 
 module.exports = router;

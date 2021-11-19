@@ -22,10 +22,17 @@ describe('QuestionDetails', () => {
   });
 
 
-  it('should report question when report is clicked', () => {
-    const reportQuestion = screen.getByRole('report-question')
+  it('should report question when report is clicked', async () => {
+    const reportQuestion = await screen.getByRole('report-question')
     fireEvent.click(reportQuestion)
     expect(reportQuestion.textContent).toBe('Reported');
+  });
+
+  it('should increase helpful when helpful is clicked', async () => {
+    const helpfulQuestion = await screen.getByRole('helpful-question')
+    fireEvent.click(helpfulQuestion)
+    const helpfulCount = await screen.getByRole('helpful-question-count')
+    expect(helpfulCount.textContent).toBe('(9)');
   });
 
 

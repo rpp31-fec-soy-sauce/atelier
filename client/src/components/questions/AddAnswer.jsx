@@ -14,7 +14,6 @@ const headers = { Authorization: require('../../../../apiToken') };
 
 
 const AddAnswer = ({ question }) => {
-
   const dispatch = useDispatch();
 
   useEffect(() => dispatch(loadProduct()), []);
@@ -125,11 +124,16 @@ const AddAnswer = ({ question }) => {
   }
 
   const renderContent = (
-    <div>
+    <div role='answer-modal'>
       <h3>Submit your Answer</h3>
-      <h4>{product && product.name}: {question.question_body}</h4>
+      <h4>{product && product.name}: {question ? question.question_body : null}</h4>
       <div className="modal-btns">
-        <Button type="button" style={{cursor:'pointer'}} onClick={closeModal}>Close</Button>
+        <Button
+        type="button"
+        onClick={closeModal}
+        role='close-answer-button'
+        >Close
+        </Button>
       </div>
 
       <form onSubmit={submitAnswer}>
@@ -141,7 +145,7 @@ const AddAnswer = ({ question }) => {
               type='text'
               value={answerBody}
               onChange={e => setAnswerBody(e.target.value)}
-              placeholder='Add answer'
+              placeholder='What is your answer?'
             />
           </li>
           <li className="form-row">
@@ -165,7 +169,7 @@ const AddAnswer = ({ question }) => {
               type='text'
               value={email}
               onChange={e => setEmail(e.target.value)}
-              placeholder='Why did you like the product or not?'
+              placeholder='Example: jack543!@gmail.com'
             />
           </li>
           <li className="form-row">
@@ -176,20 +180,22 @@ const AddAnswer = ({ question }) => {
             <label>Upload your photos</label> <br />
             {images.length < 5 ?
               <input
+                role='image-upload'
                 type='file'
                 // name='file'
                 placeholder='Upload an image'
                 onChange={uploadImage}
               /> : null
+
             }
           </li>
-          <div>
+          <div >
             <Container1>
               {images.map(pic => {
                 return (
-                  <div key={pic}>
+                  <div key={pic} >
                     <Card style={{ border: 'none' }}>
-                      <Image style={{ height: '70px', width: '70px' }} src={pic} alt="Image"></Image>
+                      <Image role='image' style={{ height: '70px', width: '70px' }} src={pic} alt="Image"></Image>
                     </Card>
                   </div>
                 )
@@ -200,12 +206,12 @@ const AddAnswer = ({ question }) => {
             {loading ? (<h4>Loading . . .</h4>) : null}
           </li>
 
-          <div>
+          <div role='error-answer-msg'>
             {Object.keys(errors).length ? <ErrorMessage errors={errors} /> : null}
           </div>
         </ul>
         <div className="modal-btns">
-          <Button style={{cursor:'pointer'}}>Submit</Button>
+          <Button role='submit-answer-button'>Submit</Button>
         </div>
 
       </form>
@@ -215,7 +221,12 @@ const AddAnswer = ({ question }) => {
   //Need to pass down closeModal and renderContent to the Modal style
   return (
     <div>
-      <p style={{cursor:'pointer', textDecoration: 'underline'}} onClick={() => setShowModal(true)} role='add-answer'>Add Answer</p>
+      <p
+        style={{ cursor: 'pointer', textDecoration: 'underline' }}
+        onClick={() => setShowModal(true)}
+        role='add-answer-button'
+      >
+        Add Answer</p>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
     </div>
   )

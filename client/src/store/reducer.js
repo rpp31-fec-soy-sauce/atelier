@@ -8,6 +8,7 @@ const initialState = {
   reviewsMeta: {},
   questions: [],
   userOutfits: [],
+  starFilters: []
 };
 
 const slice = createSlice({
@@ -86,8 +87,11 @@ const slice = createSlice({
             }
           })
       })
-    }
+    },
 
+    updateStarFilter(state, action) {
+      state.starFilters = action.payload;
+    }
 
   }
 });
