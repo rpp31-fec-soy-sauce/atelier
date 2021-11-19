@@ -5,7 +5,6 @@ import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
 import { Container1, Container2, Image, Card } from '../styles/Card'
 import { actions } from '../../store/reducer';
-// const headers = { Authorization: require('../../../../apiToken') };
 import makeApiCall from '../../store/api.js'
 
 const AnswerDetails = ({ answer }) => {
@@ -31,7 +30,7 @@ const AnswerDetails = ({ answer }) => {
       setHelpfulCount(helpfulCount++)
       localStorage.setItem(`${answer.body}isHelpful`, JSON.stringify(true))
 
-      // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/helpful`, { helpfulness: helpfulCount }, { headers })
+
       makeApiCall('PUT', `/qa/answers/${answer.id}/helpful`, { question_helpfulness: helpfulCount })
         .then(() => {
           dispatch(actions.answerHelpfulUpdated({ id: answer.id }))
@@ -52,7 +51,6 @@ const AnswerDetails = ({ answer }) => {
       setReport(true);
       localStorage.setItem(`${answer.body}isReported`, JSON.stringify(true))
 
-      // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/answers/${answer.id}/report`, { reported: true }, { headers })
       makeApiCall('PUT', `/qa/answers/${answer.id}/report`, { reported: true })
         .then(() => {
           dispatch(actions.answerReported({ id: answer.id }))

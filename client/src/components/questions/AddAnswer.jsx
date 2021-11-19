@@ -11,7 +11,6 @@ import makeApiCall from '../../store/api.js'
 // import { actions } from '../../store/reducer';
 // import { selectQuestions } from '../../store/selectors';
 
-// const headers = { Authorization: require('../../../../apiToken') };
 
 
 const AddAnswer = ({ question }) => {
@@ -110,7 +109,7 @@ const AddAnswer = ({ question }) => {
         photos: images,
       }
 
-      // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/answers`, newAnswer, { headers })
+
       makeApiCall('POST', `/qa/questions/${question.question_id}/answers`, newAnswer)
         .then(() => { dispatch(loadQuestions()) })
         .catch(function (error) {

@@ -10,7 +10,6 @@ import { actions } from '../../store/reducer';
 import ErrorMessage from './ErrorMessage.jsx';
 import makeApiCall from '../../store/api.js'
 
-const headers = { Authorization: require('../../../../apiToken') };
 
 const AddQuestion = () => {
 
@@ -67,7 +66,6 @@ const AddQuestion = () => {
         email: email
       }
 
-      // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions?product_id=${product.id}`, newQuestion, { headers })
       makeApiCall('POST', `/qa/questions?product_id=${product.id}`, newQuestion)
         .then(() => { dispatch(loadQuestions()) })
         .catch(function (error) {

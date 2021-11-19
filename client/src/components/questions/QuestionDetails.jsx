@@ -5,7 +5,6 @@ import AnswersList from './AnswersList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 // import { loadQuestions } from '../../store/apiActions';
 import { actions } from '../../store/reducer';
-// const headers = { Authorization: require('../../../../apiToken') };
 import makeApiCall from '../../store/api.js'
 
 
@@ -26,7 +25,7 @@ const QuestionDetails = ({ question }) => {
       setHelpfulCount(helpfulCount + 1)
       localStorage.setItem(`${question.question_body}isHelpful`, JSON.stringify(true))
 
-      // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/helpful`, { question_helpfulness: helpfulCount }, { headers })
+
       makeApiCall('PUT', `/qa/questions/${question.question_id}/helpful`, { question_helpfulness: helpfulCount })
         .then(() => {
           dispatch(actions.questionHelpfulUpdated({ id: question.question_id }))
@@ -45,7 +44,6 @@ const QuestionDetails = ({ question }) => {
       setReport(true);
       localStorage.setItem(`${question.question_body}isReported`, JSON.stringify(true))
 
-      // axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/report`, { reported: true }, { headers })
       makeApiCall('PUT', `/qa/questions/${question.question_id}/report`, { reported: true })
         .then(() => {
           dispatch(actions.questionReported({ id: question.question_id }))
