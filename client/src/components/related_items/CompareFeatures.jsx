@@ -3,7 +3,7 @@ import { Row } from "../styles/Card.js";
 
 const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
 
-  // console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
+  console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
 
   let copyCurrentFeatures = currentFeatures.slice();
   let copyClickedFeatures = clickedFeatures.slice();
@@ -37,7 +37,7 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   if (parsedSameFeature.length > 0) {
     transformSame = parsedSameFeature.map((e, i) => {
       return (
-        <Row key={i}>
+        <Row role='rowSame' key={i} style={{margin: '10px 0'}}>
           <div>{e.value}</div>
           <div><b>{e.feature}</b></div>
           <div>{e.value}</div>
@@ -49,7 +49,7 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   if (parsedCurrent.length > 0) {
     transformCurrent = parsedCurrent.map((e, i) => {
       return (
-        <Row key={i}>
+        <Row role='rowCurrent' key={i} style={{margin: '10px 0'}}>
           {e.value ? <div>{e.value}</div> : <div>&#10003;</div>}
           <div><b>{e.feature}</b></div>
           <div></div>
@@ -61,7 +61,7 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   if (parsedClicked.length > 0) {
     transformClicked = parsedClicked.map((e, i) => {
       return (
-        <Row key={i}>
+        <Row role='rowClicked' key={i} style={{margin: '10px 0'}}>
           <div></div>
           <div><b>{e.feature}</b></div>
           {e.value ? <div>{e.value}</div> : <div>&#10003;</div>}
