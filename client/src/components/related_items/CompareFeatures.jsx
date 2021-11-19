@@ -3,7 +3,7 @@ import { Row } from "../styles/Card.js";
 
 const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
 
-  console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
+  // console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
 
   let copyCurrentFeatures = currentFeatures.slice();
   let copyClickedFeatures = clickedFeatures.slice();

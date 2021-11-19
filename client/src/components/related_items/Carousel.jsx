@@ -24,7 +24,7 @@ const Carousel = () => {
 
   const relatedProducts = useSelector(selectRelatedProducts);
 
-  console.log('related products: ', relatedProducts)
+  // console.log('related products: ', relatedProducts)
   // console.log('current product: ', currentProduct)
   // console.log('current style: ', currentStyle)
   // console.log('rating: ', averageRating)
