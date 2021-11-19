@@ -18,7 +18,6 @@ const ReviewTiles = (props) => {
   const filteredReviews = useSelector(selectFilteredReviews);
   const displayCount = props.displayCount;
 
-  console.log('filteredReviews', filteredReviews)
   const reviewsToDisplay = filteredReviews.length > 0 ? filteredReviews.slice(0, displayCount) : []; 
 
   const handleHelpfulClick = (e) => {
