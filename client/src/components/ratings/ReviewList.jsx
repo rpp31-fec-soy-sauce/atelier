@@ -14,16 +14,27 @@ const ReviewList = () => {
   const dispatch = useDispatch();
 
   const reviewCountTotals = useSelector(selectTotalReviewCount);
-  const { loadReviews } = bindActionCreators(apiActions, dispatch);
+  const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
 
   const [filter, setFilter] = useState('relevant');
   const [reviewDisplayCount, setReviewDisplayCount] = useState(2);
+
+  const handleFilterChange = (e) => {
+    let filterValue = e.target.value
+    setFilter(filterValue);
+
+    loadReviewsMeta();
+    loadReviews(1, 100, filterValue);
+  }
 
   return (
   <>
       <ReviewListHeader>
         <h2>{reviewCountTotals} reviews, sorted by  
-          <FilterSelect value={filter} onChange={(e) => setFilter(e.target.value)}>
+          <FilterSelect 
+            value={filter} 
+            onChange={ (e) => { handleFilterChange(e) }}
+          >
             <option value="helpful">helpful</option>
             <option value="newest">newest</option>
             <option value="relevant">relevant</option>
