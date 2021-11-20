@@ -17,7 +17,8 @@ const ReviewTiles = (props) => {
   const { loadReviews, loadReviewsMeta } = bindActionCreators(apiActions, dispatch);
   const filteredReviews = useSelector(selectFilteredReviews);
   const displayCount = props.displayCount;
-  const reviewsToDisplay = filteredReviews && filteredReviews.length > 0 ? filteredReviews.slice(0, displayCount) : []; 
+
+  const reviewsToDisplay = filteredReviews.length > 0 ? filteredReviews.slice(0, displayCount) : []; 
 
   const handleHelpfulClick = (e) => {
     let localHelpful = e.target.attributes.localhelpful ? e.target.attributes.localhelpful.value : false;
