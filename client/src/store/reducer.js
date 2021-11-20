@@ -8,7 +8,8 @@ const initialState = {
   reviewsMeta: {},
   questions: [],
   userOutfits: [],
-  starFilters: []
+  starFilters: [],
+  currentStyle: undefined
 };
 
 const slice = createSlice({
@@ -23,6 +24,10 @@ const slice = createSlice({
 
     relatedProductsLoaded(state, action) {
       state.relatedProducts = action.payload;
+    },
+
+    currentStyleChanged(state, action) {
+      state.currentStyle = action.payload;
     },
 
     stylesLoaded(state, action) {
