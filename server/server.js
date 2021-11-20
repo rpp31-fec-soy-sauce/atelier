@@ -2,7 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+require('dotenv').config();
+
 const apiMiddleware = require('./apiMiddleware');
+
+
 
 /* Register middleware */
 app.use(express.urlencoded());
