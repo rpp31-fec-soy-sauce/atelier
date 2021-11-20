@@ -11,20 +11,23 @@ import { Container1, Container2, Image, Category, Price, Card, Add, AllOutfits, 
 const YourOutfit = () => {
 
   const dispatch = useDispatch();
+  const styleId = useSelector((state) => state.currentStyle);
   useEffect(() => dispatch(getOutfits), []);
 
   const currentProduct = useSelector(selectProduct);
-  const currentStyle = useSelector(selectCurrentStyle(undefined));
+  const currentStyle = useSelector(selectCurrentStyle(styleId));
   const averageRating = useSelector(selectAverageRating);
 
   const userOutfit = useSelector(selectUserOutfits);
+
+  // console.log(currentStyle)
 
   const localStorageAdd = () => {
     const product = {
       _id: currentProduct.id,
       category: currentProduct.category,
       name: currentProduct.name,
-      price: currentProduct.default_price,
+      price: currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price,
       photo: currentStyle.photos[0].thumbnail_url,
       rating: averageRating
     }
@@ -67,3 +70,17 @@ const YourOutfit = () => {
 };
 
 export default YourOutfit;
+
+// const PriceTag = ({ currentStyle }) => {
+//   if (!currentStyle) return null;
+//   if (currentStyle.sale_price === null)
+//     return <p>{'$' + currentStyle.original_price}</p>;
+//   return (
+//     <p>
+//       <b style={{ color: 'red' }}>{`$${currentStyle.sale_price}  `}</b>
+//       <span style={{ textDecoration: 'line-through' }}>
+//         {currentStyle.original_price}
+//       </span>
+//     </p>
+//   );
+// };
