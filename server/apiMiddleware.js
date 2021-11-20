@@ -8,13 +8,7 @@ const router = (req, res, next) => {
   /* Remove api from the request path */
   const url = req.url.split('/').slice(2).join('/');
 
-  axios.request({
-    headers,
-    method: req.method,
-    baseURL,
-    url,
-    data: req.body
-  })
+  makeApiRequest(req.method, url, req.body)
     .then(response => res.send(response.data))
     .catch(err => {
       console.log('Err', err);

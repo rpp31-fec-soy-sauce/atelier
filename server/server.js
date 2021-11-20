@@ -16,19 +16,15 @@ app.get('/api/qa/questions', (req, res) => {
   let page = 1;
 
   const getNextQuestions = () => {
-    makeApiRequests('GET', `qa/questions/?product_id=${req.query.product_id}&page=${page}&count=${1}`)
+    makeApiRequests('GET', `qa/questions/?product_id=${req.query.product_id}&page=${page}&count=${1000}`)
       .then(({ data }) => {
         const questions = data.results;
         allQuestions = allQuestions.concat(questions);
-        console.log(questions);
         if (questions.length < 1) return res.send(allQuestions);
         page += 1;
         getNextQuestions();
       })
-      .catch(err => {
-        console.log(err);
-        res.status(500).send(err.response.data)
-      });
+      .catch(err => res.status(500).send(err.response.data));
   };
 
   getNextQuestions();
