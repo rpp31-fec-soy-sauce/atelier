@@ -5,7 +5,7 @@ import AnswersList from './AnswersList.jsx';
 import AddAnswer from './AddAnswer.jsx';
 // import { loadQuestions } from '../../store/apiActions';
 import { actions } from '../../store/reducer';
-const headers = { Authorization: require('../../../../apiToken') };
+import makeApiCall from '../../store/api.js'
 
 
 const QuestionDetails = ({ question }) => {
@@ -25,7 +25,8 @@ const QuestionDetails = ({ question }) => {
       setHelpfulCount(helpfulCount + 1)
       localStorage.setItem(`${question.question_body}isHelpful`, JSON.stringify(true))
 
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/helpful`, { question_helpfulness: helpfulCount }, { headers })
+
+      makeApiCall('PUT', `/qa/questions/${question.question_id}/helpful`, { question_helpfulness: helpfulCount })
         .then(() => {
           dispatch(actions.questionHelpfulUpdated({ id: question.question_id }))
           // dispatch(loadQuestions())
@@ -43,7 +44,7 @@ const QuestionDetails = ({ question }) => {
       setReport(true);
       localStorage.setItem(`${question.question_body}isReported`, JSON.stringify(true))
 
-      axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/qa/questions/${question.question_id}/report`, { reported: true }, { headers })
+      makeApiCall('PUT', `/qa/questions/${question.question_id}/report`, { reported: true })
         .then(() => {
           dispatch(actions.questionReported({ id: question.question_id }))
           // dispatch(loadQuestions())
@@ -84,27 +85,27 @@ const QuestionDetails = ({ question }) => {
               onClick={updateHelpfulQuestion}
               role='helpful-question'
             >Helpful?&nbsp;
-            <span style={{ textDecoration: 'underline' }}>Yes</span>
-            <span role='helpful-question-count'>({helpfulCount})</span>
+              <span style={{ textDecoration: 'underline' }}>Yes</span>
+              <span role='helpful-question-count'>({helpfulCount})</span>
             </p>
             <p>|</p>
             <p
-            onClick={updateReportQuestion}
-            role='report-question'
-            style={{ cursor: 'pointer' }}
-            >{report?'Reported': 'Report'}</p>
+              onClick={updateReportQuestion}
+              role='report-question'
+              style={{ cursor: 'pointer' }}
+            >{report ? 'Reported' : 'Report'}</p>
             <p>|</p>
             <AddAnswer question={question} />
-            </div>
           </div>
-          {question.answers && Object.keys(question.answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
-
         </div>
-        );
+        {question.answers && Object.keys(question.answers).length === 0 ? "This question hasn\'t been answered yet." : <AnswersList answers={question.answers} />}
+
+      </div>
+    );
   } else {
     return null
   }
 };
 
-        export default QuestionDetails;
+export default QuestionDetails;
 

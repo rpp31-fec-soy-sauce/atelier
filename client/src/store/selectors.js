@@ -38,15 +38,18 @@ export const selectPercentByRating = state => {
 export const selectTotalReviewCount = state => totalReviewCount(state.reviewsMeta.ratings);
 
 export const selectFilteredReviews = state => {
-  const reviews = selectReviews(state);
-  const filters = selectStarFilters(state);
+  let reviews = selectReviews(state);
+  let filters = selectStarFilters(state);
+  
+  reviews = reviews ? reviews : [];
+  filters = filters ? filters : [];
 
-  if (filters.length > 0) {
-    const filteredReviews = reviews.filter(review => filters.indexOf(review.rating) !== -1);
-    return filteredReviews;
-  } else {
-    return reviews;
-  }
+  
+  const filteredReviews = reviews.filter( review => filters.indexOf(review.rating) !== -1)
+
+  let result = filteredReviews ? filteredReviews.length > 0 ? filteredReviews : reviews : reviews;
+  
+  return result;
 };
 
 
