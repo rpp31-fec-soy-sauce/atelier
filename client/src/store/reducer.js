@@ -35,7 +35,7 @@ const slice = createSlice({
     },
 
     questionsLoaded(state, action) {
-      state.questions = action.payload.results.sort(
+      state.questions = action.payload.sort(
         (q1, q2) => q2.question_helpfulness - q1.question_helpfulness
       );
     },

@@ -12,13 +12,12 @@ const getMaxQuantity = (currentStyle, skusNum) => {
 };
 
 const ButtonPanel = ({ currentStyle }) => {
-  const [skus, setSkus] = useState(undefined);
-  const [quantity, setQuantity] = useState(1);
+  const [skus, setSkus] = useState('');
+  const [quantity, setQuantity] = useState(0);
 
-  // TODO: Deal with style change
   useEffect(() => {
-    setSkus(undefined);
-    setQuantity(1);
+    setSkus('');
+    setQuantity(0);
   }, [currentStyle]);
 
   return (

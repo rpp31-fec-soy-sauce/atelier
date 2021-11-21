@@ -25,9 +25,9 @@ export const loadStyles = () =>
     onSuccess: actions.stylesLoaded.type,
   });
 
-export const loadQuestions = (page = 1, count = 15) =>
+export const loadQuestions = (page = 1, count = 1) =>
   apiCallBegan({
-    url: `/qa/questions?product_id=${getProductId()}&page=${page}&count=${count}`,
+    url: `qa/questions?product_id=${getProductId()}&page=${page}&count=${count}`,
     method: 'GET',
     onSuccess: actions.questionsLoaded.type,
   });
