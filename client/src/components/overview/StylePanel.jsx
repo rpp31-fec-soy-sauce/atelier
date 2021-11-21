@@ -1,7 +1,16 @@
 import React from 'react';
 import Avatar from './styles/Avatar.styled';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../store/reducer';
 
 const StylePanel = ({ styles, currentStyle, setSelectedStyle }) => {
+
+  const dispatch = useDispatch();
+
+  const onStyleChanged = style => {
+    dispatch(actions.currentStyleChanged(style.style_id));
+    setSelectedStyle(style.style_id);
+  }
   
   return (
     <>
@@ -21,7 +30,7 @@ const StylePanel = ({ styles, currentStyle, setSelectedStyle }) => {
           <Avatar
             key={style.style_id}
             url={style.photos[0].thumbnail_url}
-            onClick={() => setSelectedStyle(style.style_id)}
+            onClick={() => onStyleChanged(style)}
           />
         ))}
       </div>
