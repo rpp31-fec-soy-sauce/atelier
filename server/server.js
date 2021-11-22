@@ -1,5 +1,6 @@
 const express = require('express');
 const makeApiRequests = require('./api');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
@@ -9,6 +10,7 @@ require('dotenv').config('../.env');
 const apiMiddleware = require('./apiMiddleware');
 
 /* Register middleware */
+app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
@@ -35,4 +37,4 @@ app.get('/api/qa/questions', (req, res) => {
 app.use(apiMiddleware);
 app.use(express.static('client/dist/'));
 app.use('*', express.static('client/dist/index.html'));
-app.listen(port, () => console.log(`Listening at http://localhost:${port}`));
+app.listen(port, () => console.log(`Listening at port:${port}`));
