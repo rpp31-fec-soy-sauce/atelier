@@ -4,6 +4,8 @@ const makeApiRequests = require('./api');
 const app = express();
 const port = 3000;
 
+require('dotenv').config('../.env');
+
 const apiMiddleware = require('./apiMiddleware');
 
 /* Register middleware */
