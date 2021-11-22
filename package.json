@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev-client": "webpack --watch",
+    "build": "webpack --mode production",
     "dev-server": "nodemon server/server.js",
     "test": "jest --coverage"
   },
