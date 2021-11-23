@@ -2,6 +2,9 @@ const axios = require('axios');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
 const headers = { Authorization: require('../apiToken') };
 
+// require('dotenv').config();
+// const headers = { Authorization: process.env.apiToken };
+
 const router = (req, res, next) => {
   if (!req.url.startsWith('/api')) return next();
   const url = req.url.split('/').slice(2).join('/');
