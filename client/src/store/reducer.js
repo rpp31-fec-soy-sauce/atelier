@@ -8,7 +8,8 @@ const initialState = {
   reviewsMeta: {},
   questions: [],
   userOutfits: [],
-  starFilters: []
+  starFilters: [],
+  currentStyle: undefined
 };
 
 const slice = createSlice({
@@ -25,12 +26,16 @@ const slice = createSlice({
       state.relatedProducts = action.payload;
     },
 
+    currentStyleChanged(state, action) {
+      state.currentStyle = action.payload;
+    },
+
     stylesLoaded(state, action) {
       state.styles = action.payload.results;
     },
 
     questionsLoaded(state, action) {
-      state.questions = action.payload.results.sort(
+      state.questions = action.payload.sort(
         (q1, q2) => q2.question_helpfulness - q1.question_helpfulness
       );
     },

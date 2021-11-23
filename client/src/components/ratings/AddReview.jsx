@@ -399,7 +399,7 @@ const AddReview = () => {
   const addReview =
     (
       <>
-        <form className="rating-form" onSubmit={(e) => e.preventDefault()}>
+        <form role="rating-form" className="rating-form" onSubmit={(e) => e.preventDefault()}>
           <div>
             <h3>Write your Review for {product ? product.name : null}:</h3>
           </div>
@@ -439,7 +439,7 @@ const AddReview = () => {
 
   return (
     <div> 
-      <Button onClick={() => {setShowModal(true)}}>Add Review</Button>
+      <Button role="add-review-button" onClick={() => {setShowModal(true)}}>Add Review</Button>
       {showModal && <Modal 
         closeModal={closeModal}
         submitReview={submitReview}

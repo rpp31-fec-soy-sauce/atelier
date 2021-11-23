@@ -16,7 +16,7 @@ test('Only 4 related products should be visible within the carousel', () => {
   expect(carousel.length).toBe(4);
 });
 
-test('Image should not change its height', () => {
+test('The images should have a fixed heigth', () => {
   const photo = screen.getAllByRole('images');
   expect(photo[0]).toHaveStyle({height: '170px'});
 });
