@@ -71,6 +71,11 @@ export const ReviewListHeader = styled.div`
     flex-direction: row;
     max-width: 50vw;
     align-items: center;
+
+
+    select {
+        color: ${({ theme }) => theme.fontColor};
+    }
 `
 
 export const ReviewTilesListContainer = styled.div`

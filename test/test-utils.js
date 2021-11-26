@@ -32,11 +32,6 @@ function render(
       <Provider store={store}>
         <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
       </Provider>
-      // <Provider store={store}>
-      //   <App>
-      //   <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      //   <App />
-      // </Provider>
     );
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });

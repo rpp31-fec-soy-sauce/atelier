@@ -30,9 +30,9 @@ const ReviewList = () => {
   return (
   <>
       <ReviewListHeader>
-        <h2>{reviewCountTotals} reviews, sorted by  
-          <FilterSelect 
-            value={filter} 
+        <h2>{reviewCountTotals} reviews, sorted by
+          <FilterSelect
+            value={filter}
             onChange={ (e) => { handleFilterChange(e) }}
           >
             <option value="helpful">helpful</option>
@@ -40,10 +40,10 @@ const ReviewList = () => {
             <option value="relevant">relevant</option>
           </FilterSelect>
         </h2>
-      </ReviewListHeader> 
+      </ReviewListHeader>
       <ReviewTiles displayCount={reviewDisplayCount} />
       <ReviewListFooter>
-        <div> {reviewDisplayCount === reviewCountTotals || reviewCountTotals === 0 ? null : <Button role="moreReviews" onClick={ 
+        <div> {reviewDisplayCount === reviewCountTotals || reviewCountTotals === 0 ? null : <Button role="moreReviews" onClick={
             () => {
               if (reviewCountTotals - reviewDisplayCount < 2) {
                 setReviewDisplayCount(reviewCountTotals)
@@ -54,7 +54,7 @@ const ReviewList = () => {
           </Button>}
         </div>
         <AddReview></AddReview>
-      </ReviewListFooter>  
+      </ReviewListFooter>
   </>
   )
 }

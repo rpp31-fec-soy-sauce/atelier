@@ -15,7 +15,7 @@ export const lightTheme = {
   color: {
     primary: '#32536a',
     secondary: '#ffffff',
-    tertiary: '#3c6e71'
+    // tertiary: '#3c6e71'
   },
   star: '#edc531'
 }
@@ -28,7 +28,7 @@ export const darkTheme = {
   color: {
     primary: '#ffffff',
     secondary: '#5e788a',
-    tertiary: '#3c6e71'
+    // tertiary: '#3c6e71'
   },
   star: '#edc531'
 }

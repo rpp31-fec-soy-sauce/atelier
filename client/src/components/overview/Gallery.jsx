@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-
+import styled from 'styled-components';
 import ImageFrame from './styles/ImageFrame.styled.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -38,7 +38,8 @@ const Gallery = ({ currentStyle }) => {
                 backgroundImage: `url(${photo.thumbnail_url})`,
                 backgroundSize: 'cover',
                 marginBottom: '1rem',
-                border: `solid ${index === photoIndex ? 'red' : 'black'}`,
+                // border: `solid ${index === photoIndex ? 'red' : 'black'}`,
+                border: ` 3px solid ${index === photoIndex ? 'red' : '#adb6bc'}`,
                 display: 'inline-block',
               }}
               onClick={() => setPhotoIndex(index)}

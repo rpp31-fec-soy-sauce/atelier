@@ -8,7 +8,7 @@ const HeaderPanel = ({ product, currentStyle }) => {
 
   return (
     <div>
-      <Stars averageRating={rating}/>
+      <Stars averageRating={rating}/>&nbsp;
       <a href="">Read all reviews</a>
       <h3 style={{ fontWeight: 300, margin: 0, marginTop: '0.5rem' }}>
         {product.category?.toUpperCase()}
