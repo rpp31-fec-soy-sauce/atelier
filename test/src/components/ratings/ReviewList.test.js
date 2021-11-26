@@ -9,20 +9,21 @@
  import { ThemeProvider } from 'styled-components';
  import configureStore from 'redux-mock-store'
  import "@testing-library/jest-dom";
- 
+
  import ReviewList from '../../../../client/src/components/ratings/ReviewList';
- import theme from '../../../../client/src/components/styles/theme';
- 
- import { 
-     reviewsAggregates, 
-     reviewsMeta, 
-     averageRating, 
-     percentRecommend, 
-     reviewCountTotals, 
-     starPercentage, 
+//  import theme from '../../../../client/src/components/styles/theme';
+ import {lightTheme} from '../../../../client/src/components/styles/theme';
+
+ import {
+     reviewsAggregates,
+     reviewsMeta,
+     averageRating,
+     percentRecommend,
+     reviewCountTotals,
+     starPercentage,
      calculatePercentRecommended
 } from '../../../TestStates/InitialReduxStates';
- 
+
  afterEach(cleanup);
 
 describe('With React Testing Library', () => {
@@ -44,7 +45,7 @@ describe('With React Testing Library', () => {
     const div = document.createElement("div");
     ReactDOM.render(
         <Provider store={store}>
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={lightTheme}>
                 <ReviewList />
             </ThemeProvider>
         </Provider>, div);
