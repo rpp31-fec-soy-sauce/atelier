@@ -23,7 +23,7 @@ const RatingsFiltering = () => {
 
       setFiltersApplied(filters)
       updateStarFilters(filters);
-      
+
     } else {
       filters = filters.filter(filter => filter !== filterValue);
       setFiltersApplied(filters);
@@ -36,10 +36,10 @@ const RatingsFiltering = () => {
         <RatingsFilterBreakdownRow key={key}>
             <button
               filtervalue={key}
-              onClick={ (e) => { handleFilterClick(e) }}  
+              onClick={ (e) => { handleFilterClick(e) }}
               style={{
-                border: 'none', 
-                backgroundColor: 'white', 
+                border: 'none',
+                // backgroundColor: 'white',
                 textDecoration: 'underline',
                 cursor: 'pointer'
               }}
@@ -54,7 +54,7 @@ const RatingsFiltering = () => {
 
   return (
     <>
-      {starRendering}           
+      {starRendering}
       {filtersApplied.length > 0 ? <div>Filters Applied: &nbsp; {filtersApplied.join(', ')}</div> : null}
     </>
   );

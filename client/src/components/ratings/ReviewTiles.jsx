@@ -18,7 +18,7 @@ const ReviewTiles = (props) => {
   const filteredReviews = useSelector(selectFilteredReviews);
   const displayCount = props.displayCount;
 
-  const reviewsToDisplay = filteredReviews.length > 0 ? filteredReviews.slice(0, displayCount) : []; 
+  const reviewsToDisplay = filteredReviews.length > 0 ? filteredReviews.slice(0, displayCount) : [];
 
   const handleHelpfulClick = (e) => {
     let localHelpful = e.target.attributes.localhelpful ? e.target.attributes.localhelpful.value : false;
@@ -26,10 +26,10 @@ const ReviewTiles = (props) => {
     if (!localHelpful) {
       let reviewId = e.target.attributes.reviewid.value;
       let reviewHelpfulness = e.target.attributes.reviewhelpfulness.value;
-      
+
       localStorage.setItem(`${reviewId}isHelpful`, JSON.stringify(true))
-      
-      
+
+
       makeApiCall('PUT', `/reviews/${reviewId}/helpful`, {helpfulness: reviewHelpfulness + 1})
       .then( (res) => {
         return res;
@@ -48,7 +48,7 @@ const ReviewTiles = (props) => {
     let dateStr =new Date(review.date);
     let convertedDate = dateStr.toLocaleDateString();
     let localHelpful = localStorage.getItem(`${review.review_id}isHelpful`);
-    
+
     return (
       <ReviewTile role={review.review_id} key={review.review_id}>
           <ReviewTileHeader>
@@ -62,27 +62,27 @@ const ReviewTiles = (props) => {
           <ReviewTileBodySummary>{review.summary}</ReviewTileBodySummary>
           <ReviewTileBodyItem><ReviewTileBody reviewBodyText={review.body}/></ReviewTileBodyItem>
           {review.recommend ? <ReviewTileBodyItem>
-            <img data-testid="checkbox" className="checkbox" src={check_box}></img> 
+            <img data-testid="checkbox" className="checkbox" src={check_box}></img>
             I recommend this product
             </ReviewTileBodyItem> : null}
           <ReviewTileBodyItem>
             <ReviewTilePictures reviewPhotos={review.photos}/>
           </ReviewTileBodyItem>
-          {review.response ? 
+          {review.response ?
             <>
               <ReviewTileBodyResponse><strong>Reponse From Seller:</strong></ReviewTileBodyResponse>
-              <ReviewTileBodyResponse> {review.response}</ReviewTileBodyResponse> 
+              <ReviewTileBodyResponse> {review.response}</ReviewTileBodyResponse>
             </> : null}
           <ReviewTileFooter>
-            <ReviewTileBodyItem>Helpful? 
-              <button 
+            <ReviewTileBodyItem>Helpful?
+              <button
                 reviewid={review.review_id}
                 reviewhelpfulness={review.helpfulness}
-                localhelpful={localHelpful}                
-                onClick={ (e) => { handleHelpfulClick(e) }}  
+                localhelpful={localHelpful}
+                onClick={ (e) => { handleHelpfulClick(e) }}
                 style={{
-                  border: 'none', 
-                  backgroundColor: 'white', 
+                  border: 'none',
+                  // backgroundColor: 'white',
                   textDecoration: 'underline',
                   cursor: 'pointer'
                 }}>

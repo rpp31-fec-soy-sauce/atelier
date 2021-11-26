@@ -14,13 +14,16 @@ const GlobalStyles = createGlobalStyle`
 
   ::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(0, 0, 0, .5);
+    // background-color: rgba(0, 0, 0, .5);
+    background-color: lightgrey;
     box-shadow: 0 0 1px rgba(255, 255, 255, .5);
   }
 
   body {
     font-family: 'Qahiri', sans-serif;
-    color: #333;
+    // color: #333;
+    color: ${({ theme }) => theme.fontColor};
+    background-color: ${({ theme }) => theme.body};
     margin: 0;
   }
 
@@ -28,27 +31,35 @@ const GlobalStyles = createGlobalStyle`
     opacity: 0.8;
   }
 
+  a {
+    color: ${({ theme }) => theme.fontColor};
+  }
+
   .checkbox {
-    height: 18px; 
+    height: 18px;
     width: 18px;
+    background-color: #ffff;
   }
 
   .single-star-outline {
     height: 26px;
     width: 21px;
+
   }
 
   .single-star-fill {
     position: relative;
     display: inline-block;
     height: 26px;
-    background-color: #333333;
+    // background-color: #333333;
+    background-color: ${({ theme }) => theme.star};
   }
 
   .single-star-container {
     height: 26px;
     width: 21px;
     display: inline-block;
+    background-color: #ffff;
   }
 
   .single-star-outline-small {
@@ -60,13 +71,15 @@ const GlobalStyles = createGlobalStyle`
     position: relative;
     display: inline-block;
     height: 16px;
-    background-color: #333333;
+    // background-color: #333333;
+    background-color: ${({ theme }) => theme.star};
   }
 
   .single-star-container-small {
     height: 16px;
     width: 11px;
     display: inline-block;
+    background-color: #ffff;
   }
 
   .rate-area {
@@ -103,8 +116,9 @@ const GlobalStyles = createGlobalStyle`
 
   .rate-area:not(:checked) > label:hover,
   .rate-area:not(:checked) > label:hover ~ label {
-      color: black;
-      
+      // color: black;
+      color: ${({ theme }) => theme.star};
+
   }
 
   .rate-area > input:checked + label:hover,
@@ -114,13 +128,13 @@ const GlobalStyles = createGlobalStyle`
   .rate-area > label:hover ~ input:checked ~ label {
       color: black;
       text-shadow: none;
-      
+
   }
 
   .rate-area > label:active {
       position:relative;
       top:0px;
-      left:0px; 
+      left:0px;
   }
 
 `

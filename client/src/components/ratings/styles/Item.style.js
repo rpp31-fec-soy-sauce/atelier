@@ -10,6 +10,11 @@ export const ReviewTileBodyItem = styled.div`
     max-width: 50vw;
     justify-content: flex-start;
     flex-wrap: wrap;
+
+    button {
+        background-color: ${({ theme }) => theme.body};
+        color: ${({ theme }) => theme.fontColor};
+      }
 `
 
 export const ReviewTileBodySummary = styled.div`

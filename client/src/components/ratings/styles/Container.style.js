@@ -37,6 +37,11 @@ export const RatingsFilterBreakdownRow = styled.div`
     flex-direction: row;
     align-items: center;
     width: 33vw;
+
+    button {
+        background-color: ${({ theme }) => theme.body};
+        color: ${({ theme }) => theme.fontColor};
+      }
 `
 
 export const RatingsBreakdownRow = styled.div`
@@ -44,6 +49,7 @@ export const RatingsBreakdownRow = styled.div`
     flex-direction: row;
     justify-content: space-between;
     width: 230px;
+
 `
 
 export const ProductBreakDownContainer = styled.div`
@@ -74,7 +80,7 @@ export const ReviewTilesListContainer = styled.div`
     height: 35vw;
     max-width: 50vw;
     margin: 4px, 4px, 4px, 4px;
-    padding:4px;   
+    padding:4px;
     position: relative;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -126,6 +132,7 @@ export const ratingFilterContainer = styled.div`
     background-color: "#e0e0de";
     border-radius: 50;
     margin: 50
+
 `
 
 export const ratingFilterFiller = styled.div`
