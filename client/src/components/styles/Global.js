@@ -60,6 +60,14 @@ const GlobalStyles = createGlobalStyle`
     width: 21px;
     display: inline-block;
     background-color: #ffff;
+
+    img {
+      ${({ theme }) => {
+      if (theme.body === '#353535') return `
+          filter: invert(0.8);
+          `
+      }}
+    }
   }
 
   .single-star-outline-small {
@@ -80,6 +88,14 @@ const GlobalStyles = createGlobalStyle`
     width: 11px;
     display: inline-block;
     background-color: #ffff;
+
+    img {
+      ${({ theme }) => {
+      if (theme.body === '#353535') return `
+          filter: invert(0.8);
+          `
+      }}
+    }
   }
 
   .rate-area {
