@@ -47,7 +47,7 @@ export const selectFilteredReviews = state => {
   
   const filteredReviews = reviews.filter( review => filters.indexOf(review.rating) !== -1)
 
-  let result = filteredReviews ? filteredReviews.length > 0 ? filteredReviews : reviews : reviews;
+  let result = filteredReviews ? filters.length > 0 ? filteredReviews : reviews : reviews;
   
   return result;
 };
