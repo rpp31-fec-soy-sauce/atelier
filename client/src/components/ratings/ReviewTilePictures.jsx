@@ -36,7 +36,12 @@ const ReviewTilePictures = (props) => {
         <Image style={{ width: '500px', height: '500px' }} src={photoUrl} />
       </div><br/>
       <div className="modal-btns">
-        <Button onClick={closeModal}>Close</Button>
+        <Button 
+          data-element={'closeZoomedPhotoButton'}
+          data-module={'review'}
+          onClick={closeModal}
+        >Close
+        </Button>
       </div>
     </div>
   )
@@ -47,6 +52,8 @@ const ReviewTilePictures = (props) => {
           role={photo.id} 
           src={photo.url ? photo.url : noPreview}
           alt="product photo"
+          data-element={'reviewPhoto'}
+          data-module={'review'}
           onError={ (e) => { addDefaultSrc(e) }}
           onClick={() => renderZoomedPhoto(photo.url)}
         ></ReviewPicture>
