@@ -3,7 +3,7 @@ import blackTriangle from '../../../assets/blackTriangle.png';
 
 const ProductBreakdownFactors = (props) => {
   const { productFactorValue } = props;
-  
+
   const position = ((230/5) * productFactorValue -10);
 
   const containerStyles = {

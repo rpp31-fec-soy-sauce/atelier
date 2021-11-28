@@ -6,7 +6,11 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import reducer from '../client/src/store/reducer';
 import initialState from './initial-state';
-import theme from '../client/src/components/styles/theme';
+// import theme from '../client/src/components/styles/theme';
+import theme, { lightTheme } from '../client/src/components/styles/theme';
+
+
+import App from '../client/src/components/App.jsx';
 
 function render(
   ui,
@@ -26,7 +30,7 @@ function render(
   function Wrapper({ children }) {
     return (
       <Provider store={store}>
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={lightTheme}>{children}</ThemeProvider>
       </Provider>
     );
   }

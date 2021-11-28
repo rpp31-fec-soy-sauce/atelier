@@ -11,6 +11,7 @@ const StyledModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #353535;
   background-color: rgba(255, 255, 255, .8);
   z-index: 10000;
 

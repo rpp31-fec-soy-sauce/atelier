@@ -84,8 +84,14 @@ const QuestionDetails = ({ question }) => {
               style={{ cursor: 'pointer' }}
               onClick={updateHelpfulQuestion}
               role='helpful-question'
+              data-element={'helpfulQuestion'}
+              data-module={'questions'}
             >Helpful?&nbsp;
-              <span style={{ textDecoration: 'underline' }}>Yes</span>
+              <span
+              style={{ textDecoration: 'underline' }}
+              data-element={'helpfulQuestion'}
+              data-module={'questions'}
+              >Yes</span>
               <span role='helpful-question-count'>({helpfulCount})</span>
             </p>
             <p>|</p>
@@ -93,6 +99,8 @@ const QuestionDetails = ({ question }) => {
               onClick={updateReportQuestion}
               role='report-question'
               style={{ cursor: 'pointer' }}
+              data-element={'reportQuestion'}
+              data-module={'questions'}
             >{report ? 'Reported' : 'Report'}</p>
             <p>|</p>
             <AddAnswer question={question} />

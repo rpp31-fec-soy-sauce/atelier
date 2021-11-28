@@ -90,6 +90,8 @@ const AddQuestion = () => {
           type="button"
           onClick={closeModal}
           role='close-question-button'
+          data-element={'closeAddQuestionButton'}
+          data-module={'questions'}
         >Close
         </Button>
       </div>
@@ -103,6 +105,8 @@ const AddQuestion = () => {
               value={questionBody}
               onChange={e => setQuestionBody(e.target.value)}
               placeholder='What is your question?'
+              data-element={'questionBodyInput'}
+              data-module={'questions'}
             // required
             />
           </li>
@@ -114,6 +118,8 @@ const AddQuestion = () => {
               value={nickname}
               onChange={e => setNickname(e.target.value)}
               placeholder='Example: jackson11!'
+              data-element={'questionNicknameInput'}
+              data-module={'questions'}
             // required
             />
           </li>
@@ -129,6 +135,8 @@ const AddQuestion = () => {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Example: jackson11!@gmail.com'
+              data-element={'questionEmailInput'}
+              data-module={'questions'}
             // required
             />
           </li>
@@ -140,7 +148,11 @@ const AddQuestion = () => {
           </div>
         </ul>
         <div className="modal-btns">
-          <Button role='submit-question-button'>Submit</Button>
+          <Button
+          role='submit-question-button'
+          data-element={'submitQuestionButton'}
+          data-module={'questions'}
+          >Submit</Button>
         </div>
       </form>
     </div>
@@ -149,7 +161,11 @@ const AddQuestion = () => {
   //Need to passdown closeModal and renderContent to the Modal style
   return (
     <div>
-      <Button onClick={() => setShowModal(true)}>Add A Question</Button>
+      <Button
+      onClick={() => setShowModal(true)}
+      data-element={'addQuestionButton'}
+      data-module={'questions'}
+      >Add A Question</Button>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
     </div>
   )

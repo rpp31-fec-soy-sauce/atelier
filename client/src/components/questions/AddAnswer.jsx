@@ -133,6 +133,8 @@ const AddAnswer = ({ question }) => {
         type="button"
         onClick={closeModal}
         role='close-answer-button'
+        data-element={'closeAddAnswerButton'}
+        data-module={'questions'}
         >Close
         </Button>
       </div>
@@ -147,6 +149,8 @@ const AddAnswer = ({ question }) => {
               value={answerBody}
               onChange={e => setAnswerBody(e.target.value)}
               placeholder='What is your answer?'
+              data-element={'answerBodyInput'}
+              data-module={'questions'}
             />
           </li>
           <li className="form-row">
@@ -157,6 +161,8 @@ const AddAnswer = ({ question }) => {
               value={nickname}
               onChange={e => setNickname(e.target.value)}
               placeholder='Example: jack543!'
+              data-element={'answerNicknameInput'}
+              data-module={'questions'}
             />
           </li>
           <li className="form-row">
@@ -171,6 +177,8 @@ const AddAnswer = ({ question }) => {
               value={email}
               onChange={e => setEmail(e.target.value)}
               placeholder='Example: jack543!@gmail.com'
+              data-element={'answerEmailInput'}
+              data-module={'questions'}
             />
           </li>
           <li className="form-row">
@@ -186,6 +194,8 @@ const AddAnswer = ({ question }) => {
                 // name='file'
                 placeholder='Upload an image'
                 onChange={uploadImage}
+                data-element={'answerPhotoUpload'}
+                data-module={'questions'}
               /> : null
 
             }
@@ -212,7 +222,11 @@ const AddAnswer = ({ question }) => {
           </div>
         </ul>
         <div className="modal-btns">
-          <Button role='submit-answer-button'>Submit</Button>
+          <Button
+          role='submit-answer-button'
+          data-element={'submitAnswerButton'}
+          data-module={'questions'}
+          >Submit</Button>
         </div>
 
       </form>
@@ -226,6 +240,8 @@ const AddAnswer = ({ question }) => {
         style={{ cursor: 'pointer', textDecoration: 'underline' }}
         onClick={() => setShowModal(true)}
         role='add-answer-button'
+        data-element={'addAnswer'}
+        data-module={'questions'}
       >
         Add Answer</p>
       {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}

@@ -26,27 +26,30 @@ export const Image = styled.img`
 
 export const Category = styled.div`
   font-size: 12px;
-  color: #696969;
+  // color: #696969;
+  color: #adb6bc;
 `
 
 export const Price = styled.div`
   font-size: 12px;
-  color: #696969;
+  // color: #696969;
+  color: #adb6bc;
 `
 
 export const Anchor = styled.a`
-  color: black;
+  // color: black;
+  color: ${({ theme }) => theme.fontColor};
   text-decoration: none;
 `
 
 export const Card = styled.div`
-  border: 1px solid black;
+  border: 1px solid #adb6bc;
   margin: 0 10px;
 `
 
 export const Add = styled.div`
   padding-top: 50px;
-  border: 1px solid black;
+  border: 1px solid #adb6bc;
   margin: 0 10px;
   display: flex;
   flex-direction: column;
@@ -85,7 +88,8 @@ export const LeftArrow = styled(FaArrowAltCircleLeft)`
   z-index: 5;
   cursor: pointer;
   left: 2px;
-  color: black;
+  // color: black;
+  color: ${({ theme }) => theme.fontColor};
   height: 20px;
   width: 20px;
 `
@@ -96,7 +100,8 @@ export const RightArrow = styled(FaArrowAltCircleRight)`
   align-self: center;
   z-index: 5;
   cursor: pointer;
-  color: black;
+  // color: black;
+  color: ${({ theme }) => theme.fontColor};
   height: 20px;
   width: 20px;
 `

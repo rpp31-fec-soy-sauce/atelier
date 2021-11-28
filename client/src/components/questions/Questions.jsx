@@ -39,7 +39,11 @@ const Questions = () => {
 
   const updateQuestions = () => {
     return (
-      <Button onClick={expandQuestions}>
+      <Button
+      onClick={expandQuestions}
+      data-element={'moreQuestionsButton'}
+      data-module={'questions'}
+      >
         {numberOfQuestions < questions.length ? 'More Questions' : 'Collapse Questions'}
       </Button>
     )
@@ -94,12 +98,14 @@ const Questions = () => {
             backgroundImage: 'url("https://t4.ftcdn.net/jpg/04/34/10/11/360_F_434101175_Yir0sEEGd4XsS8m8DXsWgWGi5LAFiwX7.jpg")',
             backgroundPosition: 'right',
             backgroundSize: '30px 30px',
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: 'no-repeat',
           }}
           type="text"
           value={searchTerm}
           placeholder='Have a question? Search for answers...'
           onChange={e => setSearchTerm(e.target.value)}
+          data-element={'searchQuestion'}
+          data-module={'questions'}
         >
         </input>
         {/* <FontAwesomeIcon icon={faSearch} size='lg' /> */}
