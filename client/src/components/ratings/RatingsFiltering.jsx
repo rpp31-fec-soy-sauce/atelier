@@ -36,13 +36,9 @@ const RatingsFiltering = () => {
         <RatingsFilterBreakdownRow key={key}>
             <button
               filtervalue={key}
-<<<<<<< HEAD
-              onClick={ (e) => { handleFilterClick(e) }}
-=======
               data-element={`ratingsFilterBreakDownButton-${key}`}
               data-module={'review'}
-              onClick={ (e) => { handleFilterClick(e) }}  
->>>>>>> cc19648ecc5e6c55c986e56987742cf348c15d23
+              onClick={ (e) => { handleFilterClick(e) }}
               style={{
                 border: 'none',
                 // backgroundColor: 'white',

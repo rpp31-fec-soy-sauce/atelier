@@ -72,14 +72,13 @@ const AnswerDetails = ({ answer }) => {
   }
 
 
-
   const zoomedPhoto = (
     <div role='photo-modal'>
       <div className="modal-btns">
         <Button
-        data-element={'closeZoomedPhotoButton'}
-        data-module={'questions'}
-        onClick={closeModal}
+          data-element={'closeZoomedPhotoButton'}
+          data-module={'questions'}
+          onClick={closeModal}
         >Close</Button>
       </div><br />
       <div>
@@ -107,12 +106,12 @@ const AnswerDetails = ({ answer }) => {
                   style={{ border: 'none' }}
                 >
                   <Image
-                  style={{ cursor: 'pointer' }}
-                  role='photos'
-                  src={pic}
-                  alt="Photo"
-                  data-element={'zoomedPhoto'}
-                  data-module={'questions'}
+                    style={{ cursor: 'pointer' }}
+                    role='photos'
+                    src={pic}
+                    alt="Photo"
+                    data-element={'zoomedPhoto'}
+                    data-module={'questions'}
                   ></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
@@ -153,9 +152,9 @@ const AnswerDetails = ({ answer }) => {
             data-module={'questions'}
           >Helpful?&nbsp;
             <span
-            style={{ textDecoration: 'underline' }}
-            data-element={'helpfulAnswer'}
-            data-module={'questions'}
+              style={{ textDecoration: 'underline' }}
+              data-element={'helpfulAnswer'}
+              data-module={'questions'}
             >Yes</span>
             <span role='helpful-answer-count'>({helpfulCount})</span>
           </p>
