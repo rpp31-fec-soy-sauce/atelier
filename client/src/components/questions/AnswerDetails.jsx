@@ -66,8 +66,8 @@ const AnswerDetails = ({ answer }) => {
 
   const closeModal = e => {
     //stopPropgation prevents further propagation of the current event in the capturing and bubbling phases
-    e.stopPropagation();
 
+    e.stopPropagation();
     setShowModal(false);
   }
 
@@ -76,7 +76,11 @@ const AnswerDetails = ({ answer }) => {
   const zoomedPhoto = (
     <div role='photo-modal'>
       <div className="modal-btns">
-        <Button onClick={closeModal}>Close</Button>
+        <Button
+        data-element={'closeZoomedPhotoButton'}
+        data-module={'questions'}
+        onClick={closeModal}
+        >Close</Button>
       </div><br />
       <div>
         <Image style={{ width: '500px', height: '500px' }} src={photoUrl} />
@@ -102,7 +106,14 @@ const AnswerDetails = ({ answer }) => {
                   onClick={() => renderZoomedPhoto(pic)}
                   style={{ border: 'none' }}
                 >
-                  <Image style={{ cursor: 'pointer' }} role='photos' src={pic} alt="Photo"></Image>
+                  <Image
+                  style={{ cursor: 'pointer' }}
+                  role='photos'
+                  src={pic}
+                  alt="Photo"
+                  data-element={'zoomedPhoto'}
+                  data-module={'questions'}
+                  ></Image>
                   {showModal && <Modal closeModal={closeModal} renderContent={zoomedPhoto} />}
                 </Card>
               </div>
@@ -138,8 +149,14 @@ const AnswerDetails = ({ answer }) => {
             onClick={updateHelpfulAnswer}
             style={{ cursor: 'pointer' }}
             role='helpful-answer'
+            data-element={'helpfulAnswer'}
+            data-module={'questions'}
           >Helpful?&nbsp;
-            <span style={{ textDecoration: 'underline' }}>Yes</span>
+            <span
+            style={{ textDecoration: 'underline' }}
+            data-element={'helpfulAnswer'}
+            data-module={'questions'}
+            >Yes</span>
             <span role='helpful-answer-count'>({helpfulCount})</span>
           </p>
           <p>|</p>
@@ -147,6 +164,8 @@ const AnswerDetails = ({ answer }) => {
             onClick={updateReportAnswer}
             role='report-answer'
             style={{ cursor: 'pointer' }}
+            data-element={'reportAnswer'}
+            data-module={'questions'}
           >{report ? 'Reported' : 'Report'}</p>
         </div>
 
