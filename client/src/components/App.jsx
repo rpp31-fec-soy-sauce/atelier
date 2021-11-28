@@ -41,7 +41,7 @@ const App = () => {
     console.log('clickID', clickID);
 
     if (clickID.element && clickID.widget && clickID.time) {
-      // console.log('enough info');
+      console.log('enough info');
 
       makeApiCall('POST', '/interactions', clickID)
       .then( (res) => {

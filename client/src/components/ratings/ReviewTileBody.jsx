@@ -22,7 +22,9 @@ const ReviewTileBody = (props) => {
         <ShowMore
           style={{visibility: showMoreButtonStatus}} 
           alt="showMoreButton"
-          role="showMore" 
+          role="showMore"
+          data-element={'showMoreButton'}
+          data-module={'review'} 
           onClick={(e) => {
             setReviewBodyCurrentText(reviewBodyText);
             setShowMoreButtonStatus('hidden');

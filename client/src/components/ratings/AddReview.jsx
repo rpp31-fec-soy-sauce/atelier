@@ -108,13 +108,27 @@ const AddReview = () => {
       <div className="radio" name="productRecommendation">
         <strong>Do you recommend this product?</strong>
         <label>
-          <input type='radio' value="Yes" name="productRecommendation" onChange={(e) => {
-              setProductRecommended(e.target.value);}}/>
+          <input 
+            type='radio' 
+            value="Yes" 
+            name="productRecommendation"
+            data-element={'productRecommendation-yes'}
+            data-module={'review'} 
+            onChange={(e) => {
+              setProductRecommended(e.target.value);
+            }}/>
           Yes
         </label>
         <label>
-          <input type='radio' value="No" name="productRecommendation" onChange={(e) => {
-              setProductRecommended(e.target.value);}}/>
+          <input 
+            type='radio' 
+            value="No" 
+            role="productRecommendation"
+            data-element={'productRecommendation-no'}
+            data-module={'review'}
+            onChange={(e) => {
+              setProductRecommended(e.target.value);
+            }}/>
           No
         </label>
       </div>
@@ -126,20 +140,62 @@ const AddReview = () => {
     <>
       <div><strong>Overall Rating:</strong></div>
         <ul className="rate-area">
-          <input type="radio" id="5-star" name="overallRating" value={5} onChange={(e) => {
-                setOverallProductRecommendation(e.target.value);}}/>
+          <input 
+            type="radio" 
+            id="5-star" 
+            name="overallRating" 
+            value={5} 
+            data-element={'overallRating-5'}
+            data-module={'review'}
+            onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);
+            }}/>
             <label htmlFor="5-star" title="Amazing">5 stars</label>
-          <input type="radio" id="4-star" name="overallRating" value={4} onChange={(e) => {
-                setOverallProductRecommendation(e.target.value);}}/>
+          <input 
+            type="radio" 
+            id="4-star" 
+            name="overallRating" 
+            value={4} 
+            data-element={'overallRating-4'}
+            data-module={'review'}
+            onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);
+            }}/>
             <label htmlFor="4-star" title="Good">4 stars</label>
-          <input type="radio" id="3-star" name="overallRating" value={3} onChange={(e) => {
-                setOverallProductRecommendation(e.target.value);}}/>
+          <input 
+            type="radio" 
+            id="3-star" 
+            name="overallRating" 
+            value={3} 
+            data-element={'overallRating-3'}
+            data-module={'review'}
+            onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);
+            }}/>
             <label htmlFor="3-star" title="Average">3 stars</label>
-          <input type="radio" id="2-star" name="overallRating" value={2} onChange={(e) => {
-                setOverallProductRecommendation(e.target.value);}}/>
+          <input 
+            type="radio" 
+            id="2-star" 
+            name="overallRating" 
+            value={2} 
+            data-element={'overallRating-2'}
+            data-module={'review'}
+            onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);
+            }}/>
             <label htmlFor="2-star" title="Not Good">2 stars</label>
-          <input type="radio" id="1-star" required="" name="overallRating" value={1} aria-required="true" onChange={(e) => {
-                setOverallProductRecommendation(e.target.value);}}/>
+          <input 
+            type="radio" 
+            id="1-star" 
+            required="" 
+            name="overallRating" 
+            value={1} 
+            data-element={'overallRating-1'}
+            data-module={'review'}
+            aria-required="true" 
+            onChange={(e) => {
+                setOverallProductRecommendation(e.target.value);
+            }}/>
             <label htmlFor="1-star" title="Bad">1 star</label>
         </ul>
     </>
@@ -161,11 +217,13 @@ const AddReview = () => {
           id="reviewSummary" 
           type="text"
           maxLength={60} 
-          name="reviewSummary" 
+          name="reviewSummary"
+          data-element={'reviewSummary'}
+          data-module={'review'} 
           value={productReviewSummary}
           onChange={ (e) => { 
             setProductReviewSummary(e.target.value);  
-            }}
+          }}
         ></input>
       </div>
     </>
@@ -179,7 +237,9 @@ const AddReview = () => {
           className="reviewBody"
           id="reviewBody" 
           maxLength={1000} 
-          name="reviewBody" 
+          name="reviewBody"
+          data-element={'reviewBody'}
+          data-module={'review'} 
           value={productReviewBody}
           onChange={ (e) => { 
             setProductReviewBody(e.target.value) 
@@ -205,7 +265,9 @@ const AddReview = () => {
           type="text"
           id="reviewUserName" 
           maxLength={60} 
-          name="reviewUserName" 
+          name="reviewUserName"
+          data-element={'reviewUserName'}
+          data-module={'review'} 
           value={userName}
           onChange={ (e) => { setUserName(e.target.value) }}
           ></input> 
@@ -228,6 +290,8 @@ const AddReview = () => {
           id="reviewUserEmail" 
           maxLength={60} 
           name="reviewUserEmail" 
+          data-element={'reviewUserEmail'}
+          data-module={'review'}
           value={userEmail}
           onChange={ (e) => { 
             setUserEmail(e.target.value)
@@ -280,28 +344,68 @@ const AddReview = () => {
         </div>
         <div className="radioCharacteristics">
           <div>
-            <input type='radio' id={`${key} 1-value`} name={`rating-${key}`} value="1" characteristicid={characteristicId}
-              onChange={(e) => {productBreakdownRatingsChange(e);}}/>
+            <input 
+              type='radio' 
+              id={`${key} 1-value`} 
+              name={`rating-${key}`} 
+              value="1"
+              data-element={`rating-${key}-1`}
+              data-module={'review'} 
+              characteristicid={characteristicId}
+              onChange={(e) => {productBreakdownRatingsChange(e);}}
+            />
             <label htmlFor={`${key} 1-value`}>1</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 2-value`} name={`rating-${key}`} value="2" characteristicid={characteristicId}
-              onChange={(e) => {productBreakdownRatingsChange(e);}}/>
+            <input 
+              type='radio' 
+              id={`${key} 2-value`} 
+              name={`rating-${key}`} 
+              value="2" 
+              data-element={`rating-${key}-2`}
+              data-module={'review'} 
+              characteristicid={characteristicId}
+              onChange={(e) => {productBreakdownRatingsChange(e);}}
+            />
             <label htmlFor={`${key} 2-value`}>2</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 3-value`} name={`rating-${key}`} value="3" characteristicid={characteristicId}
-              onChange={(e) => {productBreakdownRatingsChange(e);}}/>
+            <input 
+              type='radio' 
+              id={`${key} 3-value`} 
+              name={`rating-${key}`} 
+              value="3" 
+              data-element={`rating-${key}-3`}
+              data-module={'review'} 
+              characteristicid={characteristicId}
+              onChange={(e) => {productBreakdownRatingsChange(e);}}
+            />
             <label htmlFor={`${key} 3-value`}>3</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 4-value`} name={`rating-${key}`} value="4" characteristicid={characteristicId}
-              onChange={(e) => {productBreakdownRatingsChange(e);}}/>
+            <input 
+              type='radio' 
+              id={`${key} 4-value`} 
+              name={`rating-${key}`} 
+              value="4" 
+              data-element={`rating-${key}-4`}
+              data-module={'review'} 
+              characteristicid={characteristicId}
+              onChange={(e) => {productBreakdownRatingsChange(e);}}
+            />
             <label htmlFor={`${key} 4-value`}>4</label>
           </div>
           <div>
-            <input type='radio' id={`${key} 5-value`} name={`rating-${key}`} value="5" characteristicid={characteristicId}
-              onChange={(e) => {productBreakdownRatingsChange(e);}}/>
+            <input 
+              type='radio' 
+              id={`${key} 5-value`} 
+              name={`rating-${key}`} 
+              value="5" 
+              data-element={`rating-${key}-5`}
+              data-module={'review'} 
+              characteristicid={characteristicId}
+              onChange={(e) => {productBreakdownRatingsChange(e);}}
+            />
             <label htmlFor={`${key} 5-value`}>5</label>
           </div>
         </div>
@@ -322,8 +426,20 @@ const AddReview = () => {
   const photoButtons = (
     <>
       <div className="review-form-row">
-        <input className='modal-btns' type="file" onChange={ (e) => { handleFileSelect(e) }} />
-        <button className='modal-btns' onClick={ (e) => {handleFileSubmit(e) }}>Submit Photo</button>
+        <input 
+          className='modal-btns' 
+          type="file" 
+          data-element={'chooseFileButton'}
+          data-module={'review'} 
+          onChange={ (e) => { handleFileSelect(e) }} 
+        />
+        <button 
+          className='modal-btns' 
+          name={'submittingPhotoButton'}
+          data-element={'submittingPhotoButton'}
+          data-module={'review'}
+          onClick={ (e) => {handleFileSubmit(e) }}>Submit Photo
+        </button>
       </div><br/>
     </>
   )
@@ -387,13 +503,20 @@ const AddReview = () => {
   } 
 
   const photoGallery = productReviewPhotos.map( (photo, index) => {
-    return <Card key={index} style={{ border: 'none'}}>
+    return (
+      <Card 
+        key={index} 
+        style={{ border: 'none'}}
+      >
         <ReviewPicture 
           src={photo ? photo : noPreview}
           alt="review photo"
+          data-element={'addReviewPhotoCard'}
+          data-module={'review'}
           onError={ (e) => { addDefaultSrc(e) }}
         ></ReviewPicture>
       </Card>
+    )
   })
 
   const addReview =
@@ -429,8 +552,21 @@ const AddReview = () => {
             {productReviewPhotos ? photoGallery : null}
           </div>
           <div className='modal-btns'>
-            <Button className='modal-btns' type="submit" onClick={ (e) => { submitReview(e) }}>Submit</Button>
-            <Button className='modal-btns' onClick={closeModal}>Close</Button>
+            <Button 
+              className='modal-btns' 
+              type="submit" 
+              name={'submitReviewButton'}
+              data-element={'submitReviewButton'}
+              data-module={'review'}
+              onClick={ (e) => { submitReview(e) }}>Submit
+            </Button>
+            <Button 
+              className='modal-btns'
+              name={'closeAddReviewButton'}
+              data-element={'closeAddReviewButton'}
+              data-module={'review'} 
+              onClick={closeModal}>Close
+            </Button>
           </div>
         </form>
       </>
@@ -439,7 +575,13 @@ const AddReview = () => {
 
   return (
     <div> 
-      <Button role="add-review-button" onClick={() => {setShowModal(true)}}>Add Review</Button>
+      <Button 
+        role="add-review-button" 
+        name={'addReviewButton'}
+        data-element={'addReviewButton'}
+        data-module={'review'}  
+        onClick={() => {setShowModal(true)}}>Add Review
+      </Button>
       {showModal && <Modal 
         closeModal={closeModal}
         submitReview={submitReview}
