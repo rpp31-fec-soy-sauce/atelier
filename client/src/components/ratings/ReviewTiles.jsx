@@ -78,7 +78,9 @@ const ReviewTiles = (props) => {
               <button 
                 reviewid={review.review_id}
                 reviewhelpfulness={review.helpfulness}
-                localhelpful={localHelpful}                
+                localhelpful={localHelpful}
+                data-element={'reviewHelpfulButton'}
+                data-module={'review'}                
                 onClick={ (e) => { handleHelpfulClick(e) }}  
                 style={{
                   border: 'none', 

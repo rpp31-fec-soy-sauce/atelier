@@ -36,6 +36,8 @@ const RatingsFiltering = () => {
         <RatingsFilterBreakdownRow key={key}>
             <button
               filtervalue={key}
+              data-element={`ratingsFilterBreakDownButton-${key}`}
+              data-module={'review'}
               onClick={ (e) => { handleFilterClick(e) }}  
               style={{
                 border: 'none', 
