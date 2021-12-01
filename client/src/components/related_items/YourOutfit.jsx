@@ -7,6 +7,7 @@ import Stars from '../universal_components/StarRatingStaticSmall.jsx';
 import { getOutfits, addOutfit, deleteOutfit } from '../../store/funcActions.js';
 import { selectProduct, selectCurrentStyle, selectedStyle, selectAverageRating, selectUserOutfits } from '../../store/selectors';
 import { Container1, Container2, Image, Category, Price, Card, Add, AllOutfits, Icon, Parent } from '../styles/Card.js';
+import PriceTag from './PriceTag.jsx';
 
 const YourOutfit = () => {
 
@@ -27,7 +28,7 @@ const YourOutfit = () => {
       _id: currentProduct.id,
       category: currentProduct.category,
       name: currentProduct.name,
-      price: currentStyle.sale_price ? currentStyle.sale_price : currentStyle.original_price,
+      price: currentStyle.sale_price ? [currentStyle.sale_price, currentStyle.original_price] : [currentStyle.original_price],
       photo: currentStyle.photos[0].thumbnail_url,
       rating: averageRating
     }
@@ -57,7 +58,7 @@ const YourOutfit = () => {
                     <div>
                       <Category>{element.category}</Category>
                       <h5><b>{element.name}</b></h5>
-                      <Price>${element.price}</Price>
+                      <PriceTag price={element.price}></PriceTag>
                       <Stars averageRating={element.rating}/>
                     </div>
                   </Card>
@@ -71,16 +72,3 @@ const YourOutfit = () => {
 
 export default YourOutfit;
 
-// const PriceTag = ({ currentStyle }) => {
-//   if (!currentStyle) return null;
-//   if (currentStyle.sale_price === null)
-//     return <p>{'$' + currentStyle.original_price}</p>;
-//   return (
-//     <p>
-//       <b style={{ color: 'red' }}>{`$${currentStyle.sale_price}  `}</b>
-//       <span style={{ textDecoration: 'line-through' }}>
-//         {currentStyle.original_price}
-//       </span>
-//     </p>
-//   );
-// };

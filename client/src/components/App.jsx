@@ -27,7 +27,7 @@ const App = () => {
   }, []);
 
   const onClickHandler = (e) => {
-    console.log('event', e)
+    // console.log('event', e)
     let eventElement = e.target.getAttribute('data-element');
     let eventModule = e.target.getAttribute('data-module');
     let eventTime = (new Date(e.timeStamp)).toUTCString();
@@ -38,21 +38,21 @@ const App = () => {
       time: eventTime
     }
 
-    console.log('clickID', clickID);
+    // console.log('clickID', clickID);
 
     if (clickID.element && clickID.widget && clickID.time) {
-      console.log('enough info');
+      // console.log('enough info');
 
       makeApiCall('POST', '/interactions', clickID)
       .then( (res) => {
-        console.log('response', res);
+        // console.log('response', res);
       })
       .catch( (err) => {
-        console.log('error', err);
+        // console.log('error', err);
       })
 
     } else {
-      console.log('not enough info');
+      // console.log('not enough info');
     }
 
   };
