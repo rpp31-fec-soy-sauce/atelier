@@ -44,21 +44,12 @@ const App = () => {
       // console.log('enough info');
 
       makeApiCall('POST', '/interactions', clickID)
-<<<<<<< HEAD
-        .then((res) => {
-          console.log('response', res);
-        })
-        .catch((err) => {
-          console.log('error', err);
-        })
-=======
       .then( (res) => {
         // console.log('response', res);
       })
       .catch( (err) => {
         // console.log('error', err);
       })
->>>>>>> d9ad0d5809c52b5934fbe77c39aaa7cb285f9d64
 
     } else {
       // console.log('not enough info');
