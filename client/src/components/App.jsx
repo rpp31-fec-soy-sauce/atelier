@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 /* Components */
 import OverView from './overview/OverView.jsx';
 import Questions from './questions/Questions.jsx';
@@ -44,12 +44,12 @@ const App = () => {
       console.log('enough info');
 
       makeApiCall('POST', '/interactions', clickID)
-      .then( (res) => {
-        console.log('response', res);
-      })
-      .catch( (err) => {
-        console.log('error', err);
-      })
+        .then((res) => {
+          console.log('response', res);
+        })
+        .catch((err) => {
+          console.log('error', err);
+        })
 
     } else {
       console.log('not enough info');
@@ -65,9 +65,9 @@ const App = () => {
       <Container>
         <Toggle toggled={toggled} onClick={() => toggleTheme()} />
         <OverView />
-        <RelatedItems />
-        <Questions />
-        <Ratings />
+          <RelatedItems />
+          <Questions />
+          <Ratings />
       </Container>
     </ThemeProvider>
   );
