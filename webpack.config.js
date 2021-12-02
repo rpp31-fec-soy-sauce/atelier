@@ -28,6 +28,12 @@ module.exports = {
           loader: 'url-loader',
         }
       },
+      {
+        test: /\.json$/,
+        use: {
+            loader: 'json-loader'
+        }
+      }
     ]
   },
   plugins: [
