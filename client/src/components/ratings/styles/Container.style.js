@@ -148,3 +148,10 @@ export const ModalRow = styled.div`
     flex-direction: row;
     gap: 15px;
 `
+
+export const OverallRatingDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+`

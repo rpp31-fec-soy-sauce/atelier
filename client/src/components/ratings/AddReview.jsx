@@ -6,6 +6,7 @@ import { selectReviewsMeta } from '../../store/selectors';
 import Modal from '../styles/Modal';
 import Button from '../styles/Button.styled.js';
 import { Image, Card } from '../styles/Card';
+import { OverallRatingDiv } from './styles/Container.style';
 import { ReviewPicture } from './styles/Item.style';
 import axios from 'axios';
 import noPreview from '../../../assets/no-preview.jpg';
@@ -112,6 +113,7 @@ const AddReview = () => {
             type='radio' 
             value="Yes" 
             name="productRecommendation"
+            role="productRecommendation-yes"
             data-element={'productRecommendation-yes'}
             data-module={'review'} 
             onChange={(e) => {
@@ -123,7 +125,7 @@ const AddReview = () => {
           <input 
             type='radio' 
             value="No" 
-            role="productRecommendation"
+            role="productRecommendation-no"
             data-element={'productRecommendation-no'}
             data-module={'review'}
             onChange={(e) => {
@@ -132,17 +134,18 @@ const AddReview = () => {
           No
         </label>
       </div>
-      {productRecommended === null && submitAttempted === true ? <div className='formError'>Recommendation Required</div> : null}      
+      {productRecommended === null && submitAttempted === true ? <div className='formError' role='productRecommendedError'>Recommendation Required</div> : null}      
     </>
   )
 
   const overallRecommendation = (
-    <>
-      <div><strong>Overall Rating:</strong></div>
+    <OverallRatingDiv>
+      <strong>Overall Rating:</strong>
         <ul className="rate-area">
           <input 
             type="radio" 
-            id="5-star" 
+            id="5-star"
+            role="5-star" 
             name="overallRating" 
             value={5} 
             data-element={'overallRating-5'}
@@ -154,6 +157,7 @@ const AddReview = () => {
           <input 
             type="radio" 
             id="4-star" 
+            role="4-star"
             name="overallRating" 
             value={4} 
             data-element={'overallRating-4'}
@@ -164,7 +168,8 @@ const AddReview = () => {
             <label htmlFor="4-star" title="Good">4 stars</label>
           <input 
             type="radio" 
-            id="3-star" 
+            id="3-star"
+            role="3-star"  
             name="overallRating" 
             value={3} 
             data-element={'overallRating-3'}
@@ -175,7 +180,8 @@ const AddReview = () => {
             <label htmlFor="3-star" title="Average">3 stars</label>
           <input 
             type="radio" 
-            id="2-star" 
+            id="2-star"
+            role="2-star"  
             name="overallRating" 
             value={2} 
             data-element={'overallRating-2'}
@@ -186,7 +192,8 @@ const AddReview = () => {
             <label htmlFor="2-star" title="Not Good">2 stars</label>
           <input 
             type="radio" 
-            id="1-star" 
+            id="1-star"
+            role="1-star"  
             required="" 
             name="overallRating" 
             value={1} 
@@ -198,7 +205,7 @@ const AddReview = () => {
             }}/>
             <label htmlFor="1-star" title="Bad">1 star</label>
         </ul>
-    </>
+    </OverallRatingDiv>
   )
 
   const overallRecommendationValidation = (
@@ -215,6 +222,7 @@ const AddReview = () => {
         <input 
           className="reviewSummary"
           id="reviewSummary" 
+          role="reviewSummary"
           type="text"
           maxLength={60} 
           name="reviewSummary"
@@ -236,6 +244,7 @@ const AddReview = () => {
         <textarea
           className="reviewBody"
           id="reviewBody" 
+          role="reviewBody"
           maxLength={1000} 
           name="reviewBody"
           data-element={'reviewBody'}
@@ -251,7 +260,7 @@ const AddReview = () => {
         {productReviewBodyCharCount < 50 ? `Minimum required characters left: ${50-productReviewBodyCharCount}` : 'Minimum reached'}
       </div>  
       {productReviewBodyCharCount < 50 && submitAttempted === true ? 
-        <div className='formError'>Review must be 50 or more characters.</div>
+        <div className='formError' role='reviewBodyError'>Review must be 50 or more characters.</div>
         : null}      
     </>
   )
@@ -264,6 +273,7 @@ const AddReview = () => {
           className="reviewUserName"
           type="text"
           id="reviewUserName" 
+          role="reviewUserName"
           maxLength={60} 
           name="reviewUserName"
           data-element={'reviewUserName'}
@@ -272,11 +282,11 @@ const AddReview = () => {
           onChange={ (e) => { setUserName(e.target.value) }}
           ></input> 
       </div>
-      <div className="reviewWarningMessages">For privacy reasons, do not use your full name or email address.</div>
+      <div className="reviewWarningMessages">For privacy, don't use your full name or email address.</div>
       {
         (userName === null ||  
         userName === 'Example: jackson11!') && 
-        submitAttempted === true ? <div className='formError'>Username required.</div> : null}  
+        submitAttempted === true ? <div className='formError' role='userNameError'>Username required.</div> : null}  
     </>
   )
 
@@ -288,6 +298,7 @@ const AddReview = () => {
           className="reviewUserName"
           type="text"
           id="reviewUserEmail" 
+          role="reviewUserEmail" 
           maxLength={60} 
           name="reviewUserEmail" 
           data-element={'reviewUserEmail'}
@@ -299,11 +310,11 @@ const AddReview = () => {
           }}
           ></input> 
       </div>
-      <div className="reviewWarningMessages">For authentication reasons, you will not be emailed” will appear.</div>
+      <div className="reviewWarningMessages">For authentication reasons, you will not be emailed.</div>
       {
         (userEmail === '' ||  
         userEmail === 'Example: jackson11@email.com') && 
-        submitAttempted === true ? <div className='formError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
+        submitAttempted === true ? <div className='formError' role='emailError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
       }   
     </>
   )
@@ -347,7 +358,8 @@ const AddReview = () => {
             <input 
               type='radio' 
               id={`${key} 1-value`} 
-              name={`rating-${key}`} 
+              name={`rating-${key}`}
+              role={`rating-${key}-1-value`} 
               value="1"
               data-element={`rating-${key}-1`}
               data-module={'review'} 
@@ -361,6 +373,7 @@ const AddReview = () => {
               type='radio' 
               id={`${key} 2-value`} 
               name={`rating-${key}`} 
+              role={`rating-${key}-2-value`}
               value="2" 
               data-element={`rating-${key}-2`}
               data-module={'review'} 
@@ -374,6 +387,7 @@ const AddReview = () => {
               type='radio' 
               id={`${key} 3-value`} 
               name={`rating-${key}`} 
+              role={`rating-${key}-3-value`}
               value="3" 
               data-element={`rating-${key}-3`}
               data-module={'review'} 
@@ -387,6 +401,7 @@ const AddReview = () => {
               type='radio' 
               id={`${key} 4-value`} 
               name={`rating-${key}`} 
+              role={`rating-${key}-4-value`}
               value="4" 
               data-element={`rating-${key}-4`}
               data-module={'review'} 
@@ -400,6 +415,7 @@ const AddReview = () => {
               type='radio' 
               id={`${key} 5-value`} 
               name={`rating-${key}`} 
+              role={`rating-${key}-5-value`}
               value="5" 
               data-element={`rating-${key}-5`}
               data-module={'review'} 
@@ -428,7 +444,8 @@ const AddReview = () => {
       <div className="review-form-row">
         <input 
           className='modal-btns' 
-          type="file" 
+          type="file"
+          role="chooseFileButton" 
           data-element={'chooseFileButton'}
           data-module={'review'} 
           onChange={ (e) => { handleFileSelect(e) }} 
@@ -436,6 +453,7 @@ const AddReview = () => {
         <button 
           className='modal-btns' 
           name={'submittingPhotoButton'}
+          role={'submittingPhotoButton'}
           data-element={'submittingPhotoButton'}
           data-module={'review'}
           onClick={ (e) => {handleFileSubmit(e) }}>Submit Photo
@@ -511,6 +529,7 @@ const AddReview = () => {
         <ReviewPicture 
           src={photo ? photo : noPreview}
           alt="review photo"
+          role="photoSubmission"
           data-element={'addReviewPhotoCard'}
           data-module={'review'}
           onError={ (e) => { addDefaultSrc(e) }}
@@ -523,15 +542,9 @@ const AddReview = () => {
     (
       <>
         <form role="rating-form" className="rating-form" onSubmit={(e) => e.preventDefault()}>
-          <div>
-            <h3>Write your Review for {product ? product.name : null}:</h3>
-          </div>
-          <div>
-            {overallRecommendation}
-          </div>
-          <div>
-            {overallRecommendationValidation}
-          </div><br/>
+          <h4>Write your Review for {product ? product.name : null}:</h4>
+          {overallRecommendation}
+          {overallRecommendationValidation}
           <div className="review-form-row">
             <div>{reviewSummary}</div>
             <div>{reviewBody}</div>
@@ -554,7 +567,8 @@ const AddReview = () => {
           <div className='modal-btns'>
             <Button 
               className='modal-btns' 
-              type="submit" 
+              type="submit"
+              role="submitReviewButton" 
               name={'submitReviewButton'}
               data-element={'submitReviewButton'}
               data-module={'review'}
@@ -562,6 +576,7 @@ const AddReview = () => {
             </Button>
             <Button 
               className='modal-btns'
+              role="closeAddReviewButton" 
               name={'closeAddReviewButton'}
               data-element={'closeAddReviewButton'}
               data-module={'review'} 
