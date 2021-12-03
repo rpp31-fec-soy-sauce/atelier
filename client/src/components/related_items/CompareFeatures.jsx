@@ -3,8 +3,6 @@ import { Row } from "../styles/Card.js";
 
 const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
 
-  // console.log('currentFeatures: ', currentFeatures, 'clickedFeatures: ', clickedFeatures)
-
   let copyCurrentFeatures = currentFeatures.slice();
   let copyClickedFeatures = clickedFeatures.slice();
 
@@ -16,19 +14,9 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
   let filterCurrent = stringCurrentFeatures.filter(e => sameFeature.indexOf(e) < 0);
   let filterClicked = stringClickedFeatures.filter(e => sameFeature.indexOf(e) < 0);
 
-  // console.log(stringCurrentFeatures)
-  // console.log(stringClickedFeatures)
-  // console.log('sameFeature: ', sameFeature)
-  // console.log('filterCurrent: ', filterCurrent)
-  // console.log('filterClicked: ', filterClicked)
-
   let parsedSameFeature = sameFeature.map(e => JSON.parse(e));
   let parsedCurrent = filterCurrent.map(e => JSON.parse(e));
   let parsedClicked = filterClicked.map(e => JSON.parse(e));
-
-  // console.log(parsedSameFeature)
-  // console.log(parsedCurrent)
-  // console.log(parsedClicked)
 
   let transformSame = [];
   let transformCurrent = [];
@@ -81,43 +69,3 @@ const CompareFeatures = ({currentFeatures, clickedFeatures}) => {
 };
 
 export default CompareFeatures;
-
-// {modalData.currentProduct.rating > modalData.clickedProduct.rating ?
-//   <Row>
-//     <div>&#10003;</div>
-//     <div>Higher Rating</div>
-//     <div></div>
-//   </Row>
-// :
-//   <Row>
-//     <div></div>
-//     <div>Higher Rating</div>
-//     <div>&#10003;</div>
-//   </Row>
-// }
-
-// if (currentRating === clickedRating) {
-//   return (
-//     <Row>
-//       <div></div>
-//       <div>Higher Rating</div>
-//       <div></div>
-//     </Row>
-//   );
-// } else if (currentRating > clickedRating) {
-//   return (
-//   <Row>
-//     <div>&#10003;</div>
-//     <div>Higher Rating</div>
-//     <div></div>
-//   </Row>
-//   );
-// } else {
-//   return (
-//   <Row>
-//     <div></div>
-//     <div>Higher Rating</div>
-//     <div>&#10003;</div>
-//   </Row>
-//   );
-// }

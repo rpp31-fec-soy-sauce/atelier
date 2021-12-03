@@ -115,8 +115,8 @@ const GlobalStyles = createGlobalStyle`
       overflow: hidden;
       white-space: nowrap;
       cursor: pointer;
-      font-size: 40px;
-      line-height: 32px;
+      font-size: 24px;
+      line-height: 16px;
       color: lightgrey;
       margin-bottom: 10px !important;
   }

@@ -43,7 +43,7 @@ const YourOutfit = () => {
   return (
     <AllOutfits>
       <Container2>
-        <Add onClick={() => localStorageAdd()}>
+        <Add data-element={'AddOutfitButton'} data-module={'related-items'} role='add-outfit' onClick={() => localStorageAdd()}>
             <Image src={plusSign}></Image>
             <div style={{marginTop: "30px", fontWeight: 'Bold'}}>Add to Outfit</div>
         </Add>
@@ -51,10 +51,10 @@ const YourOutfit = () => {
       <Container1>
         { userOutfit.length > 0 ?
           userOutfit.map(element => {
-            return <Card key={element._id}>
+            return <Card key={element._id} role='your-outfit-card'>
                     {!element.photo ?
-                      <Parent><Image src={noImage}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Parent>
-                      : <Parent><Image src={element.photo}></Image><Icon onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Parent>}
+                      <Parent><Image src={noImage} alt={element.name}></Image><Icon data-element={'RemoveOutfit'} data-module={'related-items'} onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Parent>
+                      : <Parent><Image alt={element.name} src={element.photo}></Image><Icon data-element={'RemoveOutfit'} data-module={'related-items'} onClick={() => localStorageDelete(element._id)} src={xIcon}></Icon></Parent>}
                     <div>
                       <Category>{element.category}</Category>
                       <h5><b>{element.name}</b></h5>
