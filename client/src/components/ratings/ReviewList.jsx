@@ -32,6 +32,7 @@ const ReviewList = () => {
       <ReviewListHeader>
         <h2>{reviewCountTotals} reviews, sorted by
           <FilterSelect
+            role={'filter_drop_down'}
             value={filter}
             onChange={ (e) => { handleFilterChange(e) }}
             name={'filter_drop_down'}

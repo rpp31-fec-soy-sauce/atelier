@@ -693,6 +693,18 @@ const initialState = {
       helpfulness: 0,
       photos: [],
     },
+    {
+      review_id: 1074999,
+      rating: 5,
+      summary: 'I love it!!',
+      recommend: true,
+      response: null,
+      body: 'testing newest',
+      date: '2021-12-03T00:00:00.000Z',
+      reviewer_name: 'Clayton',
+      helpfulness: 0,
+      photos: [],
+    },
   ],
   reviewsMeta: {
     product_id: '59553',
