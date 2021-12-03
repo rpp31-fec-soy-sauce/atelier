@@ -90,7 +90,7 @@ const Carousel = () => {
 
   const renderContent = (
       <div style={{width: '600px'}}>
-        <XButton onClick={closeModal}>X</XButton>
+        <XButton onClick={closeModal} data-element={'RelatedItemsModalX'} data-module={'related-items'}>X</XButton>
         <Compare>Comparing</Compare>
         {!modalData ? <div>Data Loading</div> : (
           <>
@@ -110,13 +110,13 @@ const Carousel = () => {
   } else {
     return (
       <Container0>
-        {current > 0 ? <LeftArrow role='left-arrow' onClick={() => moveLeft()}/> : null}
+        {current > 0 ? <LeftArrow data-element={'LeftArrow'} data-module={'related-items'} role='left-arrow' onClick={() => moveLeft()}/> : null}
         <CarouselBox>
           {relatedProducts.slice(start, end).map(product => {
             return <Anchor key={product.id} >
                     <Card role='card'>
-                      {!product.url ? <Parent><Image onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar onClick={() => openModal(product.name, product.features)}></ModalStar></Parent> :
-                      <Parent><Image onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar onClick={() => openModal(product.name, product.features)}></ModalStar></Parent>}
+                      {!product.url ? <Parent><Image data-element={'Product'} data-module={'related-items'} alt={product.name} onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar data-element={'Product-Modal'} data-module={'related-items'} onClick={() => openModal(product.name, product.features)}></ModalStar></Parent> :
+                      <Parent><Image data-element={'Product'} data-module={'related-items'} alt={product.name} onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar data-element={'Product-Modal'} data-module={'related-items'} onClick={() => openModal(product.name, product.features)}></ModalStar></Parent>}
                       <div>
                         <Category>{product.category}</Category>
                         <h5><b>{product.name}</b></h5>
@@ -127,7 +127,7 @@ const Carousel = () => {
                   </Anchor>
           })}
         </CarouselBox>
-        {current === relatedLength - 4 ? null : <RightArrow role='right-arrow' onClick={() => moveRight()}/>}
+        {current === relatedLength - 4 ? null : <RightArrow data-element={'RightArrow'} data-module={'related-items'} role='right-arrow' onClick={() => moveRight()}/>}
         <>
           {showModal && <Modal closeModal={closeModal} renderContent={renderContent} />}
         </>
