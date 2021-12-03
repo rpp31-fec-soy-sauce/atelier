@@ -313,8 +313,7 @@ const AddReview = () => {
       <div className="reviewWarningMessages">For authentication reasons, you will not be emailed.</div>
       {
         (userEmail === '' ||  
-        userEmail === 'Example: jackson11@email.com') && 
-        submitAttempted === true ? <div className='formError' role='emailError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
+        userEmail === 'Example: jackson11@email.com' || !emailValid) ? <div className='formError' role='emailError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
       }   
     </>
   )
