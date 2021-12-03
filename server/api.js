@@ -1,6 +1,6 @@
 const axios = require('axios');
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/';
-const { apiToken } = require('../apiToken')
+// const { apiToken } = require('../apiToken')
 const headers = { Authorization: process.env.API_TOKEN };
 
 const makeApiRequest = (method, url, data) =>
