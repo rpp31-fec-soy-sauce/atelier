@@ -3,51 +3,41 @@
  */
 
  import React from 'react';
- import ReactDOM from 'react-dom';
- import { render, cleanup } from '@testing-library/react';
- import { Provider } from 'react-redux'
- import { ThemeProvider } from 'styled-components';
- import configureStore from 'redux-mock-store'
- import "@testing-library/jest-dom";
-
+ import { render, fireEvent, screen, within } from '../../../test-utils';
  import ReviewList from '../../../../client/src/components/ratings/ReviewList';
-//  import theme from '../../../../client/src/components/styles/theme';
- import {lightTheme} from '../../../../client/src/components/styles/theme';
+ import { waitFor } from '@testing-library/react';
+ import axios from 'axios';
+ 
 
- import {
-     reviewsAggregates,
-     reviewsMeta,
-     averageRating,
-     percentRecommend,
-     reviewCountTotals,
-     starPercentage,
-     calculatePercentRecommended
-} from '../../../TestStates/InitialReduxStates';
+ beforeEach(() => render(<ReviewList />));
 
- afterEach(cleanup);
+ describe("review filter", () => {
+  test('expect filter dropdown to exist', () => {
+    const filterDropdown = screen.getByRole('filter_drop_down');
+    expect(filterDropdown).toBeInTheDocument();
+  });
 
-describe('With React Testing Library', () => {
-  const initialState = {
-      reviewsAggregates: reviewsAggregates,
-      reviewsMeta: reviewsMeta,
-      averageRating: averageRating,
-      percentRecommend: percentRecommend,
-      reviewCountTotals: reviewCountTotals,
-      starPercentage: starPercentage,
-      calculatePercentRecommended: calculatePercentRecommended,
-      reviewsMeta: reviewsMeta
-    }
-  const mockStore = configureStore()
-  let store, wrapper
+  test('filter drop down should change value and pull reviews', async () => {
+    const filterDropdown = screen.getByRole('filter_drop_down');
+    fireEvent.change(filterDropdown, { target: { value: 'newest'} } )
+    
 
-  it("renders ReviewList without crashing", () => {
-    store = mockStore(initialState);
-    const div = document.createElement("div");
-    ReactDOM.render(
-        <Provider store={store}>
-            <ThemeProvider theme={lightTheme}>
-                <ReviewList />
-            </ThemeProvider>
-        </Provider>, div);
-  })
-})
+    expect(filterDropdown.value).toEqual('newest');
+  });
+
+ })
+
+ describe("more reviews", () => {
+  test('expect more reviews to dissappear when all reviews displayed', async () => {
+    const moreReviewButton = screen.getByRole('moreReviews');
+    expect(moreReviewButton).toBeInTheDocument();
+
+    fireEvent.click(moreReviewButton);
+    fireEvent.click(moreReviewButton);
+    fireEvent.click(moreReviewButton);
+    fireEvent.click(moreReviewButton);
+    fireEvent.click(moreReviewButton);
+    
+    expect(moreReviewButton).not.toBeInTheDocument();
+  });
+ })
