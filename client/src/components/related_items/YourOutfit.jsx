@@ -21,8 +21,6 @@ const YourOutfit = () => {
 
   const userOutfit = useSelector(selectUserOutfits);
 
-  // console.log(currentStyle)
-
   const localStorageAdd = () => {
     const product = {
       _id: currentProduct.id,
@@ -48,7 +46,7 @@ const YourOutfit = () => {
             <div style={{marginTop: "30px", fontWeight: 'Bold'}}>Add to Outfit</div>
         </Add>
       </Container2>
-      <Container1>
+      <Container1 role='outfit-container'>
         { userOutfit.length > 0 ?
           userOutfit.map(element => {
             return <Card key={element._id} role='your-outfit-card'>

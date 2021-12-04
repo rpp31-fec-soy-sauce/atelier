@@ -11,7 +11,7 @@ const PriceTag = ({ price }) => {
 
   if (price.length === 1) {
     return (
-      <Price>${JSON.parse(price[0])}.00</Price>
+      <Price role='original-price'>${JSON.parse(price[0])}.00</Price>
     );
   } else {
       return (

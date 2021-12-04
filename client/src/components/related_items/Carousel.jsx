@@ -10,8 +10,6 @@ import { getOutfits } from '../../store/funcActions.js';
 import { XButton } from '../styles/Card.js';
 import CompareFeatures from './CompareFeatures.jsx';
 
-
-
 const Carousel = () => {
 
   const dispatch = useDispatch();
@@ -23,12 +21,6 @@ const Carousel = () => {
   const averageRating = useSelector(selectAverageRating);
 
   const relatedProducts = useSelector(selectRelatedProducts);
-
-  // console.log('related products: ', relatedProducts)
-  // console.log('current product: ', currentProduct)
-  // console.log('current style: ', currentStyle)
-  // console.log('rating: ', averageRating)
-
 
   const [current, setCurrent] = useState(0);
   const relatedLength = relatedProducts.length;
@@ -89,8 +81,8 @@ const Carousel = () => {
   }
 
   const renderContent = (
-      <div style={{width: '600px'}}>
-        <XButton onClick={closeModal} data-element={'RelatedItemsModalX'} data-module={'related-items'}>X</XButton>
+      <div style={{width: '600px'}} role='modal-window'>
+        <XButton role='close-modal' onClick={closeModal} data-element={'RelatedItemsModalX'} data-module={'related-items'}>X</XButton>
         <Compare>Comparing</Compare>
         {!modalData ? <div>Data Loading</div> : (
           <>
@@ -113,13 +105,13 @@ const Carousel = () => {
         {current > 0 ? <LeftArrow data-element={'LeftArrow'} data-module={'related-items'} role='left-arrow' onClick={() => moveLeft()}/> : null}
         <CarouselBox>
           {relatedProducts.slice(start, end).map(product => {
-            return <Anchor key={product.id} >
+            return <Anchor key={product.id} role='product-card'>
                     <Card role='card'>
-                      {!product.url ? <Parent><Image data-element={'Product'} data-module={'related-items'} alt={product.name} onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar data-element={'Product-Modal'} data-module={'related-items'} onClick={() => openModal(product.name, product.features)}></ModalStar></Parent> :
-                      <Parent><Image data-element={'Product'} data-module={'related-items'} alt={product.name} onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar data-element={'Product-Modal'} data-module={'related-items'} onClick={() => openModal(product.name, product.features)}></ModalStar></Parent>}
+                      {!product.url ? <Parent><Image data-element={'Product'} data-module={'related-items'} alt={product.name} onClick={() => handleProductChange(product.id)} role='images' src={noImage} style={{height: '170px'}}></Image><ModalStar data-element={'Product-Modal'} data-module={'related-items'} onClick={() => openModal(product.name, product.features)} role='modal-star'></ModalStar></Parent> :
+                      <Parent><Image data-element={'Product'} data-module={'related-items'} alt={product.name} onClick={() => handleProductChange(product.id)} role='images' style={{height: '170px'}} src={product.url}></Image><ModalStar data-element={'Product-Modal'} data-module={'related-items'} onClick={() => openModal(product.name, product.features)} role='modal-star'></ModalStar></Parent>}
                       <div>
                         <Category>{product.category}</Category>
-                        <h5><b>{product.name}</b></h5>
+                        <h5 role='product-name' style={{fontWeight: 'bold'}}>{product.name}</h5>
                         <Price>${product.default_price}</Price>
                         <Stars averageRating={product.rating}/>
                       </div>
