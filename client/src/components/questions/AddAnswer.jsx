@@ -206,7 +206,7 @@ const AddAnswer = ({ question }) => {
                 return (
                   <div key={pic} >
                     <Card style={{ border: 'none' }}>
-                      <Image role='image' style={{ height: '70px', width: '70px' }} src={pic} alt="Image"></Image>
+                      <Image style={{ height: '70px', width: '70px' }} src={pic} alt="Image"></Image>
                     </Card>
                   </div>
                 )
