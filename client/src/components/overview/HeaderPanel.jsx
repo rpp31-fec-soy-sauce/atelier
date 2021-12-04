@@ -6,10 +6,18 @@ import Stars from '../universal_components/StarRatingStatic.jsx';
 const HeaderPanel = ({ product, currentStyle }) => {
   const rating = useSelector(selectAverageRating);
 
+  const scrollDown = () => {
+    window.scrollTo({
+      top: 2100,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <div>
       <Stars averageRating={rating}/>&nbsp;
-      <a href="">Read all reviews</a>
+      <a style={{cursor: 'pointer'}} onClick={() => {scrollDown()}}>Read all reviews</a>
       <h3 style={{ fontWeight: 300, margin: 0, marginTop: '0.5rem' }}>
         {product.category?.toUpperCase()}
       </h3>
