@@ -32,3 +32,5 @@ test('If a product does not have a sales price it should display in grey', () =>
   expect(originalPrice[1]).toHaveStyle({color: 'rgb(173, 182, 188)'});
 });
 
+beforeEach(() => render(<PriceTag />));
+
