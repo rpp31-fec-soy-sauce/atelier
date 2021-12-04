@@ -4,11 +4,20 @@
 
 import React from 'react';
 import { render, fireEvent, screen } from '../../../test-utils';
+import { waitFor } from '@testing-library/react';
 import AddAnswer from '../../../../client/src/components/questions/AddAnswer.jsx';
 import initialState from '../../../initial-state';
+import axios from 'axios';
+
+jest.mock('axios');
+let file;
 
 beforeEach(() => render(<AddAnswer />));
 
+beforeEach(() => {
+  file = new File(['(⌐□_□)'], 'chucknorris.png', { type: 'image/png' });
+
+});
 
 describe('AddAnswer', () => {
 
@@ -120,17 +129,37 @@ describe('AddAnswer and Modal Integration', () => {
 describe('Upload images', () => {
 
 
-  it('should render image upload', () => {
+  it('should render image upload', async () => {
     const addAnswer = screen.getByRole('add-answer-button');
     fireEvent.click(addAnswer)
 
     const imageUpload = screen.getByRole('image-upload');
     expect(imageUpload).toBeInTheDocument();
 
+    axios.post.mockResolvedValue({
+        data: {
+            secure_url: "https://res.cloudinary.com/dtr701wqi/image/upload/v1636769349/cloudinary/o24njspkcyrhpp8od9mu.jpg",
+        },
+        status: 200,
+        statusText: "OK",
+        headers: {
+            "cache-control": "max-age=0, private, must-revalidate",
+            "content-length": "370",
+            "content-type": "application/json; charset=utf-8"
+        }
+    });
+
+    await waitFor(() =>
+      fireEvent.change(imageUpload, {
+        target: { files: [file] },
+      })
+    );
+
+    expect(imageUpload.files[0].name).toBe('chucknorris.png');
+    expect(imageUpload.files.length).toBe(1);
+
 
   });
-
-  //need Async test
 
 
 
@@ -138,3 +167,5 @@ describe('Upload images', () => {
 
 
 })
+
+
