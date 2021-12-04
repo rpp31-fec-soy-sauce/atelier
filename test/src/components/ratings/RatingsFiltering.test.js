@@ -2,51 +2,27 @@
  * @jest-environment jsdom
  */
 
- import React from 'react';
- import ReactDOM from 'react-dom';
- import { render, cleanup } from '@testing-library/react';
- import { Provider } from 'react-redux'
- import { ThemeProvider } from 'styled-components';
- import configureStore from 'redux-mock-store'
- import "@testing-library/jest-dom";
+import React from 'react';
+import { render, fireEvent, screen, within } from '../../../test-utils';
+import RatingsFiltering from '../../../../client/src/components/ratings/RatingsFiltering';
+import { waitFor } from '@testing-library/react';
 
- import RatingsFiltering from '../../../../client/src/components/ratings/RatingsFiltering';
-//  import {theme} from '../../../../client/src/components/styles/theme';
+beforeEach(() => render(<RatingsFiltering />));
 
- import {
-     reviewsAggregates,
-     reviewsMeta,
-     averageRating,
-     percentRecommend,
-     reviewCountTotals,
-     starPercentage,
-     calculatePercentRecommended
-} from '../../../TestStates/InitialReduxStates';
 
- afterEach(cleanup);
+describe("modal rendering and functionality", () => {
+  test('expect filters to exist', () => {
+    expect(
+      screen.getByRole('ratingsFilterBreakDownButton-1')
+    ).toBeInTheDocument();
+  });
 
-describe('With React Testing Library', () => {
-  const initialState = {
-      reviewsAggregates: reviewsAggregates,
-      reviewsMeta: reviewsMeta,
-      averageRating: averageRating,
-      percentRecommend: percentRecommend,
-      reviewCountTotals: reviewCountTotals,
-      starPercentage: starPercentage,
-      calculatePercentRecommended: calculatePercentRecommended,
-      reviewsMeta: reviewsMeta
-    }
-  const mockStore = configureStore()
-  let store, wrapper
+  test('expect filter to display what is filtered when clicked', () => {
+    const starFilter = screen.getByRole('ratingsFilterBreakDownButton-1')
+    fireEvent.click(starFilter);
+    const filtersApplied = screen.getByText('Filters Applied: 1')
+    expect(filtersApplied).toBeInTheDocument();
+  });
 
-  it("renders RatingsFiltering without crashing", () => {
-    store = mockStore(initialState);
-    const div = document.createElement("div");
-    ReactDOM.render(
-        <Provider store={store}>
-            {/* <ThemeProvider theme={theme}> */}
-                <RatingsFiltering />
-            {/* </ThemeProvider> */}
-        </Provider>, div);
-  })
+
 })

@@ -77,6 +77,7 @@ const ReviewTiles = (props) => {
             <ReviewTileBodyItem>Helpful?
               <button
                 reviewid={review.review_id}
+                role={`helpfulClick-${review.review_id}`}
                 reviewhelpfulness={review.helpfulness}
                 localhelpful={localHelpful}
                 data-element={'reviewHelpfulButton'}

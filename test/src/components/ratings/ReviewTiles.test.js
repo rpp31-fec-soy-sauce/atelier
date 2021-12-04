@@ -3,50 +3,26 @@
  */
 
  import React from 'react';
- import ReactDOM from 'react-dom';
- import { render, cleanup } from '@testing-library/react';
- import { Provider } from 'react-redux'
- import { ThemeProvider } from 'styled-components';
- import configureStore from 'redux-mock-store'
- import "@testing-library/jest-dom";
+ import { render, fireEvent, screen, within } from '../../../test-utils';
+ import ReviewList from '../../../../client/src/components/ratings/ReviewList';
+ import { waitFor } from '@testing-library/react';
+ import axios from 'axios';
+ 
 
- import ReviewTiles from '../../../../client/src/components/ratings/ReviewTiles';
-//  import theme from '../../../../client/src/components/styles/theme';
+ beforeEach(() => render(<ReviewList displayCount={2}/>));
 
- import {
-     reviewsAggregates,
-     reviewsMeta,
-     averageRating,
-     percentRecommend,
-     reviewCountTotals,
-     starPercentage,
-     calculatePercentRecommended
-} from '../../../TestStates/InitialReduxStates';
+ describe("review tiles exist", () => {
+  test('expect tiles to exist', () => {
+    const review = screen.getByRole('1016925');
+    expect(review).toBeInTheDocument();
+  });
+ })
 
- afterEach(cleanup);
-
-describe('With React Testing Library', () => {
-  const initialState = {
-      reviewsAggregates: reviewsAggregates,
-      reviewsMeta: reviewsMeta,
-      averageRating: averageRating,
-      percentRecommend: percentRecommend,
-      reviewCountTotals: reviewCountTotals,
-      starPercentage: starPercentage,
-      calculatePercentRecommended: calculatePercentRecommended,
-      reviewsMeta: reviewsMeta
-    }
-  const mockStore = configureStore()
-  let store, wrapper
-
-  it("renders ReviewTiles without crashing", () => {
-    store = mockStore(initialState);
-    const div = document.createElement("div");
-    ReactDOM.render(
-        <Provider store={store}>
-            {/* <ThemeProvider theme={theme}> */}
-                <ReviewTiles />
-            {/* </ThemeProvider> */}
-        </Provider>, div);
-  })
-})
+ describe("review helpfulness can be clicked", () => {
+  test('expect review helpfulness click to increase helpfulness', async () => {
+    const reviewHelpfulButton = screen.getByRole('helpfulClick-1016925');
+    fireEvent.click(reviewHelpfulButton);
+    const reviewHelpfulButtonAfter = Number.parseInt(reviewHelpfulButton.attributes.reviewhelpfulness.value) + 1
+    expect(reviewHelpfulButtonAfter).toEqual(18)
+  });
+ })

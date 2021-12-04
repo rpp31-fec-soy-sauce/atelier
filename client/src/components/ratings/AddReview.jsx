@@ -313,8 +313,7 @@ const AddReview = () => {
       <div className="reviewWarningMessages">For authentication reasons, you will not be emailed.</div>
       {
         (userEmail === '' ||  
-        userEmail === 'Example: jackson11@email.com') && 
-        submitAttempted === true ? <div className='formError' role='emailError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
+        userEmail === 'Example: jackson11@email.com' && submitAttempted === true || !emailValid && submitAttempted === true)   ? <div className='formError' role='emailError'>Email required. {emailValid ? null : 'Email Invalid'}</div> : null
       }   
     </>
   )
@@ -475,7 +474,7 @@ const AddReview = () => {
 
     axios.post('https://api.cloudinary.com/v1_1/dcuxezkzp/image/upload/', fd, { headers: { "X-Requested-With": "XMLHttpRequest" } })
       .then(res => {
-        
+        console.log(res);
         setProductReviewPhotos([...productReviewPhotos, res.data.secure_url])
         setPhotoCount(photoCount + 1);
       })
@@ -525,6 +524,7 @@ const AddReview = () => {
       <Card 
         key={index} 
         style={{ border: 'none'}}
+        role="photoCard"
       >
         <ReviewPicture 
           src={photo ? photo : noPreview}
@@ -542,7 +542,7 @@ const AddReview = () => {
     (
       <>
         <form role="rating-form" className="rating-form" onSubmit={(e) => e.preventDefault()}>
-          <h4>Write your Review for {product ? product.name : null}:</h4>
+          <strong><u>Write your Review for {product ? product.name : null}</u>:</strong>
           {overallRecommendation}
           {overallRecommendationValidation}
           <div className="review-form-row">
