@@ -4,12 +4,12 @@
 
 import React from 'react';
 import Carousel from '../../../../client/src/components/related_items/Carousel';
+import OverView from '../../../../client/src/components/overview/OverView';
 import { render, fireEvent, screen } from '../../../test-utils';
 
-
-// Testing Related Products that has a length of 5
-
+beforeEach(() => render(<OverView />));
 beforeEach(() => render(<Carousel />));
+
 
 test('Only 4 related products should be visible within the carousel', () => {
   const carousel = screen.getAllByRole('card');
@@ -37,6 +37,13 @@ test('The right Arrow should not be visible after it is clicked', () => {
   expect(rightArrow).not.toBeInTheDocument();
 });
 
+test('After the right arrow is clicked the left arrow should be visible', () => {
+  const rightArrow = screen.getByRole('right-arrow');
+  fireEvent.click(rightArrow);
+  const leftArrow = screen.getByRole('left-arrow');
+  expect(leftArrow).toBeInTheDocument();
+});
+
 test('A modal should display when the star icon is clicked', () => {
   const star = screen.getAllByRole('modal-star');
   fireEvent.click(star[1]);
@@ -52,6 +59,14 @@ test('Modal should not display after the user clicks the X icon', () => {
   fireEvent.click(closeModal);
   expect(modalPopup).not.toBeInTheDocument();
 });
+
+test('After a user clicks one of the items inside the carousel that product should be displayed as the main product on the page', () => {
+  const product = screen.getAllByRole('images');
+  fireEvent.click(product[0]);
+  const name = screen.getAllByRole('heading');
+  expect(name[1]).toHaveTextContent('Camo Onesie');
+});
+
 
 
 
