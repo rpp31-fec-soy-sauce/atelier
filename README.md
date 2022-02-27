@@ -1,4 +1,4 @@
-Project Atleier
+#Project Atleier
 
 This project is a redesign of a retail website that will leverage a React front end to interact with a pre-existing backend that can be accessed via API.
 
