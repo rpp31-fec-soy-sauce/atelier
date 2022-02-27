@@ -1,8 +1,8 @@
 # Project Atleier
 
-This project is a redesign of a retail website that will leverage a React front end to interact with a pre-existing backend that can be accessed via API.
+This project is a redesign of a retail website that leverages a React front end framework which interacts with a pre-existing backend that can be accessed via API.
 
-The front end redesign will be of the project detail page including, but not limited to: 
+The front end redesign:
 
 1) **Overview** \
     A) Project Information\
