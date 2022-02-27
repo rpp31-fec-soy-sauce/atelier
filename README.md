@@ -1,4 +1,4 @@
-# Project Atleier
+# Project Atelier
 
 This project is a redesign of a retail website that leverages a React front end framework which interacts with a pre-existing backend that can be accessed via API.
 
