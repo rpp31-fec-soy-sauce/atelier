@@ -8,7 +8,7 @@ The front end redesign will be of the project detail page including, but not lim
     A) Project Information\
     B) Style Selector\
     C) Add to Cart\
-    D) Image Gallery\
+    D) Image Gallery
 2) Ratings & Reviews\
     A) Reviews List\
     B) Individual Review Tile\
@@ -16,14 +16,14 @@ The front end redesign will be of the project detail page including, but not lim
     D) Rating Breakdown (Filtering)\
     E) Product Breakdown (Factors)\
     F) Write New Review\
-    G) Keyword search - Low Priority\
+    G) Keyword search - Low Priority
 3) Questions & Answers\
     A) Questions List\
     B) Individual Question\
     C) Search Questions\
     D) More Answered Questions\
     E) Add a Question\
-    F) Add an Answer Modal\
+    F) Add an Answer Modal
 4) Related Items & Comparison\
     A) Related Product Cards\
     B) List Behavior\
