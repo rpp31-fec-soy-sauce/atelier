@@ -28,7 +28,7 @@ The front end redesign will be of the project detail page including, but not lim
     A) Related Product Cards\
     B) List Behavior\
     C) Related Products List\
-    D) Your Outfit List\
+    D) Your Outfit List
 
 
 When working on this app make sure to run npm install first.
