@@ -1,17 +1,17 @@
-#Project Atleier
+# Project Atleier
 
 This project is a redesign of a retail website that will leverage a React front end to interact with a pre-existing backend that can be accessed via API.
 
 The front end redesign will be of the project detail page including, but not limited to: 
 
-1) Overview\
+1) **Overview** \
     A) Project Information\
     B) Style Selector\
     C) Add to Cart\
     D) Image Gallery
     ![Screenshot from 2022-02-27 12-15-47](https://user-images.githubusercontent.com/81498700/155902411-7462d423-94f1-41b5-9480-f7e1592b3797.png)
 
-2) Ratings & Reviews\
+2) **Ratings & Reviews** \
     A) Reviews List\
     B) Individual Review Tile\
     C) Sort Options\
@@ -21,7 +21,7 @@ The front end redesign will be of the project detail page including, but not lim
     G) Keyword search - Low Priority
     ![Screenshot from 2022-02-27 12-16-32](https://user-images.githubusercontent.com/81498700/155902431-b47a63e0-10f3-4390-84e5-e61336da69fe.png)
 
-3) Questions & Answers\
+3) **Questions & Answers** \
     A) Questions List\
     B) Individual Question\
     C) Search Questions\
@@ -30,7 +30,7 @@ The front end redesign will be of the project detail page including, but not lim
     F) Add an Answer Modal
     ![Screenshot from 2022-02-27 12-16-07](https://user-images.githubusercontent.com/81498700/155902441-1aa877e6-540f-48ca-83ec-ef6f7901b101.png)
 
-4) Related Items & Comparison\
+4) **Related Items & Comparison** \
     A) Related Product Cards\
     B) List Behavior\
     C) Related Products List\
