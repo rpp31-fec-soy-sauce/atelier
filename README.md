@@ -41,7 +41,3 @@ The front end redesign:
 When working on this app make sure to run `npm install` first.
 
 It will be compiled by webpack with babel.
-
-The git project can be found here: https://github.com/rpp31-fec-soy-sauce/atelier 
-
-API Documentation can be found here: https://learn-2.galvanize.com/cohorts/2780/blocks/94/content_files/Front%20End%20Capstone/project-atelier/API_Overview.md
