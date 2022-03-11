@@ -38,6 +38,7 @@ The front end redesign:
     ![Screenshot from 2022-02-27 12-14-32](https://user-images.githubusercontent.com/81498700/155902445-76cc6608-4d2b-4064-8987-cf8f50ff28ba.png)
 
 
-When working on this app make sure to run `npm install` first.
-
-It will be compiled by webpack with babel.
+When working on this app run: \
+`npm install`
+`npm run dev-client`
+`npm run dev-start`
