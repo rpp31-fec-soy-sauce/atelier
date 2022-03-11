@@ -39,6 +39,7 @@ The front end redesign:
 
 
 When working on this app run: \
-`npm install`
-`npm run dev-client`
+
+`npm install` \
+`npm run dev-client` \
 `npm run dev-start`
